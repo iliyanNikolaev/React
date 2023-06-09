@@ -12,7 +12,10 @@ const Timer = (props) => {
         }
     }, 1000);
 
-    return <p>Timer: {seconds}s</p>
+    return <article>
+        <p>Timer: {seconds}s</p>
+        <hr />
+        </article>
 }
 
 export default Timer;
