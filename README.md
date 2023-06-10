@@ -1,7 +1,7 @@
 # Softuni-ReactJS
 <div id="icons">
 <img width="100" alt="softuniLogo" src="https://user-images.githubusercontent.com/121745595/219448556-2c7c7f5a-c282-411b-9253-1b55fff353d7.png">
-<img width="100" alt="reactLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png">
+<img width="120" alt="reactLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png">
 </div>
 <hr>
 The course provides knowledge and practical skills for building client applications (Single Page Applications) using one of the most popular frameworks. Architectural patterns for SPA applications, components, and other topics are studied. Views and data visualization templates, models, data binding, working with multiple views, routing, and retrieving data from REST services are also covered.
