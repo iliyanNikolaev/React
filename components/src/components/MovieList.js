@@ -1,9 +1,11 @@
 import Movie from './Movie';
 
-const MovieList = ({movies}) => {
+const MovieList = ({movies, onMovieDelete, onMovieSelected}) => {
 
     return <ul>
-        {movies.map(x => <li><Movie {...x}/></li>)}
+        {movies.map(movie => 
+            <Movie key={movie._id} {...movie} onMovieDelete={onMovieDelete} onMovieSelected={onMovieSelected} />
+        )}
         </ul> ;
 }
 

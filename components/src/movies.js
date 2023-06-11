@@ -1,4 +1,4 @@
-const movies = [
+export const movies = [
     {
         "_id": "01",
         "title": "The Conjuring",
@@ -31,4 +31,3 @@ const movies = [
     }
 ];
 
-export default movies;
