@@ -3,8 +3,7 @@ import styles from './Movie.module.css';
 
 const Movie = ({_id, title, description, img, onMovieDelete, onMovieSelected, selected}) => {
     React.useEffect(() => {
-        console.log(`Movie ${title} selected!`);
-    }, [selected]);
+    }, [selected, title]);
 
     return <article className={styles['movie-article']}>
         <h3>Title: {title}</h3>
