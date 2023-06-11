@@ -3,10 +3,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import React from 'react';
 import TodoList from './components/TodoList';
+import Loading from './components/Loading';
 
 function App() {
 
     const [todos, setTodos] = React.useState([]);
+    let isLoading = true;
 
     React.useEffect(() => {
         fetch('http://localhost:3030/jsonstore/todos')
@@ -14,6 +16,7 @@ function App() {
             .then(data => {
                 const todosData = Object.values(data);
                 setTodos(todosData);
+                isLoading = false;
             })
     }, []);
 
@@ -56,9 +59,9 @@ function App() {
                     <div className="table-wrapper">
 
                         {/* Loading here.. */}
-
+                        {isLoading ? <Loading /> : <TodoList todos={todos} onChangeStatus={onChangeStatus} />}
                         {/*Table here..*/}
-                        <TodoList todos={todos} onChangeStatus={onChangeStatus} />
+                        
 
 
                     </div>
