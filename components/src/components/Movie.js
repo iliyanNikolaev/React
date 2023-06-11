@@ -1,11 +1,12 @@
 import React from "react";
+import styles from './Movie.module.css';
 
 const Movie = ({_id, title, description, img, onMovieDelete, onMovieSelected, selected}) => {
     React.useEffect(() => {
         console.log(`Movie ${title} selected!`);
     }, [selected]);
 
-    return <article>
+    return <article className={styles['movie-article']}>
         <h3>Title: {title}</h3>
         <main>
         <img src={img} alt="poster" width={200}/>
@@ -15,7 +16,6 @@ const Movie = ({_id, title, description, img, onMovieDelete, onMovieSelected, se
             <button onClick={() => onMovieDelete(_id)}>Delete</button>
             <button onClick={() => onMovieSelected(_id)}>Select</button>
         </footer>
-        <hr />
     </article>
 };
 
