@@ -1,4 +1,4 @@
-import { getAllUsers } from './services/userService';
+import { getAllUsers, createUser } from './services/userService';
 import React from 'react';
 import './App.css';
 import Header from "./components/Header";
@@ -18,6 +18,20 @@ function App() {
             })
     }, []);
 
+    const onCreateSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+
+        const data = Object.fromEntries(formData);
+        
+        const user = await createUser(data);
+
+        setUsers(state => [...state, user]);
+
+        document.querySelector('.btn.close').click();
+    }
+
     return (
         <>
             <Header />
@@ -26,8 +40,10 @@ function App() {
 
                     <Search />
                     <div className="table-wrapper">
-                        <Table users={users}/>
+                        <Table users={users} onCreateSubmit={onCreateSubmit}/>
                     </div>
+
+
                 </section>
             </main>
             <Footer />

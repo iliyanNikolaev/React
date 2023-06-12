@@ -2,11 +2,14 @@ import User from "./User";
 import React from "react";
 import { getUserById } from "../services/userService";
 import UserDetails from './UserDetails';
+import CreateUser from "./CreateUser";
 
 const Table = ({
-    users
+    users,
+    onCreateSubmit
 }) => {
     const [selectedUser, setSelectedUser] = React.useState(null);
+    const [onCreateClicked, setOnCreateClicked] = React.useState(false);
 
     const onDetails = async (id) => {
         const user = await getUserById(id);
@@ -15,11 +18,17 @@ const Table = ({
 
     const onClose = () => {
         setSelectedUser(null);
+        setOnCreateClicked(false);
+    }
+
+    const onCreateHandler = () => {
+        setOnCreateClicked(true);
     }
 
     return (
         <>
         {selectedUser ? <UserDetails user={selectedUser} onClose={onClose}/> : null}
+        { onCreateClicked ? <CreateUser onClose={onClose} onCreateSubmit={onCreateSubmit}/> : null }
         <table className="table">
           <thead>
             <tr>
@@ -80,6 +89,9 @@ const Table = ({
             {users.map(u => <User key={u._id} user={u} onDetails={onDetails}/>)}
           </tbody>
         </table>
+
+        <button className="btn-add btn" onClick={() => onCreateHandler()}>Add new user</button>
+        
         </>
     )
 }
