@@ -1,9 +1,25 @@
 import User from "./User";
+import React from "react";
+import { getUserById } from "../services/userService";
+import UserDetails from './UserDetails';
 
 const Table = ({
     users
 }) => {
+    const [selectedUser, setSelectedUser] = React.useState(null);
+
+    const onDetails = async (id) => {
+        const user = await getUserById(id);
+        setSelectedUser(user);
+    }
+
+    const onClose = () => {
+        setSelectedUser(null);
+    }
+
     return (
+        <>
+        {selectedUser ? <UserDetails user={selectedUser} onClose={onClose}/> : null}
         <table className="table">
           <thead>
             <tr>
@@ -61,9 +77,10 @@ const Table = ({
           </thead>
           <tbody>
             {/*<!-- Table row component -->*/}
-            {users.map(u => <User key={u._id} user={u} />)}
+            {users.map(u => <User key={u._id} user={u} onDetails={onDetails}/>)}
           </tbody>
         </table>
+        </>
     )
 }
 
