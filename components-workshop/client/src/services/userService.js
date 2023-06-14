@@ -36,3 +36,11 @@ export async function createUser(userData) {
 
     return result.user;
 }
+
+export async function deleteUser(id) {
+    await fetch(`${baseUrl}/${id}`, {
+        method: 'delete'
+    })
+
+    return true;
+}

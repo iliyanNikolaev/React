@@ -1,4 +1,4 @@
-import { getAllUsers, createUser } from './services/userService';
+import { getAllUsers, createUser, deleteUser } from './services/userService';
 import React from 'react';
 import './App.css';
 import Header from "./components/Header";
@@ -32,6 +32,14 @@ function App() {
         document.querySelector('.btn.close').click();
     }
 
+    const onDeleteSubmit = async (id) => {
+        await deleteUser(id);
+
+        setUsers(state => state.filter(u => u._id !== id));
+
+        document.querySelector('.btn.close').click();
+    }
+
     return (
         <>
             <Header />
@@ -40,7 +48,7 @@ function App() {
 
                     <Search />
                     <div className="table-wrapper">
-                        <Table users={users} onCreateSubmit={onCreateSubmit}/>
+                        <Table users={users} onCreateSubmit={onCreateSubmit} onDeleteSubmit={onDeleteSubmit}/>
                     </div>
 
 
