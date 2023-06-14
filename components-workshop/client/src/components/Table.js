@@ -8,11 +8,13 @@ import DeleteUser from "./DeleteUser";
 const Table = ({
   users,
   onCreateSubmit,
-  onDeleteSubmit
+  onDeleteSubmit,
+  onUpdateSubmit
 }) => {
   const [selectedUser, setSelectedUser] = React.useState(null);
   const [onCreateClicked, setOnCreateClicked] = React.useState(false);
   const [onDeleteClicked, setOnDeleteClicked] = React.useState(null);
+  const [onEditClicked, setOnEditClicked] = React.useState(null);
 
   const onDetails = async (id) => {
     const user = await getUserById(id);
@@ -23,6 +25,7 @@ const Table = ({
     setSelectedUser(null);
     setOnCreateClicked(false);
     setOnDeleteClicked(null);
+    setOnEditClicked(null);
   }
 
   const onCreateHandler = () => {
@@ -37,11 +40,18 @@ const Table = ({
     await onDeleteSubmit(id);
   }
 
+  const onEditHandler = async (userId) => {
+    const user = await getUserById(userId);
+    setOnEditClicked(user)
+  }
+
   return (
     <>
       {selectedUser ? <UserDetails user={selectedUser} onClose={onClose} /> : null}
       {onCreateClicked ? <CreateUser onClose={onClose} onCreateSubmit={onCreateSubmit} /> : null}
-      {onDeleteClicked ? <DeleteUser onClose={onClose} onDeleteSubmited={() => onDeleteSubmited(onDeleteClicked)}/> : null}
+      {onDeleteClicked ? <DeleteUser onClose={onClose} onDeleteSubmited={() => onDeleteSubmited(onDeleteClicked)} /> : null}
+      {onEditClicked ? <CreateUser onClose={onClose} user={onEditClicked} onCreateSubmit={(e) => onUpdateSubmit(e, onEditClicked._id)}/> : null}
+      
       <table className="table">
         <thead>
           <tr>
@@ -99,7 +109,14 @@ const Table = ({
         </thead>
         <tbody>
           {/*<!-- Table row component -->*/}
-          {users.map(u => <User key={u._id} user={u} onDetails={onDetails} onDeleteHandler={onDeleteHandler} onDeleteSubmit={onDeleteSubmit}/>)}
+          {users.map(u => <User 
+          key={u._id} 
+          user={u} 
+          onDetails={onDetails} 
+          onDeleteHandler={onDeleteHandler} 
+          onDeleteSubmit={onDeleteSubmit}
+          onEditHandler={onEditHandler}
+          />)}
         </tbody>
       </table>
 
