@@ -10,10 +10,8 @@ function App() {
         }, 3000);
     }, []);
 
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-
-        console.log(e.target.parentElement.parentElement.querySelector('#username').value);
+    const onUsernameChange = (e) => {
+        setUserName(e.target.value)
     }
 
     return (
@@ -22,11 +20,14 @@ function App() {
             <hr />
             <form>
                 <label htmlFor="username">Username:
-                    <input type="text" name="username" id="username" defaultValue={username}/>
+                    <input type="text" name="username" id="username" 
+                    value={username}
+                    onChange={onUsernameChange}
+                    />
                 </label>
 
                 <div>
-                    <input type="submit" value="submit" onClick={(e) => onSubmitHandler(e)}/>
+                    <input type="submit" value="submit" />
                 </div>
             </form>
         </div>
