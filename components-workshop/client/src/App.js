@@ -8,6 +8,17 @@ import Table from './components/Table';
 
 function App() {
     const [users, setUsers] = React.useState([]);
+    const [userProps, setUserProps] = React.useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        country: '',
+        city: '',
+        street: '',
+        streetNumber: ''
+    })
 
     React.useEffect(() => {
         getAllUsers().then(users => {
@@ -18,14 +29,15 @@ function App() {
             })
     }, []);
 
+    const onChangeUserProps = (e) => {
+        const value = e.target.value;
+        setUserProps(state => ({ ...state, [e.target.name]: value }));
+    }
+
     const onCreateSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-
-        const data = Object.fromEntries(formData);
-        
-        const user = await createUser(data);
+        const user = await createUser(userProps);
 
         setUsers(state => [...state, user]);
 
@@ -46,7 +58,7 @@ function App() {
         const formData = new FormData(e.currentTarget);
 
         const data = Object.fromEntries(formData);
-        
+
         const updatedUser = await updateUser(id, data);
 
         setUsers(state => state.map(u => u._id === id ? updatedUser : u));
@@ -62,7 +74,14 @@ function App() {
 
                     <Search />
                     <div className="table-wrapper">
-                        <Table users={users} onCreateSubmit={onCreateSubmit} onDeleteSubmit={onDeleteSubmit} onUpdateSubmit={onUpdateSubmit}/>
+                        <Table
+                            users={users}
+                            userProps={userProps}
+                            onCreateSubmit={onCreateSubmit}
+                            onDeleteSubmit={onDeleteSubmit}
+                            onUpdateSubmit={onUpdateSubmit}
+                            onChangeUserProps={onChangeUserProps}
+                        />
                     </div>
 
 

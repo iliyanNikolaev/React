@@ -9,7 +9,9 @@ const Table = ({
   users,
   onCreateSubmit,
   onDeleteSubmit,
-  onUpdateSubmit
+  onUpdateSubmit,
+  onChangeUserProps,
+  userProps
 }) => {
   const [selectedUser, setSelectedUser] = React.useState(null);
   const [onCreateClicked, setOnCreateClicked] = React.useState(false);
@@ -48,7 +50,14 @@ const Table = ({
   return (
     <>
       {selectedUser ? <UserDetails user={selectedUser} onClose={onClose} /> : null}
-      {onCreateClicked ? <CreateUser onClose={onClose} onCreateSubmit={onCreateSubmit} /> : null}
+      {onCreateClicked 
+      ? <CreateUser 
+        onClose={onClose} 
+        onCreateSubmit={onCreateSubmit}
+        onChangeUserProps={onChangeUserProps}
+        userProps={userProps} 
+        /> 
+      : null}
       {onDeleteClicked ? <DeleteUser onClose={onClose} onDeleteSubmited={() => onDeleteSubmited(onDeleteClicked)} /> : null}
       {onEditClicked ? <CreateUser onClose={onClose} user={onEditClicked} onCreateSubmit={(e) => onUpdateSubmit(e, onEditClicked._id)}/> : null}
       
