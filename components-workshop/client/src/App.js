@@ -18,7 +18,9 @@ function App() {
         city: '',
         street: '',
         streetNumber: ''
-    })
+    });
+
+    const [formErrors, setFormErrors] = React.useState({}); 
 
     React.useEffect(() => {
         getAllUsers().then(users => {
@@ -31,6 +33,80 @@ function App() {
 
     const onChangeUserProps = (e) => {
         const value = e.target.value;
+        
+        if(e.target.name === 'firstName' && value.length < 3) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        } 
+
+        if(e.target.name === 'firstName' && value.length >= 3) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'lastName' && value.length < 3) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        } 
+
+        if(e.target.name === 'lastName' && value.length >= 3) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'email' && !value.includes('@')) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+
+        if(e.target.name === 'email' && value.includes('@')) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'phoneNumber' && value.length < 10) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+
+        if(e.target.name === 'phoneNumber' && value.length >= 10) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'imageUrl' && !value.includes('http')) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+
+        if(e.target.name === 'imageUrl' && value.includes('http')) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'country' && value.length < 2) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+        
+        if(e.target.name === 'country' && value.length >= 2) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'city' && value.length < 3) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+        
+        if(e.target.name === 'city' && value.length >= 3) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'street' && value.length < 3) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+        
+        if(e.target.name === 'street' && value.length >= 3) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        if(e.target.name === 'streetNumber' && (Number.isNaN(Number(value)) || Number(value) < 0)) {
+            setFormErrors(state => ({...state, [e.target.name]: true}));
+        }
+
+        if(e.target.name === 'streetNumber' && Number(value) >= 0) {
+            setFormErrors(state => ({...state, [e.target.name]: false}));
+        }
+
+        
         setUserProps(state => ({ ...state, [e.target.name]: value }));
     }
 
@@ -40,6 +116,17 @@ function App() {
         const user = await createUser(userProps);
 
         setUsers(state => [...state, user]);
+        setUserProps({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phoneNumber: '',
+            imageUrl: '',
+            country: '',
+            city: '',
+            street: '',
+            streetNumber: ''
+        })
 
         document.querySelector('.btn.close').click();
     }
@@ -81,6 +168,7 @@ function App() {
                             onDeleteSubmit={onDeleteSubmit}
                             onUpdateSubmit={onUpdateSubmit}
                             onChangeUserProps={onChangeUserProps}
+                            formErrors={formErrors}
                         />
                     </div>
 

@@ -11,7 +11,8 @@ const Table = ({
   onDeleteSubmit,
   onUpdateSubmit,
   onChangeUserProps,
-  userProps
+  userProps,
+  formErrors
 }) => {
   const [selectedUser, setSelectedUser] = React.useState(null);
   const [onCreateClicked, setOnCreateClicked] = React.useState(false);
@@ -55,7 +56,8 @@ const Table = ({
         onClose={onClose} 
         onCreateSubmit={onCreateSubmit}
         onChangeUserProps={onChangeUserProps}
-        userProps={userProps} 
+        userProps={userProps}
+        formErrors={formErrors} 
         /> 
       : null}
       {onDeleteClicked ? <DeleteUser onClose={onClose} onDeleteSubmited={() => onDeleteSubmited(onDeleteClicked)} /> : null}
