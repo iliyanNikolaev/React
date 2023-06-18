@@ -109,9 +109,7 @@ const CreateUser = ({
                         </div>
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit">Save</button>
-                            <button id="action-cancel" className="btn" type="button">
-                                Cancel
-                            </button>
+                            <button id="action-cancel" className="btn" type="button">Cancel</button>
                         </div>
                     </form>
                 </div>

@@ -10,6 +10,7 @@ const Table = ({
   onCreateSubmit,
   onDeleteSubmit,
   onUpdateSubmit,
+  onUpdateClicked,
   onChangeUserProps,
   userProps,
   formErrors
@@ -45,7 +46,8 @@ const Table = ({
 
   const onEditHandler = async (userId) => {
     const user = await getUserById(userId);
-    setOnEditClicked(user)
+    onUpdateClicked(user);
+    setOnEditClicked(user);
   }
 
   return (
@@ -61,7 +63,15 @@ const Table = ({
         /> 
       : null}
       {onDeleteClicked ? <DeleteUser onClose={onClose} onDeleteSubmited={() => onDeleteSubmited(onDeleteClicked)} /> : null}
-      {onEditClicked ? <CreateUser onClose={onClose} user={onEditClicked} onCreateSubmit={(e) => onUpdateSubmit(e, onEditClicked._id)}/> : null}
+      {onEditClicked 
+      ? <CreateUser 
+      onClose={onClose} 
+      user={onEditClicked}
+      onChangeUserProps={onChangeUserProps}
+      userProps={userProps}
+      formErrors={formErrors} 
+      onCreateSubmit={(e) => onUpdateSubmit(e, onEditClicked._id)}/> 
+      : null}
       
       <table className="table">
         <thead>
