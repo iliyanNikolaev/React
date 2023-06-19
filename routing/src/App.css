@@ -46,3 +46,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+nav .is-active {
+  color: purple;
+  text-decoration: underline;
+}
