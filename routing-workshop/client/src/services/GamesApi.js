@@ -1,4 +1,5 @@
 import { get } from "./requester";
+
 const endpoints = {
     allGames: '/games'
 }

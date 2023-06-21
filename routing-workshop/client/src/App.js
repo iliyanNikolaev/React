@@ -15,7 +15,7 @@ function App() {
 
     React.useEffect(() => {
         getAllGames()
-            .then(res => console.log(res))
+            .then(res => setGames(res));
     }, [])
 
     return (
@@ -26,7 +26,10 @@ function App() {
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/register' element={<Register />}></Route>
-                <Route path='/catalog' element={<Catalog />}></Route>
+                <Route path='/catalog' element={<Catalog
+                    games={games} 
+                    />}>
+                    </Route>
                 <Route path='/create' element={<Create />}></Route>
             </Routes>
         </div>
