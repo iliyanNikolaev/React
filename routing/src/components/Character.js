@@ -1,4 +1,5 @@
 import React from "react";
+import Films from "./Films";
 import { useParams, useNavigate, Route, Routes, Link } from "react-router-dom";
 
 const baseUrl = 'https://swapi.dev/api/people'
@@ -29,8 +30,8 @@ const Character = () => {
         </nav>
 
         <Routes>
-            <Route path="/films" element={<h3>{character.name}'s films</h3>}/>
-            <Route path="/starships" element={<h3>{character.name}'s starships</h3>}/>
+            <Route path="/films" element={<Films />}/>
+            <Route path="/starships" element={<h2>Starships</h2>}/>
         </Routes>
     </>
 
