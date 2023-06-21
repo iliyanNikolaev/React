@@ -7,8 +7,17 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
+import { getAllGames } from './services/GamesApi';
+import React from 'react';
 
 function App() {
+    const [games, setGames] = React.useState([]);
+
+    React.useEffect(() => {
+        getAllGames()
+            .then(res => console.log(res))
+    }, [])
+
     return (
         <div id="box">
             <Header />

@@ -1,4 +1,7 @@
+import React from "react";
+
 export const Catalog = (props) => {
+
     return <>
         <section id="catalog-page">
             <h1>All Games</h1>
