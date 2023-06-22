@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import './App.css';
 import { Header } from './components/Header/Header';
@@ -7,16 +7,24 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
-import { getAllGames } from './services/GamesApi';
+import { getAllGames, createGame } from './services/GamesApi';
 import React from 'react';
 
 function App() {
+    const navigate = useNavigate(); // ползва се за редиректи, част е от react-router-dom библиотеката
+
     const [games, setGames] = React.useState([]);
 
     React.useEffect(() => {
         getAllGames()
             .then(res => setGames(res));
-    }, [])
+    }, []);
+
+    const onCreateHandler = async (data) => {
+        const game = await createGame(data);
+        setGames(state => [...state, game]);
+        navigate('/catalog');   
+    }
 
     return (
         <div id="box">
@@ -28,9 +36,10 @@ function App() {
                 <Route path='/register' element={<Register />}></Route>
                 <Route path='/catalog' element={<Catalog
                     games={games} 
-                    />}>
-                    </Route>
-                <Route path='/create' element={<Create />}></Route>
+                    />}></Route>
+                <Route path='/create' element={<Create 
+                    onCreateHandler={onCreateHandler}
+                    />}></Route>
             </Routes>
         </div>
     );
