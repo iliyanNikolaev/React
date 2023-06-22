@@ -1,15 +1,43 @@
 import React from "react";
 import { useParams } from "react-router-dom"
-import { getGameById } from "../../services/GamesApi";
+import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/GamesApi";
+import { CommentsList } from "./CommentsList";
 
 export const Details = (props) => {
   const { gameId } = useParams(); // така се взима ид-то на конкретната игра което сме настроили в раутовете в аппа
   const [currentGame, setCurrentGame] = React.useState({});
+  const [comments, setComments] = React.useState([]);
+  const [currentComment, setCurrentComment] = React.useState('');
+
+
 
   React.useEffect(() => {
     getGameById(gameId)
       .then(res => setCurrentGame(res));
   }, [gameId]);
+
+  React.useEffect(() => {
+    getCommentsByGameId(gameId)
+      .then(res => setComments(res));
+  }, [gameId]);
+
+  const onCommentChange = (e) => {
+    setCurrentComment(e.target.value);
+  }
+
+  const onCommentSubmit = async (e) => {
+    e.preventDefault();
+
+    const commentData = {
+      gameId,
+      comment: currentComment
+    }
+
+    const comment = await postCommentForGame(commentData);
+    
+    setComments(state => ([...state, comment]));
+    setCurrentComment('');
+  }
 
    return <> 
    <section id="game-details">
@@ -24,21 +52,9 @@ export const Details = (props) => {
       <p className="text">
         {currentGame.summary}
       </p>
-      {/* Bonus ( for Guests and Users ) */}
-      <div className="details-comments">
-        <h2>Comments:</h2>
-        <ul>
-          {/* list all comments for current game (If any) */}
-          <li className="comment">
-            <p>Content: I rate this one quite highly.</p>
-          </li>
-          <li className="comment">
-            <p>Content: The best game.</p>
-          </li>
-        </ul>
-        {/* Display paragraph: If there are no games in the database */}
-        <p className="no-comment">No comments.</p>
-      </div>
+
+      <CommentsList comments={comments} />
+      
       {/* Edit/Delete buttons ( Only for creator of this game )  */}
       <div className="buttons">
         <a href="/" className="button">
@@ -53,11 +69,12 @@ export const Details = (props) => {
     {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
     <article className="create-comment">
       <label>Add new comment:</label>
-      <form className="form">
+      <form className="form" onSubmit={onCommentSubmit}>
         <textarea
           name="comment"
           placeholder="Comment......"
-          defaultValue={""}
+          value={currentComment}
+          onChange={onCommentChange}
         />
         <input
           className="btn submit"
