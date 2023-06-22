@@ -9,6 +9,7 @@ import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
 import { getAllGames, createGame } from './services/GamesApi';
 import React from 'react';
+import { Details } from './components/Details/Details';
 
 function App() {
     const navigate = useNavigate(); // ползва се за редиректи, част е от react-router-dom библиотеката
@@ -40,6 +41,9 @@ function App() {
                 <Route path='/create' element={<Create 
                     onCreateHandler={onCreateHandler}
                     />}></Route>
+                <Route path='/details/:gameId' element={<Details />}>
+
+                </Route>
             </Routes>
         </div>
     );

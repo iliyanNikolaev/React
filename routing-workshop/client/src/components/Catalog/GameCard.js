@@ -9,7 +9,7 @@ export const GameCard = ({
                 <img src={game.imageUrl} alt="game-poster"/>
                 <h6>{game.category}</h6>
                 <h2>{game.title}</h2>
-                <Link to={`/catalog/${game._id}`} className="details-button">
+                <Link to={`/details/${game._id}`} className="details-button">
                     Details
                 </Link>
             </div>
