@@ -14,12 +14,36 @@ function App() {
 			.then(data => {
 				setTodos(Object.values(data));
 			});
-	}, [todos]);
+	}, []);
+
+	const onAddTodo = async (data) => {
+		const response = await fetch(baseUrl, {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+
+		const result = await response.json();
+
+		setTodos(state => [...state, result]);
+
+		document.querySelector('#closeButton').click();
+	}
+
+	const onDeleteTodo = async (id) => {
+		await fetch(`${baseUrl}/${id}`, {
+			method: 'delete'
+		});
+
+		setTodos(state => state.filter(x => x._id !== id));
+	}
 
 	return (
 		<>
 			<Header />
-			<TodoList todos={todos}/>
+			<TodoList todos={todos} onAddTodo={onAddTodo} onDeleteTodo={onDeleteTodo}/>
 		</>
 	);
 }
