@@ -17,7 +17,8 @@ function App() {
 			});
 	}, []);
 
-	const onAddTodo = async (data) => {
+	const onAddTodo = async (data, onCloseModal) => {
+
 		const response = await fetch(baseUrl, {
 			method: 'post',
 			headers: {
@@ -30,7 +31,8 @@ function App() {
 
 		setTodos(state => [...state, result]);
 
-		document.querySelector('#closeButton').click();
+		//document.querySelector('#closeButton').click();
+		onCloseModal();
 	}
 
 	const onDeleteTodo = async (id) => {
@@ -41,8 +43,24 @@ function App() {
 		setTodos(state => state.filter(x => x._id !== id));
 	}
 
+	const todoOnClick = async (id) => {
+		const currentTodo = todos.find(x => x._id === id);
+
+		await fetch(`${baseUrl}/${id}`, {
+			method: 'put',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({text: currentTodo.text, isComplete: !currentTodo.isComplete})
+		})
+
+		setTodos(state => state.map(x => x._id === id ? {...x, isComplete: !x.isComplete} : {...x}));
+	}
+
 	const contextValue = {
-		onDeleteTodo
+		onDeleteTodo,
+		onAddTodo,
+		todoOnClick
 	}
 
 	return (

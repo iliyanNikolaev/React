@@ -6,8 +6,7 @@ import { TodoContext } from '../contexts/todoContext';
 export const TodoItem = ({
     todo
 }) => {
-    const { onDeleteTodo } = React.useContext(TodoContext);
-
+    const { onDeleteTodo, todoOnClick } = React.useContext(TodoContext);
 
     const onDeleteClicked = (e) => {
         onDeleteTodo(e.target.id);
@@ -16,8 +15,8 @@ export const TodoItem = ({
     
     return (
         <>
-            <ListGroup.Item action style={{display: 'flex', justifyContent: 'space-between'}}>
-                {todo.text}
+            <ListGroup.Item action style={{display: 'flex', justifyContent: 'space-between'}} onClick={() => todoOnClick(todo._id)}>
+                <p style={{textDecoration: todo.isComplete ? 'line-through' : 'none'}}>{todo.text}</p>
                 <Button variant="danger" id={todo._id} onClick={onDeleteClicked}>X</Button>
             </ListGroup.Item>
         </>

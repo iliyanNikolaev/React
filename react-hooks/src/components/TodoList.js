@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button';
 import { TodoItem } from './TodoItem';
 import { AddTodo } from './AddTodoModal';
 import React from 'react';
+import { TodoContext } from '../contexts/todoContext';
 
 export const TodoList = ({
-    todos,
-    onAddTodo
+    todos
 }) => {
 
     const [addTodoVisible, setAddTodoVisible] = React.useState(false);
@@ -18,6 +18,8 @@ export const TodoList = ({
     const onClose = () => {
         setAddTodoVisible(false);
     }
+
+        const { onAddTodo } = React.useContext(TodoContext);
     
     return (
         <>

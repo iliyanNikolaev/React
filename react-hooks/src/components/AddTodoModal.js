@@ -12,13 +12,14 @@ export const AddTodo = ({
 }) => {
     
     const { formValues, onChangeHandler } = useForm({
-        text: ''
+        text: '',
+        isComplete: false
     })
 
     const formSubmit = (e) => {
         e.preventDefault();
-
-        onAddTodo(formValues);
+        onAddTodo(formValues, onClose);
+        formValues.text = '';
     }
 
 
