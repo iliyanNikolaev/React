@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from './components/Header';
 import { TodoList } from './components/TodoList';
 import React from 'react';
+import { TodoContext } from './contexts/todoContext';
 
 const baseUrl = 'http://localhost:3030/jsonstore/todos'
 
@@ -40,10 +41,16 @@ function App() {
 		setTodos(state => state.filter(x => x._id !== id));
 	}
 
+	const contextValue = {
+		onDeleteTodo
+	}
+
 	return (
 		<>
-			<Header />
-			<TodoList todos={todos} onAddTodo={onAddTodo} onDeleteTodo={onDeleteTodo}/>
+			<TodoContext.Provider value={contextValue}>
+				<Header />
+				<TodoList todos={todos} onAddTodo={onAddTodo} />
+			</TodoContext.Provider>
 		</>
 	);
 }

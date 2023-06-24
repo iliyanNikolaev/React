@@ -1,14 +1,18 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import React from 'react';
+import { TodoContext } from '../contexts/todoContext';
 
 export const TodoItem = ({
-    todo,
-    onDeleteTodo
+    todo
 }) => {
+    const { onDeleteTodo } = React.useContext(TodoContext);
+
 
     const onDeleteClicked = (e) => {
         onDeleteTodo(e.target.id);
     }
+    
     
     return (
         <>
