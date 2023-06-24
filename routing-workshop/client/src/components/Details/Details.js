@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom"
-import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/GamesApi";
+import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/data";
 import { CommentsList } from "./CommentsList";
 
 export const Details = (props) => {

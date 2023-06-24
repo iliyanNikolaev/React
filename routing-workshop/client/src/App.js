@@ -7,7 +7,7 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
-import { getAllGames, createGame } from './services/GamesApi';
+import { getAllGames, createGame } from './services/data';
 import React from 'react';
 import { Details } from './components/Details/Details';
 
