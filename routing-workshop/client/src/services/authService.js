@@ -2,7 +2,7 @@ import { get, post } from "./requester"
 
 const endpoints = {
     login: '/users/login',
-    register: '/users/logout',
+    register: '/users/register',
     logout: '/users/logout'
 }
 
@@ -17,7 +17,13 @@ export const login = async (loginData) => {
 }
 
 export const register = async (registerData) => {
-    return await post(endpoints.register, registerData);
+    try {
+        return await post(endpoints.register, registerData);
+
+    } catch (err) {
+        console.log('error in authService.js -> register');
+        throw err;
+    }
 }
 
 export const logout = async () => {

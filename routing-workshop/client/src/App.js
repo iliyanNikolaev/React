@@ -11,7 +11,7 @@ import { Create } from './components/Create/Create';
 import { getAllGames, createGame } from './services/gameService';
 import { Details } from './components/Details/Details';
 import { AuthContext } from './contexts/authContext';
-import { login } from './services/authService';
+import { login, register } from './services/authService';
 import { utils } from './utils/utils';
 
 function App() {
@@ -32,21 +32,35 @@ function App() {
     }
 
     const onLoginSubmit = async (loginData) => {
-        
         try {
-            
             const userData = await login(loginData);
             setAuth(userData);
             utils.setUserData(userData);
             navigate('/');
-
         } catch (err) {
             console.log('error in App.js -> onLoginSubmit');
         }
     }
 
+    const onRegisterSubmit = async (registerData) => {
+        try {
+            const userData = await register(registerData);
+            setAuth(userData);
+            utils.setUserData(userData);
+            navigate('/');
+        } catch (err) {
+            console.log('error in App.js -> onRegisterSubmit')
+        }
+    }
+
+    const ctx = {
+        onLoginSubmit,
+        onRegisterSubmit,
+        auth
+    }
+
     return (
-        <AuthContext.Provider value={{ onLoginSubmit }}>
+        <AuthContext.Provider value={ctx}>
             <div id="box">
                 <Header />
 
