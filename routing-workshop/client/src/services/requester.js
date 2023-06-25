@@ -1,4 +1,6 @@
-const host = 'http://localhost:3030/data'
+import { utils } from "../utils/utils";
+
+const host = 'http://localhost:3030';
 
 const request = async (method, url, data) => {
     const options = {
@@ -6,12 +8,14 @@ const request = async (method, url, data) => {
         headers: {}
     }
 
-    const accessToken = localStorage.getItem('accessToken'); // Токена е сложен ръчно в браузъра понеже за някои заявки се изисква оторизация
-    // пък в следващата лекция ще се говори за оторизация и аутентикация и го добавям само за да ми работи демото
+    const userData = utils.getUserData();
 
-    if(data) {
+    if (userData) {
+        options.headers['X-Authorization'] = userData.accessToken;
+    }
+
+    if (data) {
         options.headers['Content-Type'] = 'application/json';
-        options.headers['X-Authorization'] = accessToken;
         options.body = JSON.stringify(data);
     }
 

@@ -1,11 +1,11 @@
 import { get, post } from "./requester";
 
 const endpoints = {
-    allGames: '/games',
-    create: '/games',
-    byId: '/games/',
-    commentsForGame: (gameId) => `/comments?where=gameId%3D%22${gameId}%22`,
-    postComment: '/comments'
+    allGames: '/data/games',
+    create: '/data/games',
+    byId: '/data/games/',
+    commentsForGame: (gameId) => `/data/comments?where=gameId%3D%22${gameId}%22`,
+    postComment: '/data/comments'
 }
 
 export const getAllGames = async () => {
