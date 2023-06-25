@@ -8,14 +8,14 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
-import { getAllGames, createGame } from './services/data';
+import { getAllGames, createGame } from './services/gameService';
 import { Details } from './components/Details/Details';
 import { AuthContext } from './contexts/authContext';
-import { login } from './services/auth';
+import { login } from './services/authService';
 import { utils } from './utils/utils';
 
 function App() {
-    const navigate = useNavigate(); // ползва се за редиректи, част е от react-router-dom библиотеката
+    const navigate = useNavigate();
 
     const [games, setGames] = React.useState([]);
     const [auth, setAuth] = React.useState({});
@@ -33,17 +33,20 @@ function App() {
 
     const onLoginSubmit = async (loginData) => {
         
-        const userData = await login(loginData);
-        setAuth(userData);
-        utils.setUserData(userData);
-        navigate('/');
+        try {
+            
+            const userData = await login(loginData);
+            setAuth(userData);
+            utils.setUserData(userData);
+            navigate('/');
 
+        } catch (err) {
+            console.log('error in App.js -> onLoginSubmit');
+        }
     }
 
-    console.log(auth);
-
     return (
-        <AuthContext.Provider value={{onLoginSubmit}}>
+        <AuthContext.Provider value={{ onLoginSubmit }}>
             <div id="box">
                 <Header />
 

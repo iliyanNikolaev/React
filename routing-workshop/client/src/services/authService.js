@@ -7,7 +7,13 @@ const endpoints = {
 }
 
 export const login = async (loginData) => {
-    return await post(endpoints.login, loginData);
+    try {
+        return await post(endpoints.login, loginData);
+
+    } catch (err) {
+        console.log('error in authService.js -> login');
+        throw err;
+    }
 }
 
 export const register = async (registerData) => {
