@@ -12,7 +12,6 @@ import { getAllGames, createGame } from './services/gameService';
 import { Details } from './components/Details/Details';
 import { AuthContext } from './contexts/authContext';
 import { login, logout, register } from './services/authService';
-import { utils } from './utils/utils';
 import { Logout } from './components/Logout/Logout';
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
     }, []);
 
     const onCreateHandler = async (gameData) => {
-        const game = await createGame(gameData);
+        const game = await createGame(gameData, auth.accessToken);
         setGames(state => [...state, game]);
         navigate('/catalog');
     }
@@ -36,7 +35,6 @@ function App() {
         try {
             const userData = await login(loginData);
             setAuth(userData);
-            utils.setUserData(userData);
             navigate('/');
         } catch (err) {
             console.log('error in App.js -> onLoginSubmit');
@@ -47,7 +45,6 @@ function App() {
         try {
             const userData = await register(registerData);
             setAuth(userData);
-            utils.setUserData(userData);
             navigate('/');
         } catch (err) {
             console.log('error in App.js -> onRegisterSubmit')
@@ -56,13 +53,12 @@ function App() {
 
     const onLogout = async () => {
         try {
-            await logout();
+            await logout(undefined, auth.accessToken); // Параметъра undefined se налага да се подаде понеже за get заявката за logout ни трябва
+            // само токена на потребителя, а и GET заявка не може да има body
             setAuth({});
-            utils.clearUserData();
         } catch (err) {
             console.log('error in App.js -> onLogout');
         }
-
     }
 
     const ctx = {

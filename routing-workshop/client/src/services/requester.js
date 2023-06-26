@@ -1,20 +1,16 @@
-import { utils } from "../utils/utils";
-
 const host = 'http://localhost:3030';
 
-const request = async (method, url, data) => {
+const request = async (method, url, data, accessToken) => {
     const options = {
         method,
         headers: {}
     }
 
-    const userData = utils.getUserData();
-
-    if (userData) {
-        options.headers['X-Authorization'] = userData.accessToken;
+    if (accessToken) {
+        options.headers['X-Authorization'] = accessToken;
     }
 
-    if (data) {
+    if (data !== undefined) { // при логоут подаваме само accessToken, а като трети параметър за data подаваме undefined
         options.headers['Content-Type'] = 'application/json';
         options.body = JSON.stringify(data);
     }
@@ -25,7 +21,7 @@ const request = async (method, url, data) => {
         if (response.ok !== true) { // Ако response.ok е различно от true, заявката е fail-нала
 
             if (response.status === 403) { //Invalid access token - пояснение най-долу
-                utils.clearUserData();
+                //todo...
             }
 
             const error = await response.json();
@@ -56,7 +52,7 @@ export const put = request.bind(null, 'put');
 export const del = request.bind(null, 'delete');
 
 /*
-status 403 - Невалиден токен, може да се случи ако сме запазили accessToken в localStorage и поради някаква причина
-рестартираме сървъра и токените се ресетнат, тогава на всяка заявка ще пращаме токена запазен в localStorage и
+status 403 - Невалиден токен, може да се случи ако сме запазили accessToken в state и поради някаква причина
+рестартираме сървъра и токените се ресетнат, тогава на всяка заявка ще пращаме токена запазен в state и
 поради това, че токена е експарнал сървъра ще ни връща 'Invalid access token' и приложението ще забие докато не се изчисти localStorage
  */

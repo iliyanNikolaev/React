@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom"
 import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/gameService";
 import { CommentsList } from "./CommentsList";
+import { AuthContext } from "../../contexts/authContext";
 
 export const Details = (props) => {
   const { gameId } = useParams(); // така се взима ид-то на конкретната игра което сме настроили в раутовете в аппа
@@ -9,7 +10,7 @@ export const Details = (props) => {
   const [comments, setComments] = React.useState([]);
   const [currentComment, setCurrentComment] = React.useState('');
 
-
+  const { auth } = React.useContext(AuthContext);
 
   React.useEffect(() => {
     getGameById(gameId)
@@ -17,9 +18,9 @@ export const Details = (props) => {
   }, [gameId]);
 
   React.useEffect(() => {
-    getCommentsByGameId(gameId)
+    getCommentsByGameId(gameId, auth.accessToken)
       .then(res => setComments(res));
-  }, [gameId]);
+  }, [gameId, auth.accessToken]);
 
   const onCommentChange = (e) => {
     setCurrentComment(e.target.value);
@@ -33,7 +34,7 @@ export const Details = (props) => {
       comment: currentComment
     }
 
-    const comment = await postCommentForGame(commentData);
+    const comment = await postCommentForGame(commentData, auth.accessToken);
     
     setComments(state => ([...state, comment]));
     setCurrentComment('');
