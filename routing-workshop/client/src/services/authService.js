@@ -27,5 +27,11 @@ export const register = async (registerData) => {
 }
 
 export const logout = async () => {
-    await get(endpoints.logout);
+    try {
+        await get(endpoints.logout);
+        
+    } catch (err) {
+        console.log('error in authService.js -> logout');
+        throw err;
+    }
 }

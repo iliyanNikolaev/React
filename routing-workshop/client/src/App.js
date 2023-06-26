@@ -11,8 +11,9 @@ import { Create } from './components/Create/Create';
 import { getAllGames, createGame } from './services/gameService';
 import { Details } from './components/Details/Details';
 import { AuthContext } from './contexts/authContext';
-import { login, register } from './services/authService';
+import { login, logout, register } from './services/authService';
 import { utils } from './utils/utils';
+import { Logout } from './components/Logout/Logout';
 
 function App() {
     const navigate = useNavigate();
@@ -53,10 +54,22 @@ function App() {
         }
     }
 
+    const onLogout = async () => {
+        try {
+            await logout();
+            setAuth({});
+            utils.clearUserData();
+        } catch (err) {
+            console.log('error in App.js -> onLogout');
+        }
+
+    }
+
     const ctx = {
         onLoginSubmit,
         onRegisterSubmit,
-        auth
+        auth,
+        onLogout
     }
 
     return (
@@ -68,6 +81,7 @@ function App() {
                     <Route path='/' element={<Home />}></Route>
                     <Route path='/login' element={<Login />}></Route>
                     <Route path='/register' element={<Register />}></Route>
+                    <Route path='/logout' element={<Logout />}></Route> 
                     <Route path='/catalog' element={<Catalog
                         games={games}
                     />}></Route>

@@ -55,7 +55,8 @@ export const post = request.bind(null, 'post');
 export const put = request.bind(null, 'put');
 export const del = request.bind(null, 'delete');
 
-// Статуса е 204 когато response-a на сървъра е "no-content", а не е някакво съдържание в JSON формат.
-// Такъв би бил случаят при logout, тогава сървъра ни връща response със статус 204, и ако се
-// опитаме да го JSON парснем, това ще ни хвърли грешка.
-// Затова в този случай връщаме само response.
+/*
+status 403 - Невалиден токен, може да се случи ако сме запазили accessToken в localStorage и поради някаква причина
+рестартираме сървъра и токените се ресетнат, тогава на всяка заявка ще пращаме токена запазен в localStorage и
+поради това, че токена е експарнал сървъра ще ни връща 'Invalid access token' и приложението ще забие докато не се изчисти localStorage
+ */
