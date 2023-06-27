@@ -7,6 +7,7 @@ import { Requirements } from './components/Requirements/Requirements';
 import { CourseStructure } from './components/CourseStructure/CourseStructure';
 import { Exams } from './components/Exams/Exams';
 import { About } from './components/About/About';
+import { Contacts } from './components/Contacts/Contacts';
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 				<Route path='/courseStructure' element={<CourseStructure />}></Route>
 				<Route path='/exams' element={<Exams />}></Route>
 				<Route path='/about' element={<About />}></Route>
+				<Route path='/contacts' element={<Contacts />}></Route>
 			</Routes>
 		</div>
 	);

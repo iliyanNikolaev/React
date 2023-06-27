@@ -8,6 +8,7 @@ export const Header = (props) => {
             <Link to='/courseStructure'>Структура на курса</Link>
             <Link to='/exams'>Изпити и процедури</Link>
             <Link to='/about'>За организацията</Link>
+            <Link to='/contacts'>Контакти</Link>
         </nav>
     );
 }
