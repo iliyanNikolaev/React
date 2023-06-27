@@ -5,8 +5,9 @@ export const Header = (props) => {
         <nav>
             <Link to='/'>PPL(A)</Link>
             <Link to='/requirements'>Изисквания</Link>
-            <Link to='/structure'>Структура на курса</Link>
+            <Link to='/courseStructure'>Структура на курса</Link>
             <Link to='/exams'>Изпити и процедури</Link>
+            <Link to='/about'>За организацията</Link>
         </nav>
     );
 }
