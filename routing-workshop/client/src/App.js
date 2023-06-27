@@ -8,11 +8,12 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
-import { getAllGames, createGame, deleteGameById } from './services/gameService';
+import { getAllGames, createGame, deleteGameById, editGameById } from './services/gameService';
 import { Details } from './components/Details/Details';
-import { AuthContext } from './contexts/authContext';
+import { AppContext } from './contexts/appContext';
 import { login, logout, register } from './services/authService';
 import { Logout } from './components/Logout/Logout';
+import { Edit } from './components/Edit/Edit';
 
 function App() {
     const navigate = useNavigate();
@@ -74,16 +75,30 @@ function App() {
 
     }
 
+    const onEdit = async (gameId, data) => {
+        try {
+            const result = await editGameById(gameId, data, auth.accessToken);
+
+            setGames(state => state.map(x => x._id === gameId ? result : {...x}));
+
+            navigate(`/details/${gameId}`);
+
+        } catch (err) {
+            console.log('error in App.js -> onEdit')
+        }
+    }
+
     const ctx = {
         onLoginSubmit,
         onRegisterSubmit,
         auth,
         onLogout,
-        onDelete
+        onDelete,
+        onEdit
     }
 
     return (
-        <AuthContext.Provider value={ctx}>
+        <AppContext.Provider value={ctx}>
             <div id="box">
                 <Header />
 
@@ -98,12 +113,11 @@ function App() {
                     <Route path='/create' element={<Create
                         onCreateHandler={onCreateHandler}
                     />}></Route>
-                    <Route path='/details/:gameId' element={<Details />}>
-
-                    </Route>
+                    <Route path='/details/:gameId' element={<Details />}></Route>
+                    <Route path='/edit/:gameId' element={<Edit />}></Route>
                 </Routes>
             </div>
-        </AuthContext.Provider>
+        </AppContext.Provider>
     );
 }
 

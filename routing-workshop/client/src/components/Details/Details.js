@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom"
 import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/gameService";
 import { CommentsList } from "./CommentsList";
-import { AuthContext } from "../../contexts/authContext";
+import { AppContext } from "../../contexts/appContext";
 
 export const Details = (props) => {
   const { gameId } = useParams(); // така се взима ид-то на конкретната игра което сме настроили в раутовете в аппа
@@ -13,10 +13,14 @@ export const Details = (props) => {
 
   const [currentComment, setCurrentComment] = React.useState('');
 
-  const { auth, onDelete } = React.useContext(AuthContext);
+  const { auth, onDelete } = React.useContext(AppContext);
 
   const onDeleteHandler = async () => {
-    await onDelete(gameId, auth.accessToken);
+    try {
+      await onDelete(gameId, auth.accessToken);
+    } catch (err) {
+      console.log('error in Details.js -> onDeleteHandler');
+    }
   }
 
   React.useEffect(() => {
@@ -67,7 +71,7 @@ export const Details = (props) => {
 
         {auth._id === currentGame._ownerId
           ? <div className="buttons">
-            <Link to="/edit" className="button">
+            <Link to={`/edit/${currentGame._id}`} className="button">
               Edit
             </Link>
             <Link className="button" onClick={onDeleteHandler}>
