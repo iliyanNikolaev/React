@@ -1,4 +1,4 @@
-import { get, post } from "./requester";
+import { get, post, del } from "./requester";
 
 const endpoints = {
     allGames: '/data/games',
@@ -20,6 +20,10 @@ export const getGameById = async (gameId) => {
     return get(endpoints.byId + gameId);
 }
 
+export const deleteGameById = (id, accessToken) => {
+    return del(endpoints.byId+id, undefined, accessToken);   
+}
+
 export const getCommentsByGameId = (gameId, accessToken) => {
     return get(endpoints.commentsForGame(gameId, accessToken));
 }
@@ -27,3 +31,4 @@ export const getCommentsByGameId = (gameId, accessToken) => {
 export const postCommentForGame = (commentData, accessToken) => {
     return post(endpoints.postComment, commentData, accessToken);
 }
+

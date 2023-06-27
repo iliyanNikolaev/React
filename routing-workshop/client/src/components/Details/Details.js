@@ -1,18 +1,23 @@
 import React from "react";
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/gameService";
 import { CommentsList } from "./CommentsList";
 import { AuthContext } from "../../contexts/authContext";
 
 export const Details = (props) => {
   const { gameId } = useParams(); // така се взима ид-то на конкретната игра което сме настроили в раутовете в аппа
+  
   const [currentGame, setCurrentGame] = React.useState({});
 
   const [comments, setComments] = React.useState([]);
 
   const [currentComment, setCurrentComment] = React.useState('');
 
-  const { auth } = React.useContext(AuthContext);
+  const { auth, onDelete } = React.useContext(AuthContext);
+
+  const onDeleteHandler = async () => {
+    await onDelete(gameId, auth.accessToken);
+  }
 
   React.useEffect(() => {
     getGameById(gameId)
@@ -62,12 +67,12 @@ export const Details = (props) => {
 
         {auth._id === currentGame._ownerId
           ? <div className="buttons">
-            <a href="/" className="button">
+            <Link to="/edit" className="button">
               Edit
-            </a>
-            <a href="/" className="button">
+            </Link>
+            <Link className="button" onClick={onDeleteHandler}>
               Delete
-            </a>
+            </Link>
           </div>
           : null}
 

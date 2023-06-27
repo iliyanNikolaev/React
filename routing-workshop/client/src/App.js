@@ -8,7 +8,7 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
-import { getAllGames, createGame } from './services/gameService';
+import { getAllGames, createGame, deleteGameById } from './services/gameService';
 import { Details } from './components/Details/Details';
 import { AuthContext } from './contexts/authContext';
 import { login, logout, register } from './services/authService';
@@ -61,11 +61,25 @@ function App() {
         }
     }
 
+    const onDelete = async (gameId) => {
+        try {
+            await deleteGameById(gameId, auth.accessToken);
+
+            setGames(state => state.filter(x => x._id !== gameId));
+
+            navigate('/catalog');
+        } catch (err) {
+            console.log('error in App.js -> onDelete');
+        }
+
+    }
+
     const ctx = {
         onLoginSubmit,
         onRegisterSubmit,
         auth,
-        onLogout
+        onLogout,
+        onDelete
     }
 
     return (
@@ -77,7 +91,7 @@ function App() {
                     <Route path='/' element={<Home />}></Route>
                     <Route path='/login' element={<Login />}></Route>
                     <Route path='/register' element={<Register />}></Route>
-                    <Route path='/logout' element={<Logout />}></Route> 
+                    <Route path='/logout' element={<Logout />}></Route>
                     <Route path='/catalog' element={<Catalog
                         games={games}
                     />}></Route>
