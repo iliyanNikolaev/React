@@ -1,9 +1,11 @@
 import React from "react";
-import { AppContext } from "../../contexts/appContext";
 import { useParams } from "react-router-dom";
 import { getGameById } from "../../services/gameService";
+import { AuthContext } from "../../contexts/authContext";
 
-export const Edit = (props) => {
+export const Edit = ({
+  onEdit
+}) => {
 
   const { gameId } = useParams();
 
@@ -19,6 +21,7 @@ export const Edit = (props) => {
     setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
   }
 
+
   React.useEffect(() => {
     getGameById(gameId)
       .then(result => setFormValues(state => ({
@@ -30,12 +33,12 @@ export const Edit = (props) => {
       })));
   }, [gameId]);
 
-  const { onEdit } = React.useContext(AppContext);
+  const { auth } = React.useContext(AuthContext);
 
   const formSubmit = (e) => {
     e.preventDefault();
 
-    onEdit(gameId, formValues)
+    onEdit(gameId, formValues, auth.accessToken)
   }
 
   return (

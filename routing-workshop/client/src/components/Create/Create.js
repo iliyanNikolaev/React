@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "../../hooks/useForm";
+import { AuthContext } from "../../contexts/authContext";
 
 export const Create = ({
     onCreateHandler
@@ -13,11 +14,14 @@ export const Create = ({
         summary: ''
     });
 
+    const { auth } = React.useContext(AuthContext);
+
     const onCreateSubmit = (e) => {
         e.preventDefault();
 
-        onCreateHandler(formValues);
+        onCreateHandler(formValues, auth.accessToken);
     }
+
 
     return <>
         <section id="create-page" className="auth">

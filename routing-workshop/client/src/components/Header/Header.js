@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../../contexts/appContext';
+import { AuthContext } from '../../contexts/authContext';
 
 export const Header = (props) => {
 
-  const { auth } = React.useContext(AppContext);
+  const { auth } = React.useContext(AuthContext);
 
   return <>
     <header>

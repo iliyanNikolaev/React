@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../../contexts/appContext';
+import { AuthContext } from '../../contexts/authContext';
 import { useForm } from '../../hooks/useForm';
 
 export const Register = (props) => {
@@ -10,7 +10,7 @@ export const Register = (props) => {
         'confirm-password': ''
     });
 
-    const { onRegisterSubmit } = React.useContext(AppContext);
+    const { onRegisterSubmit } = React.useContext(AuthContext);
 
     const formSubmit = (e) => {
         e.preventDefault();

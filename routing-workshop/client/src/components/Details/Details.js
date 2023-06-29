@@ -2,9 +2,11 @@ import React from "react";
 import { useParams, Link } from "react-router-dom"
 import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/gameService";
 import { CommentsList } from "./CommentsList";
-import { AppContext } from "../../contexts/appContext";
+import { AuthContext } from "../../contexts/authContext";
 
-export const Details = (props) => {
+export const Details = ({
+  onDelete
+}) => {
   const { gameId } = useParams(); // така се взима ид-то на конкретната игра което сме настроили в раутовете в аппа
   
   const [currentGame, setCurrentGame] = React.useState({});
@@ -13,7 +15,7 @@ export const Details = (props) => {
 
   const [currentComment, setCurrentComment] = React.useState('');
 
-  const { auth, onDelete } = React.useContext(AppContext);
+  const { auth } = React.useContext(AuthContext);
 
   const onDeleteHandler = async () => {
     try {

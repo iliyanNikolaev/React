@@ -10,8 +10,7 @@ import { Catalog } from './components/Catalog/Catalog';
 import { Create } from './components/Create/Create';
 import { getAllGames, createGame, deleteGameById, editGameById } from './services/gameService';
 import { Details } from './components/Details/Details';
-import { AppContext } from './contexts/appContext';
-import { login, logout, register } from './services/authService';
+import { AuthProvider } from './contexts/authContext';
 import { Logout } from './components/Logout/Logout';
 import { Edit } from './components/Edit/Edit';
 
@@ -19,52 +18,22 @@ function App() {
     const navigate = useNavigate();
 
     const [games, setGames] = React.useState([]);
-    const [auth, setAuth] = React.useState({});
 
     React.useEffect(() => {
         getAllGames()
             .then(res => setGames(res));
     }, []);
 
-    const onCreateHandler = async (gameData) => {
-        const game = await createGame(gameData, auth.accessToken);
+
+    const onCreateHandler = async (gameData, accessToken) => {
+        const game = await createGame(gameData, accessToken);
         setGames(state => [...state, game]);
         navigate('/catalog');
     }
 
-    const onLoginSubmit = async (loginData) => {
+    const onDelete = async (gameId, accessToken) => {
         try {
-            const userData = await login(loginData);
-            setAuth(userData);
-            navigate('/');
-        } catch (err) {
-            console.log('error in App.js -> onLoginSubmit');
-        }
-    }
-
-    const onRegisterSubmit = async (registerData) => {
-        try {
-            const userData = await register(registerData);
-            setAuth(userData);
-            navigate('/');
-        } catch (err) {
-            console.log('error in App.js -> onRegisterSubmit')
-        }
-    }
-
-    const onLogout = async () => {
-        try {
-            await logout(undefined, auth.accessToken); // Параметъра undefined se налага да се подаде понеже за get заявката за logout ни трябва
-            // само токена на потребителя, а и GET заявка не може да има body
-            setAuth({});
-        } catch (err) {
-            console.log('error in App.js -> onLogout');
-        }
-    }
-
-    const onDelete = async (gameId) => {
-        try {
-            await deleteGameById(gameId, auth.accessToken);
+            await deleteGameById(gameId, accessToken);
 
             setGames(state => state.filter(x => x._id !== gameId));
 
@@ -75,9 +44,9 @@ function App() {
 
     }
 
-    const onEdit = async (gameId, data) => {
+    const onEdit = async (gameId, data, accessToken) => {
         try {
-            const result = await editGameById(gameId, data, auth.accessToken);
+            const result = await editGameById(gameId, data, accessToken);
 
             setGames(state => state.map(x => x._id === gameId ? result : {...x}));
 
@@ -88,17 +57,8 @@ function App() {
         }
     }
 
-    const ctx = {
-        onLoginSubmit,
-        onRegisterSubmit,
-        auth,
-        onLogout,
-        onDelete,
-        onEdit
-    }
-
     return (
-        <AppContext.Provider value={ctx}>
+        <AuthProvider>
             <div id="box">
                 <Header />
 
@@ -113,11 +73,14 @@ function App() {
                     <Route path='/create' element={<Create
                         onCreateHandler={onCreateHandler}
                     />}></Route>
-                    <Route path='/details/:gameId' element={<Details />}></Route>
-                    <Route path='/edit/:gameId' element={<Edit />}></Route>
+                    <Route path='/details/:gameId' element={<Details 
+                        onDelete={onDelete}/>}></Route>
+                    <Route path='/edit/:gameId' element={<Edit 
+                    onEdit={onEdit}
+                        />}></Route>
                 </Routes>
             </div>
-        </AppContext.Provider>
+            </AuthProvider>
     );
 }
 

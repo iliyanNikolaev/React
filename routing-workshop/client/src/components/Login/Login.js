@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
-import { AppContext } from '../../contexts/appContext';
+import { AuthContext } from '../../contexts/authContext';
 
 export const Login = (props) => {
     const { formValues, onChange } = useForm({ email: '', password: '' });
 
-    const {onLoginSubmit} = React.useContext(AppContext);
+    const {onLoginSubmit} = React.useContext(AuthContext);
 
     const formSubmit = async (e) => {
         e.preventDefault();
