@@ -18,7 +18,7 @@ export const AuthProvider = ({
             setAuth(userData);
             navigate('/');
         } catch (err) {
-            console.log('error in App.js -> onLoginSubmit');
+            console.log('error in AuthContext.js -> onLoginSubmit');
         }
     }
 
@@ -28,7 +28,7 @@ export const AuthProvider = ({
             setAuth(userData);
             navigate('/');
         } catch (err) {
-            console.log('error in App.js -> onRegisterSubmit')
+            console.log('error in AuthContext.js -> onRegisterSubmit')
         }
     }
 
@@ -38,7 +38,7 @@ export const AuthProvider = ({
             // само токена на потребителя, а и GET заявка не може да има body
             setAuth({});
         } catch (err) {
-            console.log('error in App.js -> onLogout');
+            console.log('error in AuthContext.js -> onLogout');
         }
     }
 
