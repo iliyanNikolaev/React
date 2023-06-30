@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { getGameById } from "../../services/gameService";
-import { AuthContext } from "../../contexts/authContext";
 
 export const Edit = ({
   onEdit
@@ -33,12 +32,10 @@ export const Edit = ({
       })));
   }, [gameId]);
 
-  const { auth } = React.useContext(AuthContext);
-
   const formSubmit = (e) => {
     e.preventDefault();
 
-    onEdit(gameId, formValues, auth.accessToken)
+    onEdit(gameId, formValues)
   }
 
   return (

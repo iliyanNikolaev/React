@@ -12,27 +12,27 @@ export const getAllGames = async () => {
    return get(endpoints.allGames);
 }
 
-export const createGame = async (gameData, accessToken) => {
-    return post(endpoints.create, gameData, accessToken);
+export const createGame = async (gameData) => {
+    return post(endpoints.create, gameData);
 }
 
 export const getGameById = async (gameId) => {
     return get(endpoints.byId + gameId);
 }
 
-export const deleteGameById = (id, accessToken) => {
-    return del(endpoints.byId+id, undefined, accessToken);   
+export const deleteGameById = (id) => {
+    return del(endpoints.byId+id);   
 }
 
-export const editGameById = (id, data, accessToken) => {
-    return put(endpoints.byId+id, data, accessToken);   
+export const editGameById = (id, data) => {
+    return put(endpoints.byId+id, data);   
 }
 
-export const getCommentsByGameId = (gameId, accessToken) => {
-    return get(endpoints.commentsForGame(gameId, accessToken));
+export const getCommentsByGameId = (gameId) => {
+    return get(endpoints.commentsForGame(gameId));
 }
 
-export const postCommentForGame = (commentData, accessToken) => {
-    return post(endpoints.postComment, commentData, accessToken);
+export const postCommentForGame = (commentData) => {
+    return post(endpoints.postComment, commentData);
 }
 

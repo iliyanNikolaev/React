@@ -1,13 +1,16 @@
 const host = 'http://localhost:3030';
 
-const request = async (method, url, data, accessToken) => {
+const request = async (method, url, data) => {
     const options = {
         method,
         headers: {}
     }
 
-    if (accessToken) {
-        options.headers['X-Authorization'] = accessToken;
+    const auth = localStorage.getItem('auth');
+    if (auth) {
+        const parsedAuth = JSON.parse(auth);
+
+        options.headers['X-Authorization'] = parsedAuth.accessToken;
     }
 
     if (data !== undefined) { // при логоут подаваме само accessToken, а като трети параметър за data подаваме undefined
@@ -21,7 +24,7 @@ const request = async (method, url, data, accessToken) => {
         if (response.ok !== true) { // Ако response.ok е различно от true, заявката е fail-нала
 
             if (response.status === 403) { //Invalid access token - пояснение най-долу
-                //todo...
+                localStorage.removeItem('auth');
             }
 
             const error = await response.json();

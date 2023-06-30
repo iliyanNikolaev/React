@@ -1,6 +1,7 @@
 import React from "react";
 import { login, logout, register } from "../services/authService";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = React.createContext();
 
@@ -8,14 +9,14 @@ export const AuthProvider = ({
     children
 }) => {
 
-    const [auth, setAuth] = React.useState({});
+    const [state, setLocalStorageState] = useLocalStorage('auth', {});
     
     const navigate = useNavigate();
     
     const onLoginSubmit = async (loginData) => {
         try {
             const userData = await login(loginData);
-            setAuth(userData);
+            setLocalStorageState(userData);
             navigate('/');
         } catch (err) {
             console.log('error in AuthContext.js -> onLoginSubmit');
@@ -25,7 +26,7 @@ export const AuthProvider = ({
     const onRegisterSubmit = async (registerData) => {
         try {
             const userData = await register(registerData);
-            setAuth(userData);
+            setLocalStorageState(userData);
             navigate('/');
         } catch (err) {
             console.log('error in AuthContext.js -> onRegisterSubmit')
@@ -34,9 +35,9 @@ export const AuthProvider = ({
 
     const onLogout = async () => {
         try {
-            await logout(undefined, auth.accessToken); // Параметъра undefined se налага да се подаде понеже за get заявката за logout ни трябва
+            await logout(undefined, state.accessToken); // Параметъра undefined se налага да се подаде понеже за get заявката за logout ни трябва
             // само токена на потребителя, а и GET заявка не може да има body
-            setAuth({});
+            setLocalStorageState({});
         } catch (err) {
             console.log('error in AuthContext.js -> onLogout');
         }
@@ -45,7 +46,7 @@ export const AuthProvider = ({
     const ctx = {
         onLoginSubmit,
         onRegisterSubmit,
-        auth,
+        auth: state,
         onLogout,
     }
 

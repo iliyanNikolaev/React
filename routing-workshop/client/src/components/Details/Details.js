@@ -19,7 +19,7 @@ export const Details = ({
 
   const onDeleteHandler = async () => {
     try {
-      await onDelete(gameId, auth.accessToken);
+      await onDelete(gameId);
     } catch (err) {
       console.log('error in Details.js -> onDeleteHandler');
     }
@@ -31,9 +31,9 @@ export const Details = ({
   }, [gameId]);
 
   React.useEffect(() => {
-    getCommentsByGameId(gameId, auth.accessToken)
+    getCommentsByGameId(gameId)
       .then(res => setComments(res));
-  }, [gameId, auth.accessToken]);
+  }, [gameId]);
 
   const onCommentChange = (e) => {
     setCurrentComment(e.target.value);
@@ -47,7 +47,7 @@ export const Details = ({
       comment: currentComment
     }
 
-    const comment = await postCommentForGame(commentData, auth.accessToken);
+    const comment = await postCommentForGame(commentData);
 
     setComments(state => ([...state, comment]));
     setCurrentComment('');

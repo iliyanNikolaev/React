@@ -25,15 +25,15 @@ function App() {
     }, []);
 
 
-    const onCreateHandler = async (gameData, accessToken) => {
-        const game = await createGame(gameData, accessToken);
+    const onCreateHandler = async (gameData) => {
+        const game = await createGame(gameData);
         setGames(state => [...state, game]);
         navigate('/catalog');
     }
 
-    const onDelete = async (gameId, accessToken) => {
+    const onDelete = async (gameId) => {
         try {
-            await deleteGameById(gameId, accessToken);
+            await deleteGameById(gameId);
 
             setGames(state => state.filter(x => x._id !== gameId));
 
@@ -44,9 +44,9 @@ function App() {
 
     }
 
-    const onEdit = async (gameId, data, accessToken) => {
+    const onEdit = async (gameId, data) => {
         try {
-            const result = await editGameById(gameId, data, accessToken);
+            const result = await editGameById(gameId, data);
 
             setGames(state => state.map(x => x._id === gameId ? result : {...x}));
 
