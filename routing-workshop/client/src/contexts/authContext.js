@@ -10,9 +10,9 @@ export const AuthProvider = ({
 }) => {
 
     const [state, setLocalStorageState] = useLocalStorage('auth', {});
-    
+
     const navigate = useNavigate();
-    
+
     const onLoginSubmit = async (loginData) => {
         try {
             const userData = await login(loginData);
@@ -35,9 +35,9 @@ export const AuthProvider = ({
 
     const onLogout = async () => {
         try {
-            await logout(undefined, state.accessToken); // Параметъра undefined se налага да се подаде понеже за get заявката за logout ни трябва
-            // само токена на потребителя, а и GET заявка не може да има body
+            await logout();
             setLocalStorageState({});
+            localStorage.removeItem('auth');
         } catch (err) {
             console.log('error in AuthContext.js -> onLogout');
         }

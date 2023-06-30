@@ -25,7 +25,7 @@ export const Details = ({
     }
   }
 
-  React.useEffect(() => {
+/*  React.useEffect(() => {
     getGameById(gameId)
       .then(res => setCurrentGame(res));
   }, [gameId]);
@@ -33,6 +33,16 @@ export const Details = ({
   React.useEffect(() => {
     getCommentsByGameId(gameId)
       .then(res => setComments(res));
+  }, [gameId]);*/
+
+  React.useEffect(() => {
+    Promise.all([
+      getGameById(gameId),
+      getCommentsByGameId(gameId)
+    ]).then(values => {
+      setCurrentGame(values[0]);
+      setComments(values[1]);
+    })
   }, [gameId]);
 
   const onCommentChange = (e) => {
