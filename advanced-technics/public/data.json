@@ -1,0 +1,24 @@
+{
+    "todos": [
+        {
+            "id": 1,
+            "label": "Learn React",
+            "completed": false
+        },
+        {
+            "id": 2,
+            "label": "Make a good portfolio project",
+            "completed": false
+        },
+        {
+            "id": 3,
+            "label": "Search for a job",
+            "completed": false
+        },
+        {
+            "id": 4,
+            "label": "Woooork!!!",
+            "completed": false
+        }
+    ]
+}
