@@ -1,10 +1,11 @@
 import React from "react";
 import { GameCard } from "./GameCard";
+import { GameContext } from "../../contexts/gameContext";
 
-export const Catalog = ({
-    games
-}) => {
+export const Catalog = () => {
 
+    const {games} = React.useContext(GameContext);
+    
     return <>
         <section id="catalog-page">
             <h1>All Games</h1>

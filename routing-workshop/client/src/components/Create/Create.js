@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../contexts/authContext";
+import { GameContext } from "../../contexts/gameContext";
 
-export const Create = ({
-    onCreateHandler
-}) => {
+export const Create = () => {
 
+    const {onCreateHandler} = React.useContext(GameContext);
+    
     const {formValues, onChange} = useForm({
         title: '',
         category: '',

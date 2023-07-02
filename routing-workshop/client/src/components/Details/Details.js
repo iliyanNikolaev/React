@@ -3,10 +3,11 @@ import { useParams, Link } from "react-router-dom"
 import { getGameById, getCommentsByGameId, postCommentForGame } from "../../services/gameService";
 import { CommentsList } from "./CommentsList";
 import { AuthContext } from "../../contexts/authContext";
+import { GameContext } from "../../contexts/gameContext";
 
-export const Details = ({
-  onDelete
-}) => {
+export const Details = () => {
+  const { onDelete } = React.useContext(GameContext);
+
   const { gameId } = useParams(); // така се взима ид-то на конкретната игра което сме настроили в раутовете в аппа
   
   const [currentGame, setCurrentGame] = React.useState({});

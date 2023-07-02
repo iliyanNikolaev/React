@@ -1,10 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { getGameById } from "../../services/gameService";
+import { GameContext } from "../../contexts/gameContext";
 
-export const Edit = ({
-  onEdit
-}) => {
+export const Edit = () => {
+
+  const {onEdit} = React.useContext(GameContext);
 
   const { gameId } = useParams();
 
