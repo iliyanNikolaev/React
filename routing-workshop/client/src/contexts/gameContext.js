@@ -25,6 +25,7 @@ export const GameProvider = ({
 
     const onDelete = async (gameId) => {
         try {
+            
             await deleteGameById(gameId);
 
             setGames(state => state.filter(x => x._id !== gameId));
@@ -38,6 +39,7 @@ export const GameProvider = ({
 
     const onEdit = async (gameId, data) => {
         try {
+            
             const result = await editGameById(gameId, data);
 
             setGames(state => state.map(x => x._id === gameId ? result : { ...x }));

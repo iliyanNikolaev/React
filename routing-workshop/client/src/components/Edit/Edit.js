@@ -1,25 +1,20 @@
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getGameById } from "../../services/gameService";
-import { AuthContext } from "../../contexts/authContext";
 import { GameContext } from "../../contexts/gameContext";
 
 export const Edit = () => {
 
-  const { auth } = React.useContext(AuthContext);
-
   const { onEdit } = React.useContext(GameContext);
 
   const { gameId } = useParams();
-
-  let gameOwnerId = ''
 
   const [formValues, setFormValues] = React.useState({
     title: '',
     category: '',
     maxLevel: '',
     imageUrl: '',
-    summary: ''
+    summary: '',
   });
 
   const onChange = (e) => {
@@ -29,29 +24,20 @@ export const Edit = () => {
 
   React.useEffect(() => {
     getGameById(gameId)
-      .then(result => {
-        setFormValues(state => ({
+      .then(result => setFormValues(state => 
+        ({
           title: result.title,
           category: result.category,
           maxLevel: result.maxLevel,
           imageUrl: result.imageUrl,
-          summary: result.summary
-        }));
-
-        gameOwnerId = result._ownerId;
-      });
-
-
+          summary: result.summary,
+        })));
   }, [gameId]);
 
   const formSubmit = (e) => {
     e.preventDefault();
-
+    
     onEdit(gameId, formValues)
-  }
-
-  if(auth._id !== gameOwnerId) {
-    return <Navigate to={`/details/${gameId}`} />
   }
 
   return (

@@ -20,7 +20,13 @@ export const Details = () => {
 
   const onDeleteHandler = async () => {
     try {
-      await onDelete(gameId);
+      // eslint-disable-next-line no-restricted-globals
+      const choice = confirm(`Are you sure you want to delete ${currentGame.title}?`);
+      
+      if(choice) {
+        await onDelete(gameId);
+      }
+
     } catch (err) {
       console.log('error in Details.js -> onDeleteHandler');
     }
