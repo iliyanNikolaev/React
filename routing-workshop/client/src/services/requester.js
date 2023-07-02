@@ -1,3 +1,5 @@
+import { utils } from "../utils/utils";
+
 const host = 'http://localhost:3030';
 
 const request = async (method, url, data) => {
@@ -6,11 +8,10 @@ const request = async (method, url, data) => {
         headers: {}
     }
 
-    const auth = localStorage.getItem('auth');
+    const auth = utils.getUserData();
+    
     if (auth) {
-        const parsedAuth = JSON.parse(auth);
-
-        options.headers['X-Authorization'] = parsedAuth.accessToken;
+        options.headers['X-Authorization'] = auth.accessToken;
     }
 
     if (data !== undefined) { // при логоут подаваме само accessToken, а като трети параметър за data подаваме undefined
@@ -24,7 +25,8 @@ const request = async (method, url, data) => {
         if (response.ok !== true) { // Ако response.ok е различно от true, заявката е fail-нала
 
             if (response.status === 403) { //Invalid access token - пояснение най-долу
-                localStorage.removeItem('auth');
+                utils.clearUserData();
+                utils.accessTokenIsInvalid = true;
             }
 
             const error = await response.json();

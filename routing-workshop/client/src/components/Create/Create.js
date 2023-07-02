@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../contexts/authContext";
 import { GameContext } from "../../contexts/gameContext";
@@ -23,6 +24,9 @@ export const Create = () => {
         onCreateHandler(formValues, auth.accessToken);
     }
 
+    if(auth.accessToken === undefined) {
+        return <Navigate to="/login" />
+    }
 
     return <>
         <section id="create-page" className="auth">

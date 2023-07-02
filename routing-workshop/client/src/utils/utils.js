@@ -1,5 +1,6 @@
 export const utils = {
-    setUserData: (userData) => localStorage.setItem('userData', JSON.stringify(userData)),
-    getUserData: () => JSON.parse(localStorage.getItem('userData')),
-    clearUserData: () => localStorage.removeItem('userData')
+    setUserData: (userData) => localStorage.setItem('auth', JSON.stringify(userData)),
+    getUserData: () => JSON.parse(localStorage.getItem('auth')),
+    clearUserData: () => localStorage.removeItem('auth'),
+    accessTokenIsInvalid: false
 }

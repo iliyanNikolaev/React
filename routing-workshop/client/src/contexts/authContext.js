@@ -9,7 +9,7 @@ export const AuthProvider = ({
     children
 }) => {
 
-    const [state, setLocalStorageState] = useLocalStorage('auth', {});
+    const [state, setLocalStorageState, resetLocalStorageState] = useLocalStorage('auth', {});
 
     const navigate = useNavigate();
 
@@ -48,6 +48,7 @@ export const AuthProvider = ({
         onRegisterSubmit,
         auth: state,
         onLogout,
+        resetLocalStorageState
     }
 
     return (

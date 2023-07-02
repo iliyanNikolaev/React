@@ -13,6 +13,7 @@ import { Logout } from './components/Logout/Logout';
 import { Edit } from './components/Edit/Edit';
 import { AuthProvider } from './contexts/authContext';
 import { GameProvider } from './contexts/gameContext';
+import { InvalidTokenGuard } from './components/RouteGuard/InvalidTokenGuard';
 
 function App() {
 
@@ -21,17 +22,18 @@ function App() {
             <GameProvider>
                 <div id="box">
                     <Header />
-
-                    <Routes>
-                        <Route path='/' element={<Home />}></Route>
-                        <Route path='/login' element={<Login />}></Route>
-                        <Route path='/register' element={<Register />}></Route>
-                        <Route path='/logout' element={<Logout />}></Route>
-                        <Route path='/catalog' element={<Catalog/>}></Route>
-                        <Route path='/create' element={<Create/>}></Route>
-                        <Route path='/details/:gameId' element={<Details/>}></Route>
-                        <Route path='/edit/:gameId' element={<Edit/>}></Route>
-                    </Routes>
+                    <InvalidTokenGuard>
+                        <Routes>
+                            <Route path='/' element={<Home />}></Route>
+                            <Route path='/login' element={<Login />}></Route>
+                            <Route path='/register' element={<Register />}></Route>
+                            <Route path='/logout' element={<Logout />}></Route>
+                            <Route path='/catalog' element={<Catalog />}></Route>
+                            <Route path='/create' element={<Create />}></Route>
+                            <Route path='/details/:gameId' element={<Details />}></Route>
+                            <Route path='/edit/:gameId' element={<Edit />}></Route>
+                        </Routes>
+                    </InvalidTokenGuard>
                 </div>
             </GameProvider>
         </AuthProvider>
