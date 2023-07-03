@@ -1,15 +1,16 @@
 import React from 'react';
-import { getLatestGames } from '../../services/gameService';
 import { LatestGameItem } from './LatestGameItem';
+import { GameContext } from '../../contexts/gameContext';
 
 export const Home = (props) => {
   
   const [latestGames, setLatestGames] = React.useState([]);
 
+  const { games } = React.useContext(GameContext);
+
   React.useEffect(() => {
-    getLatestGames()
-      .then(data => setLatestGames(data));
-  }, [])
+    setLatestGames(state => games.slice(-3).reverse());
+  }, [games])
 
   return <section id="welcome-world">
     <div className="welcome-message">

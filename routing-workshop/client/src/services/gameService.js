@@ -6,7 +6,6 @@ const endpoints = {
     byId: '/data/games/',
     commentsForGame: (gameId) => `/data/comments?where=gameId%3D%22${gameId}%22`,
     postComment: '/data/comments',
-    latestGames: '/data/games?sortBy=_createdOn%20desc&distinct=category/'
 }
 
 export const getAllGames = async () => {
@@ -37,7 +36,4 @@ export const postCommentForGame = (commentData) => {
     return post(endpoints.postComment, commentData);
 }
 
-export const getLatestGames = () => {
-    return get(endpoints.latestGames);
-}
 
