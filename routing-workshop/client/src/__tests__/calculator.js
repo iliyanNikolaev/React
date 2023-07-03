@@ -13,3 +13,5 @@ test('Sum two positive numbers', () => {
 test('Add undefined to a positive number', () => {
     expect(calculator.sum(1)).toBe(NaN);
 });
+
+//Tested with -------> react-testing-library <---------

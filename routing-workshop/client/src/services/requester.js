@@ -1,6 +1,7 @@
 import { utils } from "../utils/utils";
 
 const host = 'http://localhost:3030';
+console.log(process.env.NODE_ENV)
 
 const request = async (method, url, data) => {
     const options = {
@@ -14,7 +15,7 @@ const request = async (method, url, data) => {
         options.headers['X-Authorization'] = auth.accessToken;
     }
 
-    if (data !== undefined) { // при логоут подаваме само accessToken, а като трети параметър за data подаваме undefined
+    if (data !== undefined) { 
         options.headers['Content-Type'] = 'application/json';
         options.body = JSON.stringify(data);
     }
