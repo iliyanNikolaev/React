@@ -1,0 +1,34 @@
+.headerDiv{
+    background-color: #5E7DC2;
+    padding: 6px 12px;
+}
+
+.headerDiv .logo{
+    vertical-align: middle;
+    margin-right: 350px;
+}
+
+.headerDiv .navbar{
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+body {
+    margin: 0;
+}
+
+.headerDiv .navbar .links{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.headerDiv .navbar .links .link{
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.headerDiv .navbar .links .link a {
+    text-decoration: none;
+}
