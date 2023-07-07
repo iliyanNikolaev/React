@@ -1,17 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Condensed&display=swap');
+
 .headerDiv{
-    background-color: #5E7DC2;
-    padding: 6px 12px;
+    background-color: rgb(213, 213, 213);
+    padding: 0px 12px;
 }
 
 .headerDiv .logo{
     vertical-align: middle;
-    margin-right: 350px;
 }
 
 .headerDiv .navbar{
     display: inline-block;
     vertical-align: middle;
-
 }
 
 body {
@@ -31,4 +31,11 @@ body {
 
 .headerDiv .navbar .links .link a {
     text-decoration: none;
+}
+
+.organisation-name{
+    display: inline-block;
+    margin-right: 350px;
+    vertical-align: middle;
+    font-family: 'Roboto Condensed', sans-serif;
 }
