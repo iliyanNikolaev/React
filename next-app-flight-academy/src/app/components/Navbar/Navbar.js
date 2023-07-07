@@ -6,7 +6,7 @@ export default function Navbar() {
 
     return (
         <div className="headerDiv">
-            <Image src="/logo3.png" className="logo" alt="logo" width={200} height={108}/>
+            <Image src="/logo3.png" className="logo" alt="logo" width={170} height={92}/>
             <p className="organisation-name">ООО "Димитър Списаревски"</p>
                 <nav className="navbar">
                     <ul className="links">
