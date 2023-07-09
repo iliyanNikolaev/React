@@ -5,20 +5,20 @@ export default function Navbar() {
         <>
             <>
                 <h1>
-                    <Link href="/">Orphelp</Link>
+                    <Link href="/dashboard">Orphelp</Link>
                 </h1>
                 <nav>
-                    <Link href="/">Dashboard</Link>
+                    <Link href="/dashboard">Dashboard</Link>
                     {/* Logged-in users */}
                     <div id="user">
                         <Link href="#">My Posts</Link>
-                        <Link href="#">Create Post</Link>
+                        <Link href="/create">Create Post</Link>
                         <Link href="#">Logout</Link>
                     </div>
                     {/* Guest users */}
                     <div id="guest">
-                        <Link href="#">Login</Link>
-                        <Link href="#">Register</Link>
+                        <Link href="/login">Login</Link>
+                        <Link href="/register">Register</Link>
                     </div>
                 </nav>
             </>
