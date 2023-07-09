@@ -5,10 +5,10 @@ export default function Navbar() {
         <>
             <>
                 <h1>
-                    <Link href="/dashboard">Orphelp</Link>
+                    <Link href="/">Orphelp</Link>
                 </h1>
                 <nav>
-                    <Link href="/dashboard">Dashboard</Link>
+                    <Link href="/">Dashboard</Link>
                     {/* Logged-in users */}
                     <div id="user">
                         <Link href="#">My Posts</Link>
