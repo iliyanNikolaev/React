@@ -1,9 +1,11 @@
 import React from 'react'
+import './Home.css'
 
 export const Home = (props) => {
     return (
-        <>
-            <h2>This is the home page!</h2>
-        </>
+        <div className='home-page'>
+            <img className='ghost-img' src="ghost-logo.png" alt="ghost" />
+            <p>ATTENTION, this website contains horror movies that you should watch!!!</p>
+        </div>
     )
 }

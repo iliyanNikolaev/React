@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Martian+Mono&display=swap');
+
 .header{
     background-color: #000;
     padding: 6px 12px;
@@ -8,11 +10,12 @@
 
 .header .logo{
     width: 60px;
-    margin-right: auto;
+    /* margin-right: auto; */
 }
 
 .navigation{
     margin-right: auto;
+    margin-left: auto;
 }
 
 .navigation .nav-link a{
@@ -27,6 +30,7 @@
     margin: 0;
     padding: 0;
 }
+
 
 .btn{
     all: unset;

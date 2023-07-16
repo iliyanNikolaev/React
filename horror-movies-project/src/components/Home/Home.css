@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Creepster&family=Martian+Mono&display=swap');
+
+.home-page {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        ". . . . . . . ."
+        ". img img img . . . ."
+        ". img img img content content content ."
+        ". img img img content content content ."
+        ". img img img content content content ."
+        ". img img img content content content .";
+}
+
+.ghost-img {
+    width: 80%;
+    grid-area: img;
+}
+
+p{
+    font-family: 'Creepster', cursive;
+    grid-area: content;
+    font-size: 48px;
+    color: red;
+}

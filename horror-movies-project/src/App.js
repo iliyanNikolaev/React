@@ -8,16 +8,16 @@ import { Navbar } from './components/Navbar/Navbar';
 
 function App() {
   return (
-    <>
+    <div className='app'>
       <Navbar />
-
+      
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/catalog' element={<Catalog />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>
-    </>
+    </div>
   );
 }
 
