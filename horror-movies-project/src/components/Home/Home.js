@@ -5,7 +5,7 @@ export const Home = (props) => {
     return (
         <div className='home-page'>
             <img className='ghost-img' src="ghost-logo.png" alt="ghost" />
-            <p>ATTENTION, this website contains horror movies that you should watch!!!</p>
+            <p className='slogan'>ATTENTION, this website contains horror movies that you should watch!!!</p>
         </div>
     )
 }

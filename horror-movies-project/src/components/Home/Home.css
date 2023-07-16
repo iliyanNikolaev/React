@@ -18,7 +18,7 @@
     grid-area: img;
 }
 
-p{
+.slogan{
     font-family: 'Creepster', cursive;
     grid-area: content;
     font-size: 48px;
