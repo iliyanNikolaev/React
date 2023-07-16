@@ -13,10 +13,10 @@ export const Navbar = (props) => {
                 />
                 <nav className="navigation">
                     <ul className="list">
-                        <li className='nav-link'><Link to='/'>Home</Link></li>
-                        <li className='nav-link'><Link to='/catalog'>Catalog</Link></li>
-                        <li className='nav-link'><Link to='/login'>Login</Link></li>
-                        <li className='nav-link'><Link to='/register'>Register</Link></li>
+                        <li className='nav-link'><Link to='/'><i class="fas fa-home"></i> Home</Link></li>
+                        <li className='nav-link'><Link to='/catalog'><i class="fas fa-list-alt"></i> Catalog</Link></li>
+                        <li className='nav-link'><Link to='/login'><i class="fas fa-sign-in-alt"></i> Login</Link></li>
+                        <li className='nav-link'><Link to='/register'><i class="fas fa-registered"></i> Register</Link></li>
                     </ul>
                 </nav>
                 <button className="btn search">
