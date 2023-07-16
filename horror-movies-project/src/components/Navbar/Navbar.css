@@ -1,0 +1,44 @@
+.header{
+    background-color: #000;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    font-size: large;
+}
+
+.header .logo{
+    width: 60px;
+    margin-right: auto;
+}
+
+.navigation{
+    margin-right: auto;
+}
+
+.navigation .nav-link a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.navigation .list{
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.btn{
+    all: unset;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.btn.search{
+    margin-right: 12px;
+}
+
+.fas.fa-search,
+.fas.fa-user-circle{
+    color: white
+}
