@@ -11,11 +11,15 @@ export async function register(username, password) {
     try {
         const response = await post(endpoints.register, { username, password }); // {objectId: '...', createdAt: '...', sessionToken: '...'}
         
-        setUserData({
+        const auth = {
             objectId: response.objectId,
             sessionToken: response.sessionToken,
             username
-        });
+        }
+
+        setUserData(auth);
+ 
+        return auth;
 
     } catch (err) {
         console.log(err.message);
@@ -31,6 +35,9 @@ export async function login(username, password) {
             sessionToken: response.sessionToken,
             username
         });
+
+        return response;
+
     } catch (err) {
         console.log(err.message);
     }

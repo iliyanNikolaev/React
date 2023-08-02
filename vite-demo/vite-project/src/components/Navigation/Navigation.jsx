@@ -14,10 +14,13 @@ export default function Navigation() {
                 <Link to='/'>Home</Link>
                 <Link to='/catalog'>Catalog</Link>
                 {auth.username
-                    ? <Link to='/create'>Create</Link>
-                    : <div className='guest'>
+                    ? <>
+                        <Link to='/create'>Create</Link>
+                        <Link to='/logout'>Logout</Link>
+                    </>
+                    : <>
                         <Link to='/login'>Login</Link> <Link to='/register'>Register</Link>
-                    </div>
+                    </>
                 }
 
                 <p className='userGreeting'>Welcome, {auth.username ? `${auth.username}` : 'guest'}!</p>

@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { login, register, logout } from '../services/user';
+import { login, register, logout } from '../services/user.js';
 
 export const AuthContext = createContext();
 
@@ -9,17 +9,18 @@ export function AuthProvider({
 }) {
     const [auth, setAuth] = useState({});
 
-    const navigate = useNavigate;
+    const navigate = useNavigate();
 
     const onLoginSubmit = async (username, password) => {
         try {
             const authData = await login(username, password);
-            
+            console.log(authData)
             setAuth({
                 username,
                 sessionToken: authData.sessionToken,
                 objectId: authData.objectId
             });
+
             navigate('/');
         } catch (err) {
             console.log(err.message);
@@ -35,7 +36,9 @@ export function AuthProvider({
                 username,
                 sessionToken: authData.sessionToken,
                 objectId: authData.objectId
-            })
+            });
+
+            navigate('/');
         } catch (err) {
             console.log(err.message);
         }
@@ -44,7 +47,10 @@ export function AuthProvider({
     const onLogoutSubmit = async () => {
         try {
             await logout();
+            
             setAuth({});
+
+            navigate('/');
         } catch (err) {
             console.log(err.message);
         }

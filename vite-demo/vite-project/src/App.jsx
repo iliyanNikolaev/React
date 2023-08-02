@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer"
 import Create from "./components/Create/Create"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
+import Logout from "./components/Logout/Logout"
 
 import { AuthProvider } from './contexts/authContext';
 
@@ -50,6 +51,10 @@ function App() {
         <Route 
           path="/register"
           element={ <Register /> }>
+        </Route>
+        <Route 
+          path="/logout"
+          element={ <Logout /> }>
         </Route>
       </Routes>
 
