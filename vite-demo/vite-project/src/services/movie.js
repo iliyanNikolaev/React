@@ -30,7 +30,7 @@ export async function editMovie(movieId, movieData, userId) {
         owner: createPointer(userId)
     }
 
-    return put(endpoints.byId + movieId, movieData);
+    return put(endpoints.byId + movieId, movieData); // {updatedAt: '2023-08-02T12:54:05.889Z'}
 }
 
 export async function deleteMovie(movieId) {

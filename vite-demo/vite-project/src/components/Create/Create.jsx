@@ -1,18 +1,19 @@
 import { useContext } from "react"
+import { AuthContext } from "../../contexts/authContext"
 import { MovieContext } from "../../contexts/movieContext"
-
 import { useForm } from "../../hooks/useForm"
 
 export default function Create() {
     
     const { createMovieHandler } = useContext(MovieContext);
+    const { auth } = useContext(AuthContext);
 
     const { formValues, onChange } = useForm({ title: '', description: '', imgURL: '' });
 
     const formSubmit = (e) => {
         e.preventDefault();
 
-        createMovieHandler(formValues);
+        createMovieHandler(formValues, auth.objectId);
     }
 
     return (

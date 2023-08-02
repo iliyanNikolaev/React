@@ -6,8 +6,9 @@ export default function CatalogItem({
 }) {
     return (
         <>
-            <li>
+            <li key={movie.objectId}>
                 {movie.title}
+                
                 <Link to={`/details/${movie.objectId}`}> view</Link>
             </li>
         </>

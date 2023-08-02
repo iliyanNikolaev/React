@@ -34,9 +34,25 @@ export function MovieCtxProvider({
 
     }
 
+    const editMovieHandler = async (movieId, movieData, userId) => {
+
+        try {
+            editMovie(movieId, movieData, userId);
+
+            setMovies(state => state.map(x => x.objectId == movieId 
+                ? {...x, title: movieData.title, description: movieData.description, imgURL: movieData.imgURL} 
+                : {...x}));
+
+            navigate(`/details/${movieId}`);
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
     const ctx = {
         movies, 
-        createMovieHandler
+        createMovieHandler,
+        editMovieHandler
     }
 
     return (

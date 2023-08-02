@@ -5,10 +5,42 @@ h2{
 .movieCard{
     text-align: center;
     border: 1px solid;
+    border-radius: 6px;
     padding: 12px;
 }
 
 
 .poster{
     width: 200px;
+}
+
+.ownerBtns{
+    margin-top: 12px;
+}
+
+.ownerBtns a{
+    text-decoration: none;
+    border: 1px solid;
+    padding: 6px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    margin: 6px;
+}
+
+
+.ownerBtns .editBtn {
+    background-color: blue;
+}
+
+.ownerBtns .editBtn:hover{
+    background-color: rgb(21, 21, 133);
+}
+
+.ownerBtns .deleteBtn {
+    background-color: red;
+}
+
+.ownerBtns .deleteBtn:hover {
+    background-color: rgb(174, 30, 30);
 }

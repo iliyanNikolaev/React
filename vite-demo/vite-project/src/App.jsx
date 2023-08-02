@@ -9,6 +9,7 @@ import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
 import Logout from "./components/Logout/Logout"
 import Details from './components/Details/Details';
+import Edit from "./components/Edit/Edit"
 
 import { AuthCtxProvider } from './contexts/authContext';
 import { MovieCtxProvider } from './contexts/movieContext';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/details/:movieId" element={<Details />}></Route>
+          <Route path="/edit/:movieId" element={<Edit />}></Route>
         </Routes>
 
         <Footer />

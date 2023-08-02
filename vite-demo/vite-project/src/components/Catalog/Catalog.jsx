@@ -18,5 +18,3 @@ export default function Catalog() {
         </>
     )
 }
-
-// { "__type": "Pointer", "className": "_User", "objectId": "WUPIIfvKlP" }
