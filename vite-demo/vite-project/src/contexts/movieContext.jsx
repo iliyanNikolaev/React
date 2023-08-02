@@ -49,10 +49,24 @@ export function MovieCtxProvider({
         }
     }
 
+    const deleteMovieHandler = async (movieId) => {
+        try {
+            await deleteMovie(movieId);
+
+            setMovies(state => state.filter(x => x.objectId != movieId));
+
+            navigate('/catalog');
+
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
     const ctx = {
         movies, 
         createMovieHandler,
-        editMovieHandler
+        editMovieHandler,
+        deleteMovieHandler
     }
 
     return (

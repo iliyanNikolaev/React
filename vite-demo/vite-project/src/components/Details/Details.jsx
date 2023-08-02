@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import { getById } from "../../services/movie"
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/authContext'
+import { MovieContext } from '../../contexts/movieContext'
 
 export default function Details() {
     const [currentMovie, setCurrentMovie] = useState({});
@@ -11,6 +12,7 @@ export default function Details() {
     const { movieId } = useParams();
 
     const { auth } = useContext(AuthContext);
+    const { deleteMovieHandler } = useContext(MovieContext);
 
     useEffect(() => {
         getById(movieId)
@@ -19,6 +21,13 @@ export default function Details() {
             });
     }, [movieId]);
 
+    const onDelete = () => {
+        const choice = confirm(`Are you sure you want to delete ${currentMovie.title}?`);
+
+        if (choice) {
+            deleteMovieHandler(movieId);
+        }
+    }
 
     return (
         <>
@@ -28,12 +37,12 @@ export default function Details() {
 
                 <img src={currentMovie.imgURL} alt="poster" className="poster" />
 
-                { auth.username !== undefined && auth.objectId == currentMovie.owner?.objectId
-                ? <div className='ownerBtns'>
-                    <Link to={`/edit/${currentMovie.objectId}`} className='editBtn'>Edit movie</Link>
-                    <Link to={`/delete/${currentMovie.objectId}`} className='deleteBtn'>Delete movie</Link>
-                </div>
-                : null
+                {auth.username !== undefined && auth.objectId == currentMovie.owner?.objectId
+                    ? <div className='ownerBtns'>
+                        <Link to={`/edit/${currentMovie.objectId}`} className='editBtn'>Edit movie</Link>
+                        <Link onClick={onDelete} to='#' className='deleteBtn'>Delete movie</Link>
+                    </div>
+                    : null
                 }
             </div>
         </>

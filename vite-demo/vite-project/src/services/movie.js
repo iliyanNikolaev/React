@@ -1,4 +1,4 @@
-import { get, post, put } from "./api.js";
+import { get, post, put, del } from "./api.js";
 import { createPointer } from "../util.js";
 
 const endpoints = {
@@ -34,5 +34,5 @@ export async function editMovie(movieId, movieData, userId) {
 }
 
 export async function deleteMovie(movieId) {
-    return del(endpoints.byId);
+    return del(endpoints.byId + movieId);
 }
