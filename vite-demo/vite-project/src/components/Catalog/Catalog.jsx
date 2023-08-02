@@ -1,9 +1,13 @@
-import React from 'react'
+import './Catalog.css'
+import { useContext } from 'react'
+import { MovieContext } from '../../contexts/movieContext'
+
 import CatalogItem from './CatalogItem'
 
-export default function Catalog({
-    movies
-}) {
+export default function Catalog() {
+    
+    const { movies } = useContext(MovieContext);
+
     return (
         <>
             <h2>Movies</h2>

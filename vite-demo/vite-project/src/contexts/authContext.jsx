@@ -4,7 +4,7 @@ import { login, register, logout } from '../services/user.js';
 
 export const AuthContext = createContext();
 
-export function AuthProvider({
+export function AuthCtxProvider({
     children
 }) {
     const [auth, setAuth] = useState({});

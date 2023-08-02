@@ -1,0 +1,14 @@
+h2{
+    text-align: center;
+}
+
+.movieCard{
+    text-align: center;
+    border: 1px solid;
+    padding: 12px;
+}
+
+
+.poster{
+    width: 200px;
+}

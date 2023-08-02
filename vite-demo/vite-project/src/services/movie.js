@@ -7,11 +7,11 @@ const endpoints = {
 }
 
 export async function getAll() {
-    return get(endpoints.movies);
+    return get(endpoints.movies); // {results: Array(4)}
 }
 
 export async function getById(movieId) {
-    return get(endpoints.byId + movieId);
+    return get(endpoints.byId + movieId); // {objectId: '...', title: '...', description: '...', imgURL: '...', owner: {…}, …}
 }
 
 export async function createMovie(movieData, userId) {

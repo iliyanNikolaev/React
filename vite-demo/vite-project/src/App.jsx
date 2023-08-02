@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 
 import Home from "./components/Home/Home"
@@ -9,57 +8,34 @@ import Create from "./components/Create/Create"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
 import Logout from "./components/Logout/Logout"
+import Details from './components/Details/Details';
 
-import { AuthProvider } from './contexts/authContext';
-
-import { getAll } from './services/movie.js';
+import { AuthCtxProvider } from './contexts/authContext';
+import { MovieCtxProvider } from './contexts/movieContext';
 
 
 function App() {
 
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    getAll()
-      .then(data => {
-        setMovies(data.results);
-      });
-  }, []);
-
   return (
-    <AuthProvider>
+    <AuthCtxProvider>
+      <MovieCtxProvider>
 
-      <Navigation />
+        <Navigation />
 
-      <Routes>
-        <Route
-          path="/"
-          element={<Home />}>
-        </Route>
-        <Route
-          path="/create"
-          element={<Create />}>
-        </Route>
-        <Route
-          path="/catalog"
-          element={<Catalog movies={movies} />}>
-        </Route>
-        <Route 
-          path="/login"
-          element={ <Login /> }>
-        </Route>
-        <Route 
-          path="/register"
-          element={ <Register /> }>
-        </Route>
-        <Route 
-          path="/logout"
-          element={ <Logout /> }>
-        </Route>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/create" element={<Create />}></Route>
+          <Route path="/catalog" element={<Catalog />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/logout" element={<Logout />}></Route>
+          <Route path="/details/:movieId" element={<Details />}></Route>
+        </Routes>
 
-      <Footer />
-    </AuthProvider>
+        <Footer />
+
+      </MovieCtxProvider>
+    </AuthCtxProvider>
   )
 }
 
