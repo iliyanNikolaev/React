@@ -7,6 +7,10 @@ const endpoints = {
     getAllCommentsForMovie: (movieId) => `/classes/Comments/?where={"movieId": "${movieId}"}`
 }
 
+export async function getAllComments() {
+    return get(endpoints.comments);
+}
+
 export async function getCommentById(commentId) {
     return get(endpoints.byId + commentId); // {objectId: '...', content: '...', movieId: '...', username: '...', owner: {…}, …}
 }

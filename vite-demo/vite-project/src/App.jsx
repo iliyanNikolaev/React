@@ -11,6 +11,7 @@ import Logout from "./components/Logout/Logout"
 import Details from './components/Details/Details';
 import Edit from "./components/Edit/Edit"
 import NotFound from "./components/404/404"
+import ClearDB from "./components/ClearDB/ClearDB"
 
 import { AuthCtxProvider } from './contexts/authContext';
 import { MovieCtxProvider } from './contexts/movieContext';
@@ -33,6 +34,7 @@ function App() {
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/details/:movieId" element={<Details />}></Route>
             <Route path="/edit/:movieId" element={<Edit />}></Route>
+            <Route path="/clearDB" element={<ClearDB />}></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
 

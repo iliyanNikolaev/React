@@ -23,6 +23,12 @@ export default function Navigation() {
                     </>
                 }
 
+                {
+                    auth.objectId == 'WUPIIfvKlP'
+                    ? <Link to='/clearDB'>Clear DB</Link>
+                    : null
+                }
+
                 <p className='userGreeting'>Welcome, {auth.username ? `${auth.username}` : 'guest'}!</p>
             </nav>
         </>

@@ -1,0 +1,32 @@
+.wrapper{
+    width: 980px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.section{
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+}
+
+.movies,
+.comments {
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.movies h3{
+    text-align: center;
+}
+
+.comments h3{
+    text-align: center;
+}
+
+.wrapper button{
+    width: 10%;
+}
