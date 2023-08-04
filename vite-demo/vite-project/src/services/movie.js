@@ -11,7 +11,11 @@ export async function getAll() {
 }
 
 export async function getById(movieId) {
-    return get(endpoints.byId + movieId); // {objectId: '...', title: '...', description: '...', imgURL: '...', owner: {…}, …}
+    try {
+        return get(endpoints.byId + movieId); // {objectId: '...', title: '...', description: '...', imgURL: '...', owner: {…}, …}
+    } catch (err) {
+        throw err;
+    }
 }
 
 export async function createMovie(movieData, userId) {

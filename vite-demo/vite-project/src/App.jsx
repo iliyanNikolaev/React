@@ -10,9 +10,11 @@ import Register from "./components/Register/Register"
 import Logout from "./components/Logout/Logout"
 import Details from './components/Details/Details';
 import Edit from "./components/Edit/Edit"
+import NotFound from "./components/404/404"
 
 import { AuthCtxProvider } from './contexts/authContext';
 import { MovieCtxProvider } from './contexts/movieContext';
+import { CommentsCtxProvider } from './contexts/commentsContext';
 
 
 function App() {
@@ -20,22 +22,25 @@ function App() {
   return (
     <AuthCtxProvider>
       <MovieCtxProvider>
+        <CommentsCtxProvider>
+          
+          <Navigation />
 
-        <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/create" element={<Create />}></Route>
+            <Route path="/catalog" element={<Catalog />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/logout" element={<Logout />}></Route>
+            <Route path="/details/:movieId" element={<Details />}></Route>
+            <Route path="/edit/:movieId" element={<Edit />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
 
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/create" element={<Create />}></Route>
-          <Route path="/catalog" element={<Catalog />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/logout" element={<Logout />}></Route>
-          <Route path="/details/:movieId" element={<Details />}></Route>
-          <Route path="/edit/:movieId" element={<Edit />}></Route>
-        </Routes>
+          <Footer />
 
-        <Footer />
-
+        </CommentsCtxProvider>
       </MovieCtxProvider>
     </AuthCtxProvider>
   )

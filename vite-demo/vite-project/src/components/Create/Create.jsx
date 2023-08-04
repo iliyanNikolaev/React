@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import { MovieContext } from "../../contexts/movieContext"
 import { useForm } from "../../hooks/useForm"
+import { Navigate } from "react-router-dom"
 
 export default function Create() {
     
@@ -14,6 +15,10 @@ export default function Create() {
         e.preventDefault();
 
         createMovieHandler(formValues, auth.objectId);
+    }
+
+    if(!auth.username) {
+        return <Navigate to='/404' />
     }
 
     return (

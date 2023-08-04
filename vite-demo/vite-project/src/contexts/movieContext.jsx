@@ -18,6 +18,14 @@ export function MovieCtxProvider({
             })
     }, []);
 
+    const getMovieById = async (movieId) => {
+        try {
+            return getById(movieId);
+        } catch (err) {
+            throw err;
+        }
+    }
+
     const createMovieHandler = async (movieData, userId) => {
         try {
             
@@ -66,7 +74,8 @@ export function MovieCtxProvider({
         movies, 
         createMovieHandler,
         editMovieHandler,
-        deleteMovieHandler
+        deleteMovieHandler,
+        getMovieById
     }
 
     return (

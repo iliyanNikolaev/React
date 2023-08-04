@@ -14,13 +14,3 @@ export function createPointer(userId) {
     return { __type: "Pointer", className: "_User", "objectId": userId };
 }
 
-export function createSubmitHandler(callback) {
-    return function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(e.currentTarget);
-        const data = {...formData};
-
-        callback(data);
-    }
-}

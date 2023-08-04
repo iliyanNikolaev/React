@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
+
 import { MovieContext } from "../../contexts/movieContext";
 import { AuthContext } from "../../contexts/authContext";
-import { useParams } from "react-router-dom";
-import { getById } from "../../services/movie";
 
 export default function Edit() {
     const [formValues, setFormValues] = useState({
@@ -12,23 +12,28 @@ export default function Edit() {
     });
 
     const onChange = (e) => {
-        setFormValues(state => ({ ...state,  [e.target.name]: e.target.value}));
+        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
     const { movieId } = useParams();
 
     const { auth } = useContext(AuthContext);
-    const { editMovieHandler } = useContext(MovieContext);
+
+    const { editMovieHandler, getMovieById, movies } = useContext(MovieContext);
+
+    if(movies.find(x => x.objectId == movieId) == undefined) {
+        return <Navigate to='/404'/>
+    }
 
     useEffect(() => {
-        getById(movieId)
+        getMovieById(movieId)
             .then(data => {
                 setFormValues({
                     title: data.title,
                     description: data.description,
                     imgURL: data.imgURL
                 });
-            })
+            });
     }, [movieId]);
 
     const formSubmit = (e) => {

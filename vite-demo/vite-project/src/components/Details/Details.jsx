@@ -1,31 +1,44 @@
 import './Details.css'
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
-import { getById } from "../../services/movie"
+import { Link, Navigate, useParams } from "react-router-dom"
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 import { MovieContext } from '../../contexts/movieContext'
+import { CommentsContext } from '../../contexts/commentsContext'
+
+import CommentsSection from './CommentsSection/CommentsSection'
 
 export default function Details() {
     const [currentMovie, setCurrentMovie] = useState({});
 
+    const [commentsForCurrentMovie, setCommentsForCurrentMovie] = useState([]);
+
     const { movieId } = useParams();
 
     const { auth } = useContext(AuthContext);
-    const { deleteMovieHandler } = useContext(MovieContext);
+    const { deleteMovieHandler, getMovieById } = useContext(MovieContext);
+    const { getCommentsForCurrentMovie } = useContext(CommentsContext);
 
     useEffect(() => {
-        getById(movieId)
+       
+        getMovieById(movieId)
             .then(data => {
                 setCurrentMovie(data);
+            })
+
+        getCommentsForCurrentMovie(movieId)
+            .then(data => {
+                setCommentsForCurrentMovie(data.results)
             });
     }, [movieId]);
 
     const onDelete = () => {
-        const choice = confirm(`Are you sure you want to delete ${currentMovie.title}?`);
+        if (auth.username !== undefined && auth.objectId == currentMovie.owner?.objectId) {
+            const choice = confirm(`Are you sure you want to delete ${currentMovie.title}?`);
 
-        if (choice) {
-            deleteMovieHandler(movieId);
+            if (choice) {
+                deleteMovieHandler(movieId);
+            }
         }
     }
 
@@ -45,6 +58,8 @@ export default function Details() {
                     : null
                 }
             </div>
+
+            <CommentsSection comments={commentsForCurrentMovie} />
         </>
     )
 }
