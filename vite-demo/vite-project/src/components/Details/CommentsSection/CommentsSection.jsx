@@ -64,7 +64,7 @@ export default function CommentsSection({
                 ? <ul>
                     {comments.map(x => <CommentItem key={x.objectId} comment={x} onDeleteHandler={onDeleteHandler}/>)}
                 </ul>
-                : <p>No comments for this game...</p>
+                : <p>No comments yet for this movie...</p>
             }
 
             {
