@@ -14,6 +14,7 @@ export default function CommentItem({
   const onChange = (e) => {
     setCurrComment(state => ({ ...state, content: e.target.value}))
   }
+  const [isLoading, setIsLoading] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
 
   const { auth } = useContext(AuthContext);
@@ -47,6 +48,7 @@ export default function CommentItem({
 
       { currComment.owner.objectId == auth?.objectId
         ? <>
+
           {onEdit
             ? <>
               <input 

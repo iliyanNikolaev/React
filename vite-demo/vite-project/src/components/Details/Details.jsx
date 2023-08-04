@@ -6,8 +6,10 @@ import { AuthContext } from '../../contexts/authContext'
 import { MovieContext } from '../../contexts/movieContext'
 
 import CommentsSection from './CommentsSection/CommentsSection'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 export default function Details() {
+    const [isLoading, setIsLoading] = useState(true);
     const [currentMovie, setCurrentMovie] = useState({});
 
     const { movieId } = useParams();
@@ -16,10 +18,10 @@ export default function Details() {
     const { deleteMovieHandler, getMovieById } = useContext(MovieContext);
 
     useEffect(() => {
-       
         getMovieById(movieId)
             .then(data => {
                 setCurrentMovie(data);
+                setIsLoading(false);
             })
 
     }, [movieId]);
@@ -36,22 +38,27 @@ export default function Details() {
 
     return (
         <>
-            <h2>{currentMovie.title} details</h2>
-            <div className="movieCard">
-                <p className="descr">Description: {currentMovie.description}</p>
+            {isLoading
+                ? <LoadingSpinner />
+                : <>
+                    <h2>{currentMovie.title} details</h2>
+                    <div className="movieCard">
+                        <p className="descr">Description: {currentMovie.description}</p>
 
-                <img src={currentMovie.imgURL} alt="poster" className="poster" />
+                        <img src={currentMovie.imgURL} alt="poster" className="poster" />
 
-                {auth.username !== undefined && auth.objectId == currentMovie.owner?.objectId
-                    ? <div className='ownerBtns'>
-                        <Link to={`/edit/${currentMovie.objectId}`} className='editBtn'>Edit movie</Link>
-                        <Link onClick={onDelete} to='#' className='deleteBtn'>Delete movie</Link>
+                        {auth.username !== undefined && auth.objectId == currentMovie.owner?.objectId
+                            ? <div className='ownerBtns'>
+                                <Link to={`/edit/${currentMovie.objectId}`} className='editBtn'>Edit movie</Link>
+                                <Link onClick={onDelete} to='#' className='deleteBtn'>Delete movie</Link>
+                            </div>
+                            : null
+                        }
                     </div>
-                    : null
-                }
-            </div>
 
-            <CommentsSection movieId={movieId}/>
+                    <CommentsSection movieId={movieId} />
+                </>
+            }
         </>
     )
 }
