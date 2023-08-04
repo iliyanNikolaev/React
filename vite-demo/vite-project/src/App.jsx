@@ -14,7 +14,6 @@ import NotFound from "./components/404/404"
 
 import { AuthCtxProvider } from './contexts/authContext';
 import { MovieCtxProvider } from './contexts/movieContext';
-import { CommentsCtxProvider } from './contexts/commentsContext';
 
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
   return (
     <AuthCtxProvider>
       <MovieCtxProvider>
-        <CommentsCtxProvider>
           
           <Navigation />
 
@@ -40,7 +38,6 @@ function App() {
 
           <Footer />
 
-        </CommentsCtxProvider>
       </MovieCtxProvider>
     </AuthCtxProvider>
   )

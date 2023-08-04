@@ -1,23 +1,19 @@
 import './Details.css'
 import { useEffect, useState } from "react"
-import { Link, Navigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 import { MovieContext } from '../../contexts/movieContext'
-import { CommentsContext } from '../../contexts/commentsContext'
 
 import CommentsSection from './CommentsSection/CommentsSection'
 
 export default function Details() {
     const [currentMovie, setCurrentMovie] = useState({});
 
-    const [commentsForCurrentMovie, setCommentsForCurrentMovie] = useState([]);
-
     const { movieId } = useParams();
 
     const { auth } = useContext(AuthContext);
     const { deleteMovieHandler, getMovieById } = useContext(MovieContext);
-    const { getCommentsForCurrentMovie } = useContext(CommentsContext);
 
     useEffect(() => {
        
@@ -26,10 +22,6 @@ export default function Details() {
                 setCurrentMovie(data);
             })
 
-        getCommentsForCurrentMovie(movieId)
-            .then(data => {
-                setCommentsForCurrentMovie(data.results)
-            });
     }, [movieId]);
 
     const onDelete = () => {
@@ -59,7 +51,7 @@ export default function Details() {
                 }
             </div>
 
-            <CommentsSection comments={commentsForCurrentMovie} />
+            <CommentsSection movieId={movieId}/>
         </>
     )
 }

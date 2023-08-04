@@ -26,13 +26,9 @@ export async function createCommentForMovie(commentData, userId) {
     return getCommentById(objectId); // {objectId: '...', content: '...', movieId: '...', username: '...', owner: {…}, …}
 }
 
-export async function editCommentById(commentId, commentData, userId) {
-    const finalData = {
-        ...commentData,
-        owner: createPointer(userId)
-    };
-
-    await put(endpoints.byId + commentId, finalData); // {updatedAt: '2023-08-03T12:11:23.881Z'}
+export async function editCommentById(commentId, commentData) {
+    
+    await put(endpoints.byId + commentId, commentData); // {updatedAt: '2023-08-03T12:11:23.881Z'}
     
     return getCommentById(commentId); // {objectId: '...', content: '...', movieId: '...', username: '...', owner: {…}, …}
 }
