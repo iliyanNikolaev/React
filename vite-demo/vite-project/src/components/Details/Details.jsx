@@ -7,6 +7,7 @@ import { MovieContext } from '../../contexts/movieContext'
 
 import CommentsSection from './CommentsSection/CommentsSection'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
+import OwnerBtns from './OwnerBtns/OwnerBtns'
 
 export default function Details() {
     const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +40,7 @@ export default function Details() {
     return (
         <>
             {isLoading
-                ? <LoadingSpinner />
+                ? <div className='details-spinner'><LoadingSpinner /></div> 
                 : <>
                     <h2>{currentMovie.title} details</h2>
                     <div className="movieCard">
@@ -48,10 +49,7 @@ export default function Details() {
                         <img src={currentMovie.imgURL} alt="poster" className="poster" />
 
                         {auth.username !== undefined && auth.objectId == currentMovie.owner?.objectId
-                            ? <div className='ownerBtns'>
-                                <Link to={`/edit/${currentMovie.objectId}`} className='editBtn'>Edit movie</Link>
-                                <Link onClick={onDelete} to='#' className='deleteBtn'>Delete movie</Link>
-                            </div>
+                            ? <OwnerBtns currentMovie={currentMovie} onDelete={onDelete} />
                             : null
                         }
                     </div>

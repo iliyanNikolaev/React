@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../../../contexts/authContext";
-import { editCommentById } from "../../../services/comment";
+import { AuthContext } from "../../../../contexts/authContext";
+import { editCommentById } from "../../../../services/comment";
+import EditCommentForm from "./EditCommentForm/EditCommentForm";
+import LoadingSpinner from "../../../LoadingSpinner/LoadingSpinner";
 
 export default function CommentItem({
   comment,
@@ -25,6 +27,7 @@ export default function CommentItem({
   }
 
   const onEditHandler = async () => {
+    setIsLoading(true);
     try {
       const editedComment = await editCommentById(currComment.objectId, {
         content: currComment.content,
@@ -34,9 +37,9 @@ export default function CommentItem({
       });
 
       setCurrComment(editedComment);
-      
+      setIsLoading(false);    
       setOnEdit(false);
-
+  
     } catch (err) {
       console.log(err)
     }
@@ -44,25 +47,13 @@ export default function CommentItem({
 
   return (
     <li>
+
       <strong>{comment.username}:</strong> {onEdit ? null : `${currComment.content}`}
 
       { currComment.owner.objectId == auth?.objectId
         ? <>
-
           {onEdit
-            ? <>
-              <input 
-                type="text"
-                name="content" 
-                value={currComment.content}
-                onChange={onChange}
-                />
-              <input
-                type="submit"
-                value="Save Changes"
-                onClick={onEditHandler}
-              />
-            </>
+            ? <>{isLoading ? <LoadingSpinner/> : <EditCommentForm currComment={currComment} onChange={onChange} onEditHandler={onEditHandler}/>}</>
             : <>
               <Link to="#" onClick={editClicked}>Edit</Link>
               <Link to="#" onClick={() => onDeleteHandler(currComment.objectId, currComment.content)}>Delete</Link>
@@ -71,7 +62,6 @@ export default function CommentItem({
         </>
         : null
       }
-
     </li>
   )
 }

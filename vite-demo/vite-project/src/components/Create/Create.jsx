@@ -1,20 +1,30 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import { MovieContext } from "../../contexts/movieContext"
 import { useForm } from "../../hooks/useForm"
 import { Navigate } from "react-router-dom"
 
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner"
+
 export default function Create() {
-    
+    const [isLoading, setIsLoading] = useState(false);
+
     const { createMovieHandler } = useContext(MovieContext);
     const { auth } = useContext(AuthContext);
 
     const { formValues, onChange } = useForm({ title: '', description: '', imgURL: '' });
 
-    const formSubmit = (e) => {
+    const formSubmit = async (e) => {
         e.preventDefault();
+        try {
+            setIsLoading(true);
 
-        createMovieHandler(formValues, auth.objectId);
+            await createMovieHandler(formValues, auth.objectId);
+            
+            setIsLoading(false);
+        } catch (err) {
+            console.log(err.message)
+        }
     }
 
     if(!auth.username) {
@@ -54,7 +64,8 @@ export default function Create() {
                 />
             </label>
 
-            <button>Create Movie</button>
+            {isLoading ? <LoadingSpinner /> : <button>Create Movie</button>}
+
         </form>
         </>
     )

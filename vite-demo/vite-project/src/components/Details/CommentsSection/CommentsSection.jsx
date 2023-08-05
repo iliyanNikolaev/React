@@ -1,4 +1,6 @@
-import CommentItem from './CommentItem'
+import CommentItem from './CommentItem/CommentItem'
+import AddCommentForm from './AddCommentForm/AddCommentForm'
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner'
 import './CommentsSection.css'
 import { useEffect, useState } from "react"
 import { useContext } from 'react'
@@ -10,6 +12,7 @@ import { createCommentForMovie, deleteCommentById, getAllCommentsForMovie } from
 export default function CommentsSection({
     movieId
 }) {
+    const [isLoading, setIsLoading] = useState(false);
 
     const [comments, setComments] = useState([]);
 
@@ -21,6 +24,7 @@ export default function CommentsSection({
         e.preventDefault();
 
         try {
+            setIsLoading(true);
             const createdComment = await createCommentForMovie({
                 content: formValues.content,
                 username: auth.username,
@@ -30,7 +34,7 @@ export default function CommentsSection({
             setComments(state => [...state, createdComment]);
 
             formValues.content = '';
-
+            setIsLoading(false);
         } catch (err) {
             console.log(err.message);
         }
@@ -69,18 +73,7 @@ export default function CommentsSection({
 
             {
                 auth?.objectId != undefined
-                    ? <form onSubmit={formSubmit}>
-                        <label htmlFor='content'>Add a comment:
-                            <input
-                                type="text"
-                                name='content'
-                                id='content'
-                                value={formValues.content}
-                                onChange={onChange}
-                            />
-                            <input type="submit" value="Add" />
-                        </label>
-                    </form>
+                    ? <>{isLoading ? <LoadingSpinner /> : <AddCommentForm formSubmit={formSubmit} formValues={formValues} onChange={onChange}/>}</>
                     : null
             }
 
