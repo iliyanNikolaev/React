@@ -1,12 +1,12 @@
 import { get, post, put, del } from "./api.js";
-import { createPointer } from "../util.js";
+import { createPointer } from "../utils/createPointer.js";
 
 const endpoints = {
     movies: '/classes/Movies',
     byId: '/classes/Movies/'
 }
 
-export async function getAll() {
+export async function getAllMovies() {
     return get(endpoints.movies); // {results: Array(4)}
 }
 

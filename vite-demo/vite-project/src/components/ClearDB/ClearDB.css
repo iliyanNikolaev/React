@@ -27,6 +27,12 @@
     text-align: center;
 }
 
-.wrapper button{
+.wrapper .deleteComentsBtn{
     width: 10%;
+}
+
+.paginationBtns {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
 }

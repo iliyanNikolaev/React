@@ -1,4 +1,4 @@
-import { getUserData } from "../util.js";
+import { getUserData } from "../utils/sessionStorage.js";
 
 const host = 'https://parseapi.back4app.com';
 

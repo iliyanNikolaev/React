@@ -1,5 +1,5 @@
-import { deleteUserData, setUserData } from '../util.js';
-import { get, post } from './api.js';
+import { deleteUserData, setUserData } from '../utils/sessionStorage.js';
+import { post } from './api.js';
 
 const endpoints = {
     register: '/users',

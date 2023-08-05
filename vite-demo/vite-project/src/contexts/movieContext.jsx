@@ -1,6 +1,7 @@
 import { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAll, getById, createMovie, editMovie, deleteMovie } from "../services/movie";
+import { getAllMovies, getById, createMovie, editMovie, deleteMovie } from "../services/movie";
+import { clearUnneccessaryComments } from "../utils/clearUnnecessaryComments";
 
 export const MovieContext = createContext();
 
@@ -12,7 +13,7 @@ export function MovieCtxProvider({
     const navigate = useNavigate();
 
     useEffect(() => {
-        getAll()
+        getAllMovies()
             .then(data => {
                 setMovies(data.results);
             })
@@ -60,6 +61,7 @@ export function MovieCtxProvider({
     const deleteMovieHandler = async (movieId) => {
         try {
             await deleteMovie(movieId);
+            await clearUnneccessaryComments();
 
             setMovies(state => state.filter(x => x.objectId != movieId));
 

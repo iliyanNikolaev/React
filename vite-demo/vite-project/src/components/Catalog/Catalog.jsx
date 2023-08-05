@@ -2,7 +2,7 @@ import './Catalog.css'
 import { useContext } from 'react'
 import { MovieContext } from '../../contexts/movieContext'
 
-import CatalogItem from './CatalogItem'
+import CatalogItem from './CatalogItem/CatalogItem'
 
 export default function Catalog() {
     

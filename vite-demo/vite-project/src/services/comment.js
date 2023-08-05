@@ -1,10 +1,11 @@
-import { createPointer } from '../util.js';
+import { createPointer } from '../utils/createPointer.js';
 import { get, post, put, del } from './api.js'
 
 const endpoints = {
     comments: '/classes/Comments',
     byId: "/classes/Comments/",
-    getAllCommentsForMovie: (movieId) => `/classes/Comments/?where={"movieId": "${movieId}"}`
+    getAllCommentsForMovie: (movieId) => `/classes/Comments/?where={"movieId": "${movieId}"}`,
+
 }
 
 export async function getAllComments() {
