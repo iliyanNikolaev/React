@@ -1,3 +1,5 @@
+import './Register.css'
+
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import { useForm } from "../../hooks/useForm"
@@ -26,10 +28,10 @@ export default function Register() {
     }
 
     return (
-        <>
+        <div className="register-page">
             <h2>Register page</h2>
 
-            <form onSubmit={formSubmit}>
+            <form className="register-form" onSubmit={formSubmit}>
                 <label htmlFor="username">Username:
                     <input
                         type="text"
@@ -51,6 +53,6 @@ export default function Register() {
 
                 {isLoading ? <LoadingSpinner /> : <button>Register</button>}
             </form>
-        </>
+        </div>
     )
 }

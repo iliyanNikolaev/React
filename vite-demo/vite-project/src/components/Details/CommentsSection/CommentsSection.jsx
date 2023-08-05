@@ -44,11 +44,11 @@ export default function CommentsSection({
         try {
             const choice = confirm('Are you sure you want to delete this comment >>> ' + commentContent);
 
-            if(choice) {
+            if (choice) {
                 await deleteCommentById(commentId);
 
                 setComments(state => state.filter(x => x.objectId != commentId));
-            } 
+            }
         } catch (err) {
             console.log(err.message);
         }
@@ -64,20 +64,20 @@ export default function CommentsSection({
     return (
         <div className="comments-section">
             <h2>Comments: </h2>
-            {comments.length >= 1
-                ? <ul>
-                    {comments.map(x => <CommentItem key={x.objectId} comment={x} onDeleteHandler={onDeleteHandler}/>)}
-                </ul>
-                : <p>No comments yet for this movie...</p>
-            }
+            <>
+                {comments.length >= 1
+                    ? <ul>
+                        {comments.map(x => <CommentItem key={x.objectId} comment={x} onDeleteHandler={onDeleteHandler} />)}
+                    </ul>
+                    : <p>No comments yet for this movie...</p>
+                }
 
-            {
-                auth?.objectId != undefined
-                    ? <>{isLoading ? <LoadingSpinner /> : <AddCommentForm formSubmit={formSubmit} formValues={formValues} onChange={onChange}/>}</>
-                    : null
-            }
-
-
+                {
+                    auth?.objectId != undefined
+                        ? <>{isLoading ? <LoadingSpinner /> : <AddCommentForm formSubmit={formSubmit} formValues={formValues} onChange={onChange} />}</>
+                        : null
+                }
+            </>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import './Login.css'
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import { useForm } from "../../hooks/useForm"
@@ -26,10 +27,10 @@ export default function Login() {
     }
 
     return (
-        <>
+        <div className="login-page">
             <h2>Login page</h2>
 
-            <form onSubmit={formSubmit}>
+            <form className="login-form" onSubmit={formSubmit}>
                 <label htmlFor="username">Username:
                     <input
                         type="text"
@@ -51,6 +52,6 @@ export default function Login() {
 
                 { isLoading ? <LoadingSpinner /> : <button>Login</button> }
             </form>
-        </>
+        </div>
     )
 }
