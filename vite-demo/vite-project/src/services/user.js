@@ -1,15 +1,19 @@
 import { deleteUserData, setUserData } from '../utils/sessionStorage.js';
-import { post } from './api.js';
+import { get, post } from './api.js';
 
 const endpoints = {
-    register: '/users',
+    users: '/users',
     login: '/login',
     logout: '/logout'
 }
 
+export async function getAllUsers() {
+    return get(endpoints.users);
+}
+
 export async function register(username, password) {
     try {
-        const response = await post(endpoints.register, { username, password }); // {objectId: '...', createdAt: '...', sessionToken: '...'}
+        const response = await post(endpoints.users, { username, password }); // {objectId: '...', createdAt: '...', sessionToken: '...'}
         
         const auth = {
             objectId: response.objectId,

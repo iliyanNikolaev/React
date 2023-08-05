@@ -9,17 +9,32 @@
 .section{
     display: flex;
     justify-content: space-around;
-    gap: 12px;
+    gap: 64px;
 }
 
+
 .movies,
-.comments {
+.comments,
+.users {
     border: 1px solid;
     border-radius: 6px;
     padding: 12px;
+    width: 200px;
+    height: 400px;
+    position: relative;
 }
 
-.movies h3{
+.movies p,
+.comments p,
+.users p{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+
+.movies h3,
+.comments h3,
+.users h3{
     text-align: center;
 }
 
@@ -27,12 +42,11 @@
     text-align: center;
 }
 
-.wrapper .deleteComentsBtn{
-    width: 10%;
-}
-
 .paginationBtns {
     display: flex;
     gap: 6px;
     justify-content: center;
+    position: absolute;
+    bottom: 12px;
+    left: 54px    
 }

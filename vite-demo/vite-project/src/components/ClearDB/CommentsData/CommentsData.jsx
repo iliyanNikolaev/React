@@ -1,38 +1,33 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { usePagination } from "../../../hooks/usePagination";
+import { getAllComments } from "../../../services/comment";
 
-export default function CommentsData({
-    comments
-}) {
-    const [start, setStart] = useState(0);
-    const [end, setEnd] = useState(10);
+export default function CommentsData() {
+    const [comments, setComments] = useState([]);
 
-    const next = () => {
-        if (end <= comments.length) {
-            setStart(state => state + 10);
-            setEnd(state => state + 10);
-        }
-    }
+    const {start, end, next, prev} = usePagination(comments, 10);
 
-    const prev = () => {
-        if (start - 10 >= 0) {
-            setStart(state => state - 10);
-            setEnd(state => state - 10);
-        }
-    }
+    useEffect(() => {
+        getAllComments()
+            .then(data => {
+                setComments(data.results);
+            });
+    }, []);
 
-    return (<>
+    return (
         <div className="comments">
-            <h3>Comments</h3>
-            {
-                comments.slice(start, end).map(x => <p key={x.objectId}>{x.username}: {x.content}</p>)
-            }
+            <div className="comments-wrapper">
+                <h3>Comments</h3>
+                {
+                    comments.slice(start, end).map(x => <p key={x.objectId}>{x.username}: {x.content}</p>)
+                }
 
-            <div className="paginationBtns">
-                <button onClick={prev}>&lt; Prev</button>
-                <button onClick={next}>Next &gt;</button>
+                <div className="paginationBtns">
+                    <button onClick={prev}>&lt; Prev</button>
+                    <button onClick={next}>Next &gt;</button>
+                </div>
             </div>
         </div>
-    </>
 
     )
 }
