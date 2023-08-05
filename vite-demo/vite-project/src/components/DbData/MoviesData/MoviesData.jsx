@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { usePagination } from "../../../hooks/usePagination";
 import { MovieContext } from '../../../contexts/movieContext'
+import DbMovieItem from "./DbMovieItem";
 
 export default function MoviesData() {
     const { movies } = useContext(MovieContext);
@@ -12,7 +13,7 @@ export default function MoviesData() {
             <div>
                 <h3>Movies</h3>
 
-                {movies.slice(start, end).map(x => <p key={x.objectId}>{x.title}</p>)}
+                {movies.slice(start, end).map(x => <DbMovieItem key={x.objectId} movie={x}/>)}
             </div>
 
             <div className="paginationBtns">

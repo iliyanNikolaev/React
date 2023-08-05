@@ -58,14 +58,16 @@ export function MovieCtxProvider({
         }
     }
 
-    const deleteMovieHandler = async (movieId) => {
+    const deleteMovieHandler = async (movieId, admin) => {
         try {
             await deleteMovie(movieId);
             await clearUnneccessaryComments();
 
             setMovies(state => state.filter(x => x.objectId != movieId));
 
-            navigate('/catalog');
+            if(!admin) {
+                navigate('/catalog');
+            }
 
         } catch (err) {
             console.log(err.message);

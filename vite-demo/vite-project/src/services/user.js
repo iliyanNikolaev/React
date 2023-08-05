@@ -1,10 +1,15 @@
 import { deleteUserData, setUserData } from '../utils/sessionStorage.js';
-import { get, post } from './api.js';
+import { del, get, post } from './api.js';
 
 const endpoints = {
     users: '/users',
     login: '/login',
-    logout: '/logout'
+    logout: '/logout',
+    byId: '/users/'
+}
+
+export async function deleteUserById(userId) {
+    return del(endpoints.byId + userId);
 }
 
 export async function getAllUsers() {

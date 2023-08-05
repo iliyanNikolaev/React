@@ -13,24 +13,24 @@ export default function Navigation() {
             <nav>
                 <Link to='/'>Home</Link>
                 <Link to='/catalog'>Catalog</Link>
+                <Link to='/DB'>{ auth?.objectId == 'WUPIIfvKlP' ? 'ClearDB' : 'Check DB' }</Link>
+                
                 {auth.username
                     ? <>
                         <Link to='/create'>Create</Link>
                         <Link to='/logout'>Logout</Link>
                     </>
                     : <>
-                        <Link to='/login'>Login</Link> <Link to='/register'>Register</Link>
+                        <Link to='/login'>Login</Link> 
+                        <Link to='/register'>Register</Link>
                     </>
                 }
 
-                {
-                    auth.objectId == 'WUPIIfvKlP'
-                    ? <Link to='/clearDB'>Clear DB</Link>
-                    : null
-                }
-
+                    
+                
                 <p className='userGreeting'>Welcome, {auth.username ? `${auth.username}` : 'guest'}!</p>
             </nav>
         </>
     )
 }
+//auth.objectId == 'WUPIIfvKlP'
