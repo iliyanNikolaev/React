@@ -17,8 +17,8 @@ export default function MoviesData() {
             </div>
 
             <div className="paginationBtns">
-                <button onClick={prev}>&lt; Prev</button>
-                <button onClick={next}>Next &gt;</button>
+                <button onClick={prev} disabled={ start <= 0  ? true : false }>&lt; Prev</button>
+                <button onClick={next} disabled={ end >= movies.length ? true : false }>Next &gt;</button>
             </div>
         </div>
     )
