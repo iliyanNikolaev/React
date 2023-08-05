@@ -22,18 +22,20 @@ export default function UsersData() {
 
     return (
         <div className="users">
-            {isLoading ? <LoadingSpinner className="db-loading"/>
+            {isLoading ? <LoadingSpinner className="db-loading" />
                 : <>
                     <div>
                         <h3>Users</h3>
 
                         {users.slice(start, end).map(x => <DbUserItem key={x.objectId} user={x} />)}
                     </div>
+                    {users.length <= 10 
+                        ? null 
+                        : <div className="paginationBtns">
+                        <button onClick={prev} disabled={ start <= 0  ? true : false }>&lt; Prev</button>
+                        <button onClick={next} disabled={ end >= users.length ? true : false }>Next &gt;</button>
+                    </div>}
 
-                    <div className="paginationBtns">
-                        <button onClick={prev}>&lt; Prev</button>
-                        <button onClick={next}>Next &gt;</button>
-                    </div>
                 </>}
         </div>
     )
