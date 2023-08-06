@@ -21,6 +21,14 @@ export default function Register() {
             return alert('Please fill all fields!')
         }
 
+        if(formValues.username.length > 15 || formValues.username.length < 3) {
+            return alert('Username must be between 3 and 15 characters!');
+        }
+
+        if(formValues.password.length > 20 || formValues.password.length < 6) {
+            return alert('Password must be between 3 and 20 characters!');
+        }
+
         try {
             setIsLoading(true);
 

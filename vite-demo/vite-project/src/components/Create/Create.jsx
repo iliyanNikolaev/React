@@ -26,6 +26,18 @@ export default function Create() {
             return alert('Please fill all fields!');
         }
 
+        if(formValues.title.length < 2 || formValues.title.length > 20) {
+            return alert('The title must be between 2 and 20 characters!')
+        }
+        
+        if(formValues.description.length < 2 || formValues.description.length > 1000) {
+            return alert('The description must be between 2 and 1000 characters!')
+        }
+        
+        if(formValues.imgURL.length < 2 || formValues.imgURL.length > 1000) {
+            return alert('The image URL must be between 2 and 1000 characters!')
+        }
+
         const data = {
             title: formValues.title.trim(),
             description: formValues.description.trim(),

@@ -34,6 +34,11 @@ export default function CommentItem({
       return alert('Comment cannot be an empty field!');
     }
 
+    if(currComment.content.length < 2 || currComment.content.length > 300) {
+      setIsLoading(false);
+      return alert('Comment must be between 2 and 300 characters!');
+    }
+
     const commentContent = currComment.content.trim();
 
     try {

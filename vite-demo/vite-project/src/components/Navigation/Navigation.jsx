@@ -17,12 +17,12 @@ export default function Navigation() {
                 
                 {auth.username
                     ? <>
-                        <Link to='/create'> <i class="fas fa-plus"></i> Add Movie</Link>
-                        <Link to='/logout'> <i class="fas fa-sign-out-alt"></i> Logout</Link>
+                        <Link to='/create'> <i className="fas fa-plus"></i> Add Movie</Link>
+                        <Link to='/logout'> <i className="fas fa-sign-out-alt"></i> Logout</Link>
                     </>
                     : <>
-                        <Link to='/login'> <i class="fas fa-sign-in-alt"></i> Login</Link> 
-                        <Link to='/register'> <i class="fas fa-registered"></i> Register</Link>
+                        <Link to='/login'> <i className="fas fa-sign-in-alt"></i> Login</Link> 
+                        <Link to='/register'> <i className="fas fa-registered"></i> Register</Link>
                     </>
                 }
 

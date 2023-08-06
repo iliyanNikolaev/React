@@ -12,7 +12,8 @@ import { createCommentForMovie, deleteCommentById, getAllCommentsForMovie } from
 export default function CommentsSection({
     movieId
 }) {
-    const [isLoading, setIsLoading] = useState(false);
+    const [addLoading, setAddLoading] = useState(false);
+    const [commentsLoading, setCommentsLoading] = useState(true);
 
     const [comments, setComments] = useState([]);
 
@@ -25,12 +26,16 @@ export default function CommentsSection({
 
         const commentContent = formValues.content.trim();
 
-        if(formValues.content == '') {
-            return alert('Comment cannot be an empty field!')
+        if (formValues.content == '') {
+            return alert('Comment cannot be an empty field!');
+        }
+
+        if(formValues.content.length < 2 || formValues.content.length > 50) {
+            return alert('Comment must be between 2 and 50 characters!');
         }
 
         try {
-            setIsLoading(true);
+            setAddLoading(true);
             const createdComment = await createCommentForMovie({
                 content: commentContent,
                 username: auth.username,
@@ -41,7 +46,7 @@ export default function CommentsSection({
 
             formValues.content = '';
 
-            setIsLoading(false);
+            setAddLoading(false);
         } catch (err) {
             console.log(err.message);
         }
@@ -63,7 +68,10 @@ export default function CommentsSection({
 
     useEffect(() => {
         getAllCommentsForMovie(movieId)
-            .then(data => setComments(data.results));
+            .then(data => {
+                setComments(data.results)
+                setCommentsLoading(false);
+            });
 
     }, [movieId]);
 
@@ -71,20 +79,24 @@ export default function CommentsSection({
     return (
         <div className="comments-section">
             <h2>Comments: </h2>
-            <>
-                {comments.length >= 1
-                    ? <ul>
-                        {comments.map(x => <CommentItem key={x.objectId} comment={x} onDeleteHandler={onDeleteHandler} />)}
-                    </ul>
-                    : <p>No comments yet for this movie...</p>
-                }
+            {commentsLoading
+                ? <LoadingSpinner />
+                : <>
+                    {comments.length >= 1
+                        ? <ul>
+                            {comments.map(x => <CommentItem key={x.objectId} comment={x} onDeleteHandler={onDeleteHandler} />)}
+                        </ul>
+                        : <p>No comments yet for this movie...</p>
+                    }
 
-                {
-                    auth?.objectId != undefined
-                        ? <>{isLoading ? <LoadingSpinner /> : <AddCommentForm formSubmit={formSubmit} formValues={formValues} onChange={onChange} />}</>
-                        : null
-                }
-            </>
+                    {
+                        auth?.objectId != undefined
+                            ? <>{addLoading ? <LoadingSpinner /> : <AddCommentForm formSubmit={formSubmit} formValues={formValues} onChange={onChange} />}</>
+                            : null
+                    }
+                </>
+            }
+
         </div>
     )
 }

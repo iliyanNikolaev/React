@@ -6,10 +6,12 @@ export default function CatalogItem({
 }) {
     return (
         <>
-            <li key={movie.objectId}>
-                {movie.title}
+            <li key={movie.objectId} className='li-item'>
+                <img src={movie.imgURL} alt="poster" className='li-poster'/>
+
+                <strong>{movie.title}</strong>
                 
-                <Link to={`/details/${movie.objectId}`}> view</Link>
+                <Link to={`/details/${movie.objectId}`}>details</Link>
             </li>
         </>
     )

@@ -10,7 +10,7 @@ export default function Catalog() {
 
     return (
         <div className='catalog-page'>
-            <h2>Movies</h2>
+            <h2>Movies discussed</h2>
 
             <ul>
                 {movies.map(x => <CatalogItem key={x.objectId} movie={x}/>)}
