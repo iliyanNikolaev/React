@@ -1,3 +1,7 @@
+header.navigation{
+    background-color: #2f3d7e;
+}
+
 nav {
     display: flex;
     justify-content: center;
@@ -7,14 +11,23 @@ nav {
 
 nav a {
     text-decoration: none;
-    border: 1px solid;
+    border: none;
     padding: 6px;
     border-radius: 6px;
-    color: white;
+    color: #2f3d7e;
     font-weight: bold;
-    background-color: grey;
+    background-color: #faeaeb;
 }
 
 nav a:hover{
     background-color: rgb(109, 134, 135);
+}
+
+.userGreeting{
+    color: #faeaeb;
+    font-weight: bold;   
+}
+
+.userGreeting span {
+    text-decoration: underline;
 }

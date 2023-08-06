@@ -38,7 +38,7 @@ export default function Details() {
     }
 
     return (
-        <>
+        <div className='details-page'>
             {isLoading
                 ? <div className='details-spinner'><LoadingSpinner /></div> 
                 : <>
@@ -57,7 +57,7 @@ export default function Details() {
                     <CommentsSection movieId={movieId} />
                 </>
             }
-        </>
+        </div>
     )
 }
 

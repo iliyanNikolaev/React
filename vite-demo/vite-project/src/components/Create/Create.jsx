@@ -44,7 +44,7 @@ export default function Create() {
     }
 
     return (
-        <>
+        <div className="create-page">
             <h2>Add new movie</h2>
             <form onSubmit={formSubmit}>
             <label htmlFor="title">Movie title:
@@ -79,6 +79,6 @@ export default function Create() {
             {isLoading ? <LoadingSpinner /> : <button>Create Movie</button>}
 
         </form>
-        </>
+        </div>
     )
 }

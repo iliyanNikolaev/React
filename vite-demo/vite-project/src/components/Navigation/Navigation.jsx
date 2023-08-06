@@ -9,7 +9,7 @@ export default function Navigation() {
     const { auth } = useContext(AuthContext);
 
     return (
-        <>
+        <header className='navigation'>
             <nav>
                 <Link to='/'> <i className="fas fa-home"></i> Home</Link>
                 <Link to='/catalog'> <i className="fas fa-film"></i> Movies</Link>
@@ -28,9 +28,9 @@ export default function Navigation() {
 
                     
                 
-                <p className='userGreeting'>Welcome, {auth.username ? `${auth.username}` : 'guest'}!</p>
+                <p className='userGreeting'>Welcome, <span>{auth.username ? `${auth.username}` : 'guest'}</span>!</p>
             </nav>
-        </>
+        </header>
     )
 }
 //auth.objectId == 'WUPIIfvKlP'

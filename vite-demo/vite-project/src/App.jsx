@@ -22,8 +22,10 @@ function App() {
   return (
     <AuthCtxProvider>
       <MovieCtxProvider>
-          
-          <Navigation />
+
+        <Navigation />
+
+        <div className="jsx-root">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/create" element={<Create />}></Route>
@@ -36,9 +38,9 @@ function App() {
             <Route path="/DB" element={<DbData />}></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
+        </div>
 
-          <Footer />
-
+        <Footer />
       </MovieCtxProvider>
     </AuthCtxProvider>
   )

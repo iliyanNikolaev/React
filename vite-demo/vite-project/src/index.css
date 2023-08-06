@@ -1,11 +1,19 @@
-body{
-    background-color: lightgrey;
+body {
+    background-color: lightgray;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.jsx-root {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
-label{
+.jsx-root label {
     display: block;
 }
-
