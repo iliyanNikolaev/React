@@ -40,10 +40,10 @@ export default function Details() {
     return (
         <div className='details-page'>
             {isLoading
-                ? <div className='details-spinner'><LoadingSpinner /></div> 
+                ? <div className='details-spinner'><LoadingSpinner /></div>
                 : <>
-                    <h2>{currentMovie.title} details</h2>
                     <div className="movieCard">
+                        <h2>{currentMovie.title} details</h2>
                         <p className="descr"> <strong>Description:</strong> {currentMovie.description}</p>
 
                         <img src={currentMovie.imgURL} alt="poster" className="poster" />

@@ -36,19 +36,21 @@ export default function Register() {
         <div className="register-page">
             <h2>Register page</h2>
 
-            <form className="register-form" onSubmit={formSubmit}>
-                <label htmlFor="username">Username:
+            <form className="register-form form" onSubmit={formSubmit}>
+                <label htmlFor="username"><i class="fas fa-user"></i>
                     <input
                         type="text"
+                        placeholder='username'
                         name="username"
                         id="username"
                         value={formValues.username}
                         onChange={onChange}
                     />
                 </label>
-                <label htmlFor="password">Password:
+                <label htmlFor="password"><i class="fas fa-lock"></i>
                     <input
                         type="password"
+                        placeholder='password'
                         name="password"
                         id="password"
                         value={formValues.password}

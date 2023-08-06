@@ -46,19 +46,21 @@ export default function Create() {
     return (
         <div className="create-page">
             <h2>Add new movie</h2>
-            <form onSubmit={formSubmit}>
-            <label htmlFor="title">Movie title:
+            <form onSubmit={formSubmit} className="form">
+            <label htmlFor="title"><i class="fas fa-heading"></i>
                 <input 
-                    type="text" 
+                    type="text"
+                    placeholder="Movie Title" 
                     name="title" 
                     id="title" 
                     value={formValues.title}
                     onChange={onChange}
                 />
             </label>
-            <label htmlFor="description">Description:
+            <label htmlFor="description"><i class="fas fa-envelope-open-text"></i>
                 <textarea 
-                    name="description" 
+                    name="description"
+                    placeholder="Movie Description" 
                     id="description" 
                     cols="30" 
                     rows="5"
@@ -66,9 +68,10 @@ export default function Create() {
                     onChange={onChange}
                     ></textarea>
             </label>
-            <label htmlFor="imgURL">Poster URL:
+            <label htmlFor="imgURL"><i class="fas fa-link"></i> 
                 <input 
-                    type="text" 
+                    type="text"
+                    placeholder="Movie Poster URL" 
                     name="imgURL" 
                     id="imgURL" 
                     value={formValues.imgURL}
@@ -76,7 +79,7 @@ export default function Create() {
                 />
             </label>
 
-            {isLoading ? <LoadingSpinner /> : <button>Create Movie</button>}
+            {isLoading ? <LoadingSpinner /> : <button>Create</button>}
 
         </form>
         </div>

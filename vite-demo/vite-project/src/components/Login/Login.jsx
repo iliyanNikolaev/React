@@ -35,26 +35,28 @@ export default function Login() {
         <div className="login-page">
             <h2>Login page</h2>
 
-            <form className="login-form" onSubmit={formSubmit}>
-                <label htmlFor="username">Username:
+            <form className="login-form form" onSubmit={formSubmit}>
+                <label htmlFor="username"><i class="fas fa-user"></i>
                     <input
                         type="text"
+                        placeholder='username'
                         name="username"
                         id="username"
                         value={formValues.username}
                         onChange={onChange}
                     />
-                </label>
-                <label htmlFor="password">Password:
+                    </label>
+
+                    <label htmlFor="password"><i class="fas fa-lock"></i>
                     <input
                         type="password"
+                        placeholder='password'
                         name="password"
                         id="password"
                         value={formValues.password}
                         onChange={onChange}
                     />
-                </label>
-
+                    </label>
                 { isLoading ? <LoadingSpinner /> : <button>Login</button> }
             </form>
         </div>

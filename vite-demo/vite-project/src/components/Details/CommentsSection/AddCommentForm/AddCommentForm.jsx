@@ -4,17 +4,19 @@ export default function AddCommentForm({
     formSubmit, formValues, onChange
 }) {
     return (
-        <form onSubmit={formSubmit}>
-            <label htmlFor='content'>Add a comment:
+        <form onSubmit={formSubmit} className='add-comment-form'>
+            <label htmlFor='content'><i class="fas fa-comment"></i>
                 <input
                     type="text"
+                    placeholder='add a comment'
                     name='content'
                     id='content'
                     value={formValues.content}
                     onChange={onChange}
                 />
-                <input type="submit" value="Add" />
             </label>
+            
+            <button>Add</button>
         </form>
     )
 }
