@@ -28,9 +28,17 @@ export default function CommentItem({
 
   const onEditHandler = async () => {
     setIsLoading(true);
+
+    if(currComment.content == '') {
+      setIsLoading(false);
+      return alert('Comment cannot be an empty field!');
+    }
+
+    const commentContent = currComment.content.trim();
+
     try {
       const editedComment = await editCommentById(currComment.objectId, {
-        content: currComment.content,
+        content: commentContent,
         username: currComment.username,
         movieId: currComment.movieId,
         owner: currComment.owner

@@ -23,10 +23,16 @@ export default function CommentsSection({
     const formSubmit = async (e) => {
         e.preventDefault();
 
+        const commentContent = formValues.content.trim();
+
+        if(formValues.content == '') {
+            return alert('Comment cannot be an empty field!')
+        }
+
         try {
             setIsLoading(true);
             const createdComment = await createCommentForMovie({
-                content: formValues.content,
+                content: commentContent,
                 username: auth.username,
                 movieId
             }, auth.objectId);
@@ -34,6 +40,7 @@ export default function CommentsSection({
             setComments(state => [...state, createdComment]);
 
             formValues.content = '';
+
             setIsLoading(false);
         } catch (err) {
             console.log(err.message);

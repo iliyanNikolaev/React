@@ -16,10 +16,15 @@ export default function Register() {
 
     const formSubmit = async (e) => {
         e.preventDefault();
+
+        if(formValues.username == '' || formValues.password == '') {
+            return alert('Please fill all fields!')
+        }
+
         try {
             setIsLoading(true);
 
-            await onRegisterSubmit(formValues.username, formValues.password);
+            await onRegisterSubmit(formValues.username.trim(), formValues.password.trim());
 
             setIsLoading(false);
         } catch (err) {

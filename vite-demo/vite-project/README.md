@@ -1,8 +1,33 @@
-# React + Vite
+# Good Movies
+1. Login  
+    * trimed inputs and checked for empty strings, before send a req  
+    * loading spinner after submit the form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. Register 
+    * trimed inputs and checked for empty strings, before send a req
+    * loading spinner after submit the form
 
-Currently, two official plugins are available:
+3. Create Movie 
+    * route guard for no-auth users
+    * trimed inputs and checked for empty strings, before send a req
+    * loading spinner after submit the form
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+4. Edit Movie 
+    * route guard for no-auth users
+    * loading spinner before data rendering in the form
+    * trimed inputs and checked for empty strings, before send a req
+    * loading spinner after submit the form
+
+5. Delete Movie
+    * confirm message before send a req
+
+6. Add Comment
+    * trimed input and checked for empty string, before send a req
+    * loading spinner after submit the form
+
+7. Edit Comment
+    * trimed input and checked for empty string, before send a req
+    * loading spinner after submit the form
+
+8. Delete Comment
+    * confirm message before send a req

@@ -7,28 +7,40 @@ import { Navigate } from "react-router-dom"
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner"
 
 export default function Create() {
+
     const [isLoading, setIsLoading] = useState(false);
 
     const { createMovieHandler } = useContext(MovieContext);
     const { auth } = useContext(AuthContext);
 
+    if(!auth.username) {
+        return <Navigate to='/404' />
+    }
+    
     const { formValues, onChange } = useForm({ title: '', description: '', imgURL: '' });
 
     const formSubmit = async (e) => {
         e.preventDefault();
+
+        if(formValues.title == '' || formValues.description == '' || imgURL == ''){
+            return alert('Please fill all fields!');
+        }
+
+        const data = {
+            title: formValues.title.trim(),
+            description: formValues.description.trim(),
+            imgURL: formValues.imgURL.trim()
+        }
+
         try {
             setIsLoading(true);
 
-            await createMovieHandler(formValues, auth.objectId);
+            await createMovieHandler(data, auth.objectId);
             
             setIsLoading(false);
         } catch (err) {
             console.log(err.message)
         }
-    }
-
-    if(!auth.username) {
-        return <Navigate to='/404' />
     }
 
     return (

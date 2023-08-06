@@ -15,10 +15,15 @@ export default function Login() {
 
     const formSubmit = async (e) => {
         e.preventDefault();
+        
+        if(formValues.username == '' || formValues.password == '') {
+            return alert('Please fill all fields!')
+        }
+
         try {
             setIsLoading(true);
 
-            await onLoginSubmit(formValues.username, formValues.password);
+            await onLoginSubmit(formValues.username.trim(), formValues.password.trim());
 
             setIsLoading(false);
         } catch (err) {

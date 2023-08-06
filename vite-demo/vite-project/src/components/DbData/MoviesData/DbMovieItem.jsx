@@ -14,7 +14,7 @@ export default function DbMovieItem({
         const choice = confirm(`Are you sure you want to delete ${movie.title}?`);
 
         if(choice) {
-            deleteMovieHandler(movie.objectId, true)
+            deleteMovieHandler(movie.objectId, true);
         }
     }
  
