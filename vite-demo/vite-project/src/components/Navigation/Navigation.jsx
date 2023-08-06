@@ -11,18 +11,18 @@ export default function Navigation() {
     return (
         <>
             <nav>
-                <Link to='/'>Home</Link>
-                <Link to='/catalog'>Catalog</Link>
-                <Link to='/DB'>{ auth?.objectId == 'WUPIIfvKlP' ? 'ClearDB' : 'Check DB' }</Link>
+                <Link to='/'> <i className="fas fa-home"></i> Home</Link>
+                <Link to='/catalog'> <i className="fas fa-film"></i> Movies</Link>
+                <Link to='/DB'> <i className="fas fa-database"></i> { auth?.objectId == 'WUPIIfvKlP' ? 'ClearDB' : 'Check DB' }</Link>
                 
                 {auth.username
                     ? <>
-                        <Link to='/create'>Create</Link>
-                        <Link to='/logout'>Logout</Link>
+                        <Link to='/create'> <i class="fas fa-plus"></i> Add Movie</Link>
+                        <Link to='/logout'> <i class="fas fa-sign-out-alt"></i> Logout</Link>
                     </>
                     : <>
-                        <Link to='/login'>Login</Link> 
-                        <Link to='/register'>Register</Link>
+                        <Link to='/login'> <i class="fas fa-sign-in-alt"></i> Login</Link> 
+                        <Link to='/register'> <i class="fas fa-registered"></i> Register</Link>
                     </>
                 }
 
