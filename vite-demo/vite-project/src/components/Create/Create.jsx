@@ -59,7 +59,7 @@ export default function Create() {
         <div className="create-page">
             <h2>Add new movie</h2>
             <form onSubmit={formSubmit} className="form">
-            <label htmlFor="title"><i class="fas fa-heading"></i>
+            <label htmlFor="title"><i className="fas fa-heading"></i>
                 <input 
                     type="text"
                     placeholder="Movie Title" 
@@ -69,7 +69,7 @@ export default function Create() {
                     onChange={onChange}
                 />
             </label>
-            <label htmlFor="description"><i class="fas fa-envelope-open-text"></i>
+            <label htmlFor="description"><i className="fas fa-envelope-open-text"></i>
                 <textarea 
                     name="description"
                     placeholder="Movie Description" 
@@ -80,7 +80,7 @@ export default function Create() {
                     onChange={onChange}
                     ></textarea>
             </label>
-            <label htmlFor="imgURL"><i class="fas fa-link"></i> 
+            <label htmlFor="imgURL"><i className="fas fa-link"></i> 
                 <input 
                     type="text"
                     placeholder="Movie Poster URL" 

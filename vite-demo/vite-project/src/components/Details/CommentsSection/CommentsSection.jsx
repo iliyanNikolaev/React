@@ -30,8 +30,8 @@ export default function CommentsSection({
             return alert('Comment cannot be an empty field!');
         }
 
-        if(formValues.content.length < 2 || formValues.content.length > 50) {
-            return alert('Comment must be between 2 and 50 characters!');
+        if(formValues.content.length < 2 || formValues.content.length > 300) {
+            return alert('Comment must be between 2 and 300 characters!');
         }
 
         try {

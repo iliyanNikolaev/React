@@ -82,19 +82,21 @@ export default function Edit() {
 
             {isLoading
                 ? <LoadingSpinner />
-                : <form onSubmit={formSubmit}>
-                    <label htmlFor="title">Movie title:
+                : <form onSubmit={formSubmit} className="form">
+                    <label htmlFor="title"><i class="fas fa-heading"></i>
                         <input
                             type="text"
+                            placeholder="Movie Title" 
                             name="title"
                             id="title"
                             value={formValues.title}
                             onChange={onChange}
                         />
                     </label>
-                    <label htmlFor="description">Description:
+                    <label htmlFor="description"><i className="fas fa-envelope-open-text"></i>
                         <textarea
                             name="description"
+                            placeholder="Movie Description" 
                             id="description"
                             cols="30"
                             rows="5"
@@ -102,9 +104,10 @@ export default function Edit() {
                             onChange={onChange}
                         ></textarea>
                     </label>
-                    <label htmlFor="imgURL">Poster URL:
+                    <label htmlFor="imgURL"><i className="fas fa-link"></i>
                         <input
                             type="text"
+                            placeholder="Movie Poster URL"
                             name="imgURL"
                             id="imgURL"
                             value={formValues.imgURL}
@@ -112,7 +115,7 @@ export default function Edit() {
                         />
                     </label>
 
-                    <button>Edit Movie</button>
+                    <button>Save</button>
                 </form>}
 
         </div>

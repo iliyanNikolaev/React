@@ -6,7 +6,7 @@ import DbMovieItem from "./DbMovieItem";
 export default function MoviesData() {
     const { movies } = useContext(MovieContext);
 
-    const {start, end, next, prev} = usePagination(movies, 10);
+    const {start, end, next, prev} = usePagination(movies, 8);
     
     return (
         <div className="movies">

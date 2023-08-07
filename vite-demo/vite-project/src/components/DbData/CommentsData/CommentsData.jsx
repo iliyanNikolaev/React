@@ -10,7 +10,7 @@ export default function CommentsData() {
 
     const [comments, setComments] = useState([]);
 
-    const { start, end, next, prev } = usePagination(comments, 10);
+    const { start, end, next, prev } = usePagination(comments, 3);
 
     const onDelete = async (commentId, content) => {
         const choice = confirm(`Are you sure you want to delete this comment >>> ${content}`);
