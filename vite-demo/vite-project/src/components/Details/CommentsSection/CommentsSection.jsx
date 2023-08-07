@@ -1,18 +1,21 @@
-import CommentItem from './CommentItem/CommentItem'
-import AddCommentForm from './AddCommentForm/AddCommentForm'
-import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner'
 import './CommentsSection.css'
 import { useEffect, useState } from "react"
 import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/authContext'
 import { useForm } from '../../../hooks/useForm'
 import { createCommentForMovie, deleteCommentById, getAllCommentsForMovie } from '../../../services/comment'
+import { useError } from '../../../hooks/useError'
 
+import CommentItem from './CommentItem/CommentItem'
+import AddCommentForm from './AddCommentForm/AddCommentForm'
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner'
+import ErrorMsg from '../../ErrorMsg/ErrorMsg'
 
 export default function CommentsSection({
     movieId
 }) {
     const [addLoading, setAddLoading] = useState(false);
+
     const [commentsLoading, setCommentsLoading] = useState(true);
 
     const [comments, setComments] = useState([]);
@@ -21,17 +24,19 @@ export default function CommentsSection({
 
     const { formValues, onChange } = useForm({ content: '' });
 
+    const { hasError, reportError, errorText } = useError();
+
     const formSubmit = async (e) => {
         e.preventDefault();
 
         const commentContent = formValues.content.trim();
 
         if (formValues.content == '') {
-            return alert('Comment cannot be an empty field!');
+            return reportError('Comment cannot be an empty field!');
         }
 
         if(formValues.content.length < 2 || formValues.content.length > 300) {
-            return alert('Comment must be between 2 and 300 characters!');
+            return reportError('Comment must be between 2 and 300 characters!');
         }
 
         try {
@@ -79,6 +84,9 @@ export default function CommentsSection({
     return (
         <div className="comments-section">
             <h2>Comments: </h2>
+
+            { hasError ? <ErrorMsg text={errorText} /> : null }
+
             {commentsLoading
                 ? <LoadingSpinner />
                 : <>

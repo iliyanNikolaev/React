@@ -3,8 +3,10 @@ import './Register.css'
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import { useForm } from "../../hooks/useForm"
+import { useError } from '../../hooks/useError';
 
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 
 export default function Register() {
 
@@ -14,19 +16,21 @@ export default function Register() {
 
     const { onRegisterSubmit } = useContext(AuthContext);
 
+    const { hasError, reportError, errorText } = useError();
+
     const formSubmit = async (e) => {
         e.preventDefault();
 
         if(formValues.username == '' || formValues.password == '') {
-            return alert('Please fill all fields!')
+            return reportError('Please fill all fields!')
         }
 
         if(formValues.username.length > 15 || formValues.username.length < 3) {
-            return alert('Username must be between 3 and 15 characters!');
+            return reportError('Username must be between 3 and 15 characters!');
         }
 
         if(formValues.password.length > 20 || formValues.password.length < 6) {
-            return alert('Password must be between 3 and 20 characters!');
+            return reportError('Password must be between 3 and 20 characters!');
         }
 
         try {
@@ -44,8 +48,10 @@ export default function Register() {
         <div className="register-page">
             <h2>Register page</h2>
 
+            { hasError ? <ErrorMsg text={errorText}/> : null}
+
             <form className="register-form form" onSubmit={formSubmit}>
-                <label htmlFor="username"><i class="fas fa-user"></i>
+                <label htmlFor="username"><i className="fas fa-user"></i>
                     <input
                         type="text"
                         placeholder='username'
@@ -55,7 +61,7 @@ export default function Register() {
                         onChange={onChange}
                     />
                 </label>
-                <label htmlFor="password"><i class="fas fa-lock"></i>
+                <label htmlFor="password"><i className="fas fa-lock"></i>
                     <input
                         type="password"
                         placeholder='password'

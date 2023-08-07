@@ -1,20 +1,27 @@
+import ErrorMsg from "../../../../ErrorMsg/ErrorMsg"
 
 export default function EditCommentForm({
-    currComment, onChange, onEditHandler
+    currComment, 
+    onChange, 
+    onEditHandler,
+    hasError, 
+    errorText
 }) {
     return (
         <>
-            <input
-                type="text"
-                name="content"
-                value={currComment.content}
-                onChange={onChange}
-            />
-            <input
-                type="submit"
-                value="Save Changes"
-                onClick={onEditHandler}
-            />
+            {hasError ? <ErrorMsg text={errorText} className="edit-comment-error" />
+                : <>
+                    <input
+                        type="text"
+                        name="content"
+                        value={currComment.content}
+                        onChange={onChange} />
+                    <input
+                        type="submit"
+                        value="Save Changes"
+                        onClick={onEditHandler} />
+                </>
+            }
         </>
     )
 }

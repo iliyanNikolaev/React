@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../contexts/authContext";
 import { editCommentById } from "../../../../services/comment";
+import { useError } from "../../../../hooks/useError";
+
 import EditCommentForm from "./EditCommentForm/EditCommentForm";
 import LoadingSpinner from "../../../LoadingSpinner/LoadingSpinner";
 
@@ -14,13 +16,16 @@ export default function CommentItem({
   const [currComment, setCurrComment] = useState(comment);
 
   const onChange = (e) => {
-    setCurrComment(state => ({ ...state, content: e.target.value}))
+    setCurrComment(state => ({ ...state, content: e.target.value }))
   }
+
   const [isLoading, setIsLoading] = useState(false);
+
   const [onEdit, setOnEdit] = useState(false);
 
   const { auth } = useContext(AuthContext);
 
+  const { hasError, reportError, errorText } = useError();
 
   const editClicked = (e) => {
     setOnEdit(true);
@@ -29,14 +34,14 @@ export default function CommentItem({
   const onEditHandler = async () => {
     setIsLoading(true);
 
-    if(currComment.content == '') {
+    if (currComment.content == '') {
       setIsLoading(false);
-      return alert('Comment cannot be an empty field!');
+      return reportError('Comment cannot be an empty field!');
     }
 
-    if(currComment.content.length < 2 || currComment.content.length > 300) {
+    if (currComment.content.length < 2 || currComment.content.length > 300) {
       setIsLoading(false);
-      return alert('Comment must be between 2 and 300 characters!');
+      return reportError('Comment must be between 2 and 300 characters!');
     }
 
     const commentContent = currComment.content.trim();
@@ -50,9 +55,9 @@ export default function CommentItem({
       });
 
       setCurrComment(editedComment);
-      setIsLoading(false);    
+      setIsLoading(false);
       setOnEdit(false);
-  
+
     } catch (err) {
       console.log(err)
     }
@@ -63,15 +68,23 @@ export default function CommentItem({
 
       <strong>{comment.username}:</strong> {onEdit ? null : `${currComment.content}`}
 
-      { currComment.owner.objectId == auth?.objectId
+      {currComment.owner.objectId == auth?.objectId
         ? <>
           {onEdit
-            ? <>{isLoading ? <LoadingSpinner/> : <EditCommentForm currComment={currComment} onChange={onChange} onEditHandler={onEditHandler}/>}</>
+            ? <>{isLoading
+              ? <LoadingSpinner />
+              : <EditCommentForm
+                currComment={currComment}
+                onChange={onChange}
+                onEditHandler={onEditHandler}
+                hasError={hasError}
+                errorText={errorText}
+              />}</>
             : <>
               <Link to="#" onClick={editClicked}>Edit</Link>
               <Link to="#" onClick={() => onDeleteHandler(currComment.objectId, currComment.content)}>Delete</Link>
             </>
-            }
+          }
         </>
         : null
       }

@@ -4,7 +4,7 @@ import './Footer.css'
 export default function Footer() {
     return (
         <div className='footer'>
-            <p>&copy; React Movies Forum created by  <Link className='my-github' to='https://github.com/iliyanNikolaev' target='_blank'>iliyanNikolaev <i class="fab fa-github"></i></Link></p>
+            <p>&copy; React Movies Forum created by  <Link className='my-github' to='https://github.com/iliyanNikolaev' target='_blank'>iliyanNikolaev <i className="fab fa-github"></i></Link></p>
         </div>
     )
 }

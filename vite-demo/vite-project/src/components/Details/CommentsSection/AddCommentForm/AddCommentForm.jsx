@@ -5,7 +5,7 @@ export default function AddCommentForm({
 }) {
     return (
         <form onSubmit={formSubmit} className='add-comment-form'>
-            <label htmlFor='content'><i class="fas fa-comment"></i>
+            <label htmlFor='content'><i className="fas fa-comment"></i>
                 <input
                     type="text"
                     placeholder='add a comment'

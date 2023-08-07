@@ -3,15 +3,20 @@ import { AuthContext } from "../../contexts/authContext"
 import { MovieContext } from "../../contexts/movieContext"
 import { useForm } from "../../hooks/useForm"
 import { Navigate } from "react-router-dom"
+import { useError } from "../../hooks/useError"
 
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner"
+import ErrorMsg from "../ErrorMsg/ErrorMsg"
 
 export default function Create() {
 
     const [isLoading, setIsLoading] = useState(false);
 
     const { createMovieHandler } = useContext(MovieContext);
+
     const { auth } = useContext(AuthContext);
+
+    const { hasError, reportError, errorText } = useError();
 
     if(!auth.username) {
         return <Navigate to='/404' />
@@ -23,19 +28,19 @@ export default function Create() {
         e.preventDefault();
 
         if(formValues.title == '' || formValues.description == '' || imgURL == ''){
-            return alert('Please fill all fields!');
+            return reportError('Please fill all fields!');
         }
 
         if(formValues.title.length < 2 || formValues.title.length > 20) {
-            return alert('The title must be between 2 and 20 characters!')
+            return reportError('The title must be between 2 and 20 characters!')
         }
         
         if(formValues.description.length < 2 || formValues.description.length > 1000) {
-            return alert('The description must be between 2 and 1000 characters!')
+            return reportError('The description must be between 2 and 1000 characters!')
         }
         
         if(formValues.imgURL.length < 2 || formValues.imgURL.length > 1000) {
-            return alert('The image URL must be between 2 and 1000 characters!')
+            return reportError('The image URL must be between 2 and 1000 characters!')
         }
 
         const data = {
@@ -58,6 +63,7 @@ export default function Create() {
     return (
         <div className="create-page">
             <h2>Add new movie</h2>
+            { hasError ? <ErrorMsg text={errorText} /> : null }
             <form onSubmit={formSubmit} className="form">
             <label htmlFor="title"><i className="fas fa-heading"></i>
                 <input 

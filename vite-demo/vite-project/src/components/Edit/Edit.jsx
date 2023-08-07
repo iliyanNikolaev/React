@@ -3,7 +3,10 @@ import { useContext, useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { MovieContext } from "../../contexts/movieContext";
 import { AuthContext } from "../../contexts/authContext";
+import { useError } from '../../hooks/useError';
+
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 
 export default function Edit() {
     const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +24,8 @@ export default function Edit() {
     const { movieId } = useParams();
 
     const { auth } = useContext(AuthContext);
+
+    const { hasError, reportError, errorText } = useError();
 
     if (!auth.username) {
         return <Navigate to='/404' />
@@ -45,19 +50,19 @@ export default function Edit() {
         e.preventDefault();
 
         if (formValues.title == '', formValues.description == '', formValues.imgURL == '') {
-            return alert('Please fill all fields');
+            return reportError('Please fill all fields');
         }
 
         if(formValues.title.length < 2 || formValues.title.length > 20) {
-            return alert('The title must be between 2 and 20 characters!')
+            return reportError('The title must be between 2 and 20 characters!')
         }
         
         if(formValues.description.length < 2 || formValues.description.length > 1000) {
-            return alert('The description must be between 2 and 1000 characters!')
+            return reportError('The description must be between 2 and 1000 characters!')
         }
         
         if(formValues.imgURL.length < 2 || formValues.imgURL.length > 300) {
-            return alert('The image URL must be between 2 and 300 characters!')
+            return reportError('The image URL must be between 2 and 300 characters!')
         }
 
         const data = {
@@ -79,6 +84,8 @@ export default function Edit() {
     return (
         <div className='edit-movie-page'>
             <h2>Edit movie</h2>
+
+            { hasError ? <ErrorMsg text={errorText} /> : null }
 
             {isLoading
                 ? <LoadingSpinner />
