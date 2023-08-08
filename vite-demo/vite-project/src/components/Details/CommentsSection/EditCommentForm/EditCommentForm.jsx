@@ -1,4 +1,4 @@
-import ErrorMsg from "../../../../ErrorMsg/ErrorMsg"
+import ErrorMsg from "../../../ErrorMsg/ErrorMsg"
 
 export default function EditCommentForm({
     currComment, 
