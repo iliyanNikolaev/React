@@ -5,7 +5,7 @@ import { AuthContext } from "../../../../contexts/authContext";
 import { editCommentById } from "../../../../services/comment";
 import { useError } from "../../../../hooks/useError";
 
-import EditCommentForm from "./EditCommentForm/EditCommentForm";
+import EditCommentForm from "../EditCommentForm/EditCommentForm"
 import LoadingSpinner from "../../../LoadingSpinner/LoadingSpinner";
 
 export default function CommentItem({
