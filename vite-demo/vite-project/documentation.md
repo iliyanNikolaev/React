@@ -15,7 +15,7 @@
 This is a forum where users can add movies for discussion and communicate with other users through comments.
 Users can register and log in, create, edit, and delete movies and comments.
 
-### Used Technologies (Extended Markdown Syntax) {#usedTech}
+### <a name="usedTech"></a> Used Technologies
 
 * Programming Language - JavaScript (ES6+)
 * Library - [React](https://react.dev/)
@@ -24,7 +24,7 @@ Users can register and log in, create, edit, and delete movies and comments.
 * Boilerplate - [Vite](https://vitejs.dev/)
 * Deploy - [GitHub Pages](https://pages.github.com/)
 
-### Rest API Details (Extended Markdown Syntax) (#restApi)
+### <a name="restApi"></a> Rest Api Details
 
 
 There are 3 entities in the database: **Users**, **Movies**, and **Comments**.
