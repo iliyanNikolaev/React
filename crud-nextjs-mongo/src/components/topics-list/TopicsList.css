@@ -1,0 +1,29 @@
+.topics-list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.topic-item{
+    display: flex;
+    width: 75%;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px #aaaaaa;
+    padding: 12px 12px;
+    border-radius: 12px;
+}
+
+.icons{
+    display: flex;
+    gap: 12px;
+}
+
+.icons i {
+    font-size: 24px;
+}
+
+.fa-trash-alt{
+    color: red;
+}
