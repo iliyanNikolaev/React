@@ -1,0 +1,26 @@
+.addTopic-container form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.addTopic-container form input {
+    width: 600px;
+    height: 20px;
+    font-size: large;
+    padding: 12px 24px;
+}
+
+.addTopic-container form button {
+    height: 40px;
+    background-color: green;
+    color: white;
+    font-weight: 900;
+    width: 400px;
+}
+
+.addTopic-container form button:hover{
+    background-color: rgb(0, 191, 0);
+    cursor: pointer;
+}

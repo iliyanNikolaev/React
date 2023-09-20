@@ -24,6 +24,11 @@
     font-size: 24px;
 }
 
+.icons a{
+    text-decoration: none;
+    color: black;
+}
+
 .fa-trash-alt{
     color: red;
 }
