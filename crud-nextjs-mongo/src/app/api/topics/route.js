@@ -21,6 +21,7 @@ export async function POST(req) {
         await connectToDB();
         const created = await Topic.create({title, text});
         await mongoose.disconnect();
+        
         return NextResponse.json(created, {status: 200});   
     } catch (err) {
         return NextResponse.json({error: err.message}, {status: 400});

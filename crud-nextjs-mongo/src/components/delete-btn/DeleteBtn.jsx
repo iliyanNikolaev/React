@@ -26,7 +26,7 @@ export default function DeleteBtn({
                     throw new Error('Problem in db, topic is not deleted!')
                 }
             } catch (err) {
-                setIsLoadin(false);
+                setIsLoading(false);
                 alert(err.message);
             }
         }

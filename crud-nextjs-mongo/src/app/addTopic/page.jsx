@@ -14,21 +14,18 @@ export default function AddTopic() {
   }
   const formSubmit = async (e) => {
     e.preventDefault();
-
     const { title, text } = formValues;
     if (!title || !text || title.length < 3 || title.length > 30 || text.length < 10 || text.length > 500) {
       return alert('Title must be between 3 and 30 characters!\nText must be between 10 and 500 characters!');
     }
     setIsLoading(true);
-
     try {
       const res = await fetch('http://localhost:3000/api/topics', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, text })
       });
-
-      if(!res.ok) {
+      if (!res.ok) {
         setIsLoading(false);
         throw new Error('Failed to create a topic! Please try again later!');
       }
@@ -41,7 +38,8 @@ export default function AddTopic() {
   return (
     <div className="addTopic-container">
       <form onSubmit={formSubmit}>
-        <input type="text"
+        <input
+          type="text"
           placeholder="Topic title"
           name="title"
           value={formValues.title}
