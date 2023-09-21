@@ -1,5 +1,6 @@
 import Link from "next/link"
 import "./TopicsList.css"
+import DeleteBtn from "../delete-btn/DeleteBtn";
 
 const getTopics = async () => {
     try {
@@ -32,7 +33,7 @@ export default async function TopicsList() {
                         </div>
                         <div className="icons">
                             <Link href={`/editTopic/${t._id}`}><i className="fas fa-edit"></i></Link>
-                            <i className="fas fa-trash-alt"></i>
+                        <DeleteBtn id={t._id}/>
                         </div>
                     </div>
                 )}

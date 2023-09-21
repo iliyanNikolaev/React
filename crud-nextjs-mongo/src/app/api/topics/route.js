@@ -29,7 +29,6 @@ export async function POST(req) {
 
 export async function DELETE(req) {
     const id = req.nextUrl.searchParams.get('id');
-
     try {
         await connectToDB();
         await Topic.findByIdAndDelete(id);
