@@ -3,7 +3,8 @@ import "./TopicsList.css"
 
 const getTopics = async () => {
     try {
-        const response = await fetch(process.env.API_HOST + '/topics', { cache: 'no-store' });
+        const response = await fetch('http://localhost:3000/api/topics', { cache: 'no-store' });
+        
         if (!response.ok) {
             throw new Error('Error in DB, please try again later!');
         }
