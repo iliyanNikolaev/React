@@ -29,6 +29,8 @@ export default function AddTopic() {
         setIsLoading(false);
         throw new Error('Failed to create a topic! Please try again later!');
       }
+      
+      router.refresh();
       router.push('/');
     } catch (err) {
       alert(err.message);

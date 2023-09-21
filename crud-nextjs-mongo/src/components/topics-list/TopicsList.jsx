@@ -5,11 +5,10 @@ import DeleteBtn from "../delete-btn/DeleteBtn";
 const getTopics = async () => {
     try {
         const response = await fetch('http://localhost:3000/api/topics', { cache: 'no-store' });
-
+        console.log('response')
         if (!response.ok) {
             throw new Error('Error in DB, please try again later!');
         }
-
         const topics = await response.json();
         
         return { ok: true, topics };
