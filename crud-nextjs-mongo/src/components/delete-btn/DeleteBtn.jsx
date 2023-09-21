@@ -1,11 +1,13 @@
 "use client"
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function DeleteBtn({
     id
 }) {
 
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
     const deleteHandler = async () => {
 
@@ -13,7 +15,7 @@ export default function DeleteBtn({
 
         if (choice) {
             try {
-
+                setIsLoading(true);
                 const response = await fetch('http://localhost:3000/api/topics?id='+id, {
                     method: 'DELETE'
                 });
@@ -24,12 +26,13 @@ export default function DeleteBtn({
                     throw new Error('Problem in db, topic is not deleted!')
                 }
             } catch (err) {
+                setIsLoadin(false);
                 alert(err.message);
             }
         }
     }
 
     return (
-        <i onClick={deleteHandler} className="fas fa-trash-alt"></i>
+        <>{isLoading ? <><i className="fas fa-spinner"></i></> : <><i onClick={deleteHandler} className="fas fa-trash-alt"></i></>}</>
     )
 }
