@@ -3,6 +3,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-attachment: transparent;
+	backdrop-filter: blur(35px);
 }
 
 .span{

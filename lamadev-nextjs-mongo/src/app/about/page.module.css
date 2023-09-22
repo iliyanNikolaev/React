@@ -1,0 +1,39 @@
+.container{
+    height: calc(100vh - 95px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.softuni{
+    align-self: center;
+}
+
+.section{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.title{
+    flex: 0.8;
+    background: linear-gradient(to bottom, #c4e2dd, #17446d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: default;
+}
+
+.course{
+    flex: 2.2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.course h3 {
+    background: linear-gradient(to bottom, #c4e2dd, #17446d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: default;
+}

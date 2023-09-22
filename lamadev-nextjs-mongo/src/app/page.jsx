@@ -10,7 +10,7 @@ export default function Home() {
         <p className={styles.desc}>Next.js: JavaScript framework for fast web apps, built on React, with server-side rendering, pre-rendering, and intuitive routing for optimal performance.</p>
 
         <button className={styles.button}>
-          see my other work
+          my js path
         </button>
       </div>
       <div className={styles.img}>
