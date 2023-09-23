@@ -18,7 +18,7 @@
 .title{
     font-size: 48px;
     font-weight: 900;
-    background: linear-gradient(to bottom, #c4e2dd, #17446d);
+    background: linear-gradient(to bottom, #5166ab, #a0c6f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: default;
@@ -27,20 +27,6 @@
 .desc{
     font-size: 24px;
     cursor: default;
-}
+    color: #e1f6fe;
 
-.button{
-    border: none;
-    border-radius: 12px;
-    padding: 12px;
-    font-weight: bold;
-    color: #c4e2dd;
-    background-color: #17446d;
-    cursor: pointer;
-    width: max-content;
-    margin-top: 12px;
-}
-
-.button:hover{
-    background-color: #194976;
 }

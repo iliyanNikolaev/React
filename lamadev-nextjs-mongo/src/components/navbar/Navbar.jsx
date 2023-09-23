@@ -9,7 +9,7 @@ export default function Navbar() {
             <div>
                 <Link href='/' className={styles.logo}>
                     <Image src={'/nextjsicon.png'} width={36} height={36} alt='next.js'/>
-                    <span>NextJS Blog</span>
+                    <span>InnovateTech blog</span>
                 </Link>
             </div>
 
