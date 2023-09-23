@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    background: linear-gradient(to bottom, #5166ab, #a0c6f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: default;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.projects{
+    display: flex;
+    gap: 50px;
+}
+
+.project{
+    border: 4px solid #e1f6fe;
+    border-radius: 5px;
+    width: 250px;
+    height: 300px;
+    position: relative;
+    background-size: cover !important;
+}
+
+.project:nth-child(1){
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/movies.jpg")
+}
+
+.project:nth-child(2){
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/social.avif")
+}
+
+.innerTitle{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.project:hover .innerTitle{
+    color: #a0c6f6;
+}
+
+.project:hover{
+    border: 4px solid #a0c6f6;
+}
