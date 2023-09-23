@@ -3,13 +3,10 @@
     flex-direction: column;
 }
 
-.title{
-    background: linear-gradient(to bottom, #5166ab, #a0c6f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: default;
-    margin-top: 24px;
-    margin-bottom: 12px;
+.mainTitle{
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 50px;
 }
 
 .projects{

@@ -4,7 +4,7 @@ import styles from './page.module.css';
 export default function Portfolio() {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Projects</h2>
+            <h1 className={styles.mainTitle}>Our works</h1>
 
             <div className={styles.projects}>
 
