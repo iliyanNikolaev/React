@@ -25,7 +25,7 @@ export default function About() {
                 <div className={styles.item}>
                     <h2 className={styles.title}>What we do?</h2>
 
-                    <p>I apply what I've learned at the Software Academy - SoftUni and continue to acquire new skills through developing projects like this one.</p>
+                    <p className={styles.text}>I apply what I've learned at the Software Academy - SoftUni and continue to acquire new skills through developing projects like this one.</p>
 
                     <Button href={'/contacts'} content={'Contact us'} />
                 </div>

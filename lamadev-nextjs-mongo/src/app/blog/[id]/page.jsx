@@ -10,8 +10,8 @@ export default function Post({ params }) {
         <div className={styles.container}>
             <div className={styles.upper}>
                 <div className={styles.left}>
-                    <h1>{post.title}</h1>
-                    <p>{post.desc}</p>
+                    <h1 className={styles.title}>{post.title}</h1>
+                    <p className={styles.desc}>{post.desc}</p>
                     <div className={styles.owner}>
                         <Image className={styles.authorProfilePic} src={post.owner.profilePic} width={48} height={48} alt='authorProfilePic' />
                         <span>{post.owner.username}</span>
@@ -22,7 +22,7 @@ export default function Post({ params }) {
             </div>
 
             <div className={styles.lower}>
-                <p>{post.text}</p>
+                <p className={styles.text}>{post.text}</p>
             </div>
         </div>
     )

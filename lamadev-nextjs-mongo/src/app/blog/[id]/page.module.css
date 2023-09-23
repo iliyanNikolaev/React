@@ -19,6 +19,15 @@
     gap: 36px;
 }
 
+.title{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.desc{
+    font-size: 32px;
+}
+
 .owner{
     display: flex;
     align-items: center;
@@ -32,4 +41,8 @@
 
 .postImg{
     object-fit: cover;
+}
+
+.text{
+    font-size: 24px;
 }

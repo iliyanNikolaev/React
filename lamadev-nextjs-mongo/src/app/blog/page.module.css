@@ -34,3 +34,12 @@
     flex-direction: column;
     gap: 24px;
 }
+
+.postTitle{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.postDesc{
+    font-size: 24px;
+}
