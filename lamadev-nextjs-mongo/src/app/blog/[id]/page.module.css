@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.upper{
+    display: flex;
+    align-items: center;
+}
+
+.left, .postImg{
+    flex: 1;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.owner{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.authorProfilePic{
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.postImg{
+    object-fit: cover;
+}
