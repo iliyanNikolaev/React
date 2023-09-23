@@ -13,8 +13,8 @@ export default function Home() {
         <Button href={'/about'} content={'About us'}/>
 
       </div>
-      <div className={styles.img}>
-        <Image src={'/bluedev.png'} width={520} height={520} alt='dashimg' />
+      <div className={styles.imgContainer}>
+        <Image className={styles.image} src={'/bluedev.png'} width={520} height={520} alt='dashimg' />
       </div>
     </div>
   )

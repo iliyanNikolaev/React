@@ -17,17 +17,17 @@ export default function About() {
             </div>
             <div className={styles.textContainer}>
                 <div className={styles.item}>
-                    <h2>Who we are?</h2>
+                    <h2 className={styles.title}>Who we are?</h2>
 
                     <p>Just a one developer actively searching for permanent employment. I would be delighted to apply my skills and acquire new ones in your company.</p>
                 </div>
 
                 <div className={styles.item}>
-                    <h2>What we do?</h2>
+                    <h2 className={styles.title}>What we do?</h2>
 
                     <p>I apply what I've learned at the Software Academy - SoftUni and continue to acquire new skills through developing projects like this one.</p>
 
-                    <Button href={'/contact'} content={'Contact me'} />
+                    <Button href={'/contacts'} content={'Contact us'} />
                 </div>
             </div>
         </div>
