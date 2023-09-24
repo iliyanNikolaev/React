@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.css';
-import Button from '@/components/button/Button';
+import LinkButton from '@/components/link-button/LinkButton';
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
 
         <p className={styles.desc}>Our company builds modern and fast web applications, utilizing Next.js to ensure the best user experience and development efficiency.</p>
         
-        <Button href={'/about'} content={'About us'}/>
+        <LinkButton href={'/about'} content={'About us'}/>
 
       </div>
       <div className={styles.imgContainer}>

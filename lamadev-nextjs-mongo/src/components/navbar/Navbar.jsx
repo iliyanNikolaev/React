@@ -10,12 +10,12 @@ export default function Navbar() {
             <div>
                 <Link href='/' className={styles.logo}>
                     <Image src={'/nextjsicon.png'} width={36} height={36} alt='next.js'/>
-                    <span>InnovateTech blog</span>
+                    <span>InnovateTech</span>
                 </Link>
             </div>
 
             <div className={styles.links}>
-                <Toggle></Toggle>
+                <Toggle />
                 <Link href='/blog'>Blog</Link>
                 <Link href='/about'>About</Link>
                 <Link href='/contacts'>Contacts</Link>

@@ -1,4 +1,4 @@
-import Button from '@/components/button/Button';
+import LinkButton from '@/components/link-button/LinkButton';
 import styles from './page.module.css';
 
 import React from 'react'
@@ -27,7 +27,7 @@ export default function About() {
 
                     <p className={styles.text}>I apply what I've learned at the Software Academy - SoftUni and continue to acquire new skills through developing projects like this one.</p>
 
-                    <Button href={'/contacts'} content={'Contact us'} />
+                    <LinkButton href={'/contacts'} content={'Contact us'} />
                 </div>
             </div>
         </div>
