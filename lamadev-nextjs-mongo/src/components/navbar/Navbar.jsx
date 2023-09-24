@@ -19,7 +19,7 @@ export default function Navbar() {
                 <Link href='/blog'>Blog</Link>
                 <Link href='/about'>About</Link>
                 <Link href='/contacts'>Contacts</Link>
-                <Link href='/'>Dashboard</Link>
+                <Link href='/dashboard'>Dashboard</Link>
                 <Link href='/portfolio'>Portfolio</Link>
                 <>
                 <Link href='/login'>Login</Link>

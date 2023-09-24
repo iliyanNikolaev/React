@@ -30,17 +30,25 @@
 
 .owner{
     display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
-.authorProfilePic{
-    object-fit: cover;
-    border-radius: 50%;
+.author{
+    font-size: 18px;
+}
+
+.author span:nth-child(1){
+    font-weight: bold;
+}
+
+.author span:nth-child(2){
+    font-style: italic;
 }
 
 .postImg{
     object-fit: cover;
+    border-radius: 12px;
+    border: 5px solid #5166ab;
+    filter: brightness(90%);
 }
 
 .text{

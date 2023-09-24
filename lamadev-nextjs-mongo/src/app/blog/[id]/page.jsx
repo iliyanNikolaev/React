@@ -13,8 +13,7 @@ export default function Post({ params }) {
                     <h1 className={styles.title}>{post.title}</h1>
                     <p className={styles.desc}>{post.desc}</p>
                     <div className={styles.owner}>
-                        <Image className={styles.authorProfilePic} src={post.owner.profilePic} width={48} height={48} alt='authorProfilePic' />
-                        <span>{post.owner.username}</span>
+                        <span className={styles.author}><span>Author:</span> <span>{post.owner}</span></span>
                     </div>
                 </div>
 
