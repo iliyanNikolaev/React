@@ -1,11 +1,19 @@
 import Image from 'next/image';
 import styles from './page.module.css';
-import posts from '@/dummydata';
+import { notFound } from 'next/navigation';
 
-export default function Post({ params }) {
+const getPost = async (id) => {
+    const res = await fetch('http://localhost:3000/api/posts/'+id, { cache: 'no-store' });
+    if(!res.ok) {
+        return notFound();
+    }
+    return res.json();
+}
+
+export default async function Post({ params }) {
     const { id } = params;
-    const post = posts.find(x => x._id == id);
-
+    const post = await getPost(id);
+    
     return (
         <div className={styles.container}>
             <div className={styles.upper}>
@@ -17,7 +25,7 @@ export default function Post({ params }) {
                     </div>
                 </div>
 
-                <Image className={styles.postImg} src={post.image} width={500} height={300} alt='authorProfilePic' />
+                <Image className={styles.postImg} src={post.image} width={500} height={300} alt='postimage' />
             </div>
 
             <div className={styles.lower}>
