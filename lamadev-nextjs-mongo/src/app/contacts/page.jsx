@@ -3,6 +3,10 @@ import styles from './page.module.css';
 import React from 'react'
 import Image from 'next/image';
 
+export const metadata = {
+    title: 'Iliyan contacts',
+    description: 'How to reach Iliyan Nikolaev'
+}
 
 export default function Contacts() {
     return (

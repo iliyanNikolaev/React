@@ -10,6 +10,16 @@ const getPost = async (id) => {
     return res.json();
 }
 
+export async function generateMetadata({ params }) {
+    const { id } = params;
+    const post = await getPost(id);
+
+    return {
+      title: post.title,
+      description: 'Publication from innovateTech blog'
+    }
+  }
+
 export default async function Post({ params }) {
     const { id } = params;
     const post = await getPost(id);

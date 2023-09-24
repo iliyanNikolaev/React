@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import styles from './page.module.css';
 
+export const metadata = {
+    title: 'Portfolio',
+    description: 'innovateTech portfolio projects'
+}
+
 export default function Portfolio() {
     return (
         <div className={styles.container}>

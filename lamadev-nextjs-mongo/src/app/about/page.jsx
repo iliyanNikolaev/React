@@ -4,6 +4,11 @@ import styles from './page.module.css';
 import React from 'react'
 import Image from 'next/image';
 
+export const metadata = {
+    title: 'About us',
+    description: 'Information about innovateTech'
+}
+
 export default function About() {
     return (
         <div className={styles.container}>
