@@ -16,3 +16,5 @@ Topics covered in the course:
 4. Routing
 5. Hooks
 6. Advanced techniques
+
+In the 'other-work' folder, there are mini projects developed independently.
