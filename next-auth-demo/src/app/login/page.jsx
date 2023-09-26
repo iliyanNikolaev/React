@@ -1,5 +1,5 @@
 import styles from './page.module.css';
-
+import Error from '@/components/error/Error';
 export default function Login() {
   return (
     <div className={styles.container}>
@@ -7,6 +7,7 @@ export default function Login() {
         <h1 className={styles.title}>Login</h1>
         <input className={styles.input} type="text" placeholder='Enter an username...' />
         <input className={styles.input} type="password" placeholder='Enter a password...' />
+        <Error />
         <button className={styles.button}>Login</button>
       </form>
     </div>
