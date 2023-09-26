@@ -1,9 +1,11 @@
 "use client";
-import { useState } from 'react';
-import styles from './page.module.css';
+import styles from './page.module.css'; 
+import { useState, useContext } from 'react';
+import { useAuthContext } from '@/context/AuthContext';
 import Error from '@/components/error/Error';
 
 export default function Register() {
+  const { setAuth } = useAuthContext();
 
   const [error, setError] = useState('');
   
@@ -24,35 +26,27 @@ export default function Register() {
     }
 
     try {
-      const resUserExist = await fetch('api/isUserExist', {
-        method: 'post',
-        headers: { 'content-type': 'application/json'},
-        body: JSON.stringify({ username: username.trim()})
-      });
-
-      const user = await resUserExist.json();
-
-      if(user) {
-        return setError('This user already exist.');
-      }
-
       const res = await fetch('api/register', {
         method: 'post',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ username: username.trim(), password: password.trim() })
       });
 
-      if (res.ok) {
-        setFormValues({
-          username: '',
-          password: ''
-        });
-      } else {
-        setError('Regisration failed!');
+      if (!res.ok) {
+        const error = await res.json();
+        return setError(error.message);
       }
 
+      const user = await res.json();
+
+      setFormValues({
+        username: '',
+        password: ''
+      });
+
+      setAuth(user);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 

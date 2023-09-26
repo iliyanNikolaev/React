@@ -7,7 +7,7 @@ export default function Login() {
         <h1 className={styles.title}>Login</h1>
         <input className={styles.input} type="text" placeholder='Enter an username...' />
         <input className={styles.input} type="password" placeholder='Enter a password...' />
-        <Error />
+        <Error message='this is hardcoded error' />
         <button className={styles.button}>Login</button>
       </form>
     </div>
