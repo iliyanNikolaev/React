@@ -7,7 +7,7 @@ export default function UserInfo() {
 
   return (
     <div className={styles.container}>
-      <p>{auth ? `${auth.username}` : 'not auth'}</p>
+      <p>{auth.username ? `${auth.username}` : 'not auth'}</p>
     </div>
   )
 }
