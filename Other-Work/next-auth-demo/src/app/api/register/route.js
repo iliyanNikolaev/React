@@ -1,7 +1,6 @@
 import connectToDB from "@/utils/db";
 import User from "@/models/User";
 import bcrypt from 'bcryptjs';
-import { createToken } from "@/utils/jwt";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -18,15 +17,9 @@ export async function POST(req) {
 
         const hashedPassword = await bcrypt.hash(password, 5);
 
-        const user = await User.create({ username, password: hashedPassword });
+        await User.create({ username, password: hashedPassword });
 
-        const response = {
-            _id: user.id,
-            username: user.username,
-            accessToken: createToken(user)
-        }
-
-        return NextResponse.json(response, { status: 201 });
+        return NextResponse.json({ message: 'user registered.' }, { status: 201 });
     } catch (err) {
         console.log(err)
         return NextResponse.json({ message: err.message }, { status: 500 });

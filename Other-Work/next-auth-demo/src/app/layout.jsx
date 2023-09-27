@@ -1,13 +1,13 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import AuthProvider from '@/context/AuthContext'
 import Navbar from '@/components/navbar/Navbar'
+import AuthProvider from '@/components/auth-provider/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Authentication App',
-  description: 'Custom authentication system with Next.js, MongoDB, bcrypt, jwt',
+  description: 'Auth system with Next.js, NextAuth.js, MongoDB and mongoose',
 }
 
 export default function RootLayout({ children }) {
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthProvider>
           <nav className='navigation'>
-            <Navbar/>
+            <Navbar />
           </nav>
           <div className='wrapper'>
             {children}

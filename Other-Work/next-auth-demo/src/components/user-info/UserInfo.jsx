@@ -1,13 +1,16 @@
 "use client"
 import styles from './UserInfo.module.css';
-import { useAuthContext } from '@/context/AuthContext';
+import { useSession } from 'next-auth/react';
+
 export default function UserInfo() {
 
-  const { auth } = useAuthContext();
-
+  const session = useSession();
+  console.log(session);
+  
   return (
     <div className={styles.container}>
-      <p>{auth.username ? `${auth.username}` : 'not auth'}</p>
+      <p>{false ? `${auth.username}` : 'not auth'}</p>
+      {/* todo.... */}
     </div>
   )
 }

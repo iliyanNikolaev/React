@@ -1,34 +1,27 @@
 "use client";
-import styles from './page.module.css'; 
+import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/context/AuthContext';
 import { useState } from 'react';
 import Error from '@/components/error/Error';
 
 export default function Register() {
   const router = useRouter();
 
-  const { setAuth } = useAuthContext();
-
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  
-  const [formValues, setFormValues] = useState({
-    username: '',
-    password: ''
-  });
-  const onChange = (e) => {
-    setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
-  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const { username, password } = formValues;
+    const username = e.target[0].value;
+    const password = e.target[1].value;
 
     if (!username || !password) {
       return setError('All fields are required!');
     }
 
     try {
+      setLoading(true);
       const res = await fetch('api/register', {
         method: 'post',
         headers: { 'content-type': 'application/json' },
@@ -40,42 +33,31 @@ export default function Register() {
         return setError(error.message);
       }
 
-      const user = await res.json();
-      setFormValues({
-        username: '',
-        password: ''
-      });
-
-      setAuth(user);
-      router.push('/');
+      router.push('/login');
     } catch (err) {
-      console.log(err.message);
+      setLoading(false);
+      setError('Error in DB, pls try again later!');
     }
   };
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={submitHandler}>
+      {loading && <p>Loading...</p>}
+      {!loading && <form className={styles.form} onSubmit={submitHandler}>
         <h1 className={styles.title}>Register</h1>
         <input
           className={styles.input}
-          name="username"
           type="text"
           placeholder='Enter an username...'
-          value={formValues.username}
-          onChange={onChange}
         />
         <input
           className={styles.input}
-          name="password"
           type="password"
           placeholder='Enter a password...'
-          value={formValues.password}
-          onChange={onChange}
         />
         {error && <Error message={error} setError={setError} />}
         <button className={styles.button}>Register</button>
-      </form>
+      </form>}
     </div>
   )
 }
