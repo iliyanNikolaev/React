@@ -1,10 +1,13 @@
 "use client";
 import styles from './page.module.css'; 
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useAuthContext } from '@/context/AuthContext';
 import Error from '@/components/error/Error';
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
+  const router = useRouter();
+
   const { setAuth } = useAuthContext();
 
   const [error, setError] = useState('');
@@ -38,13 +41,13 @@ export default function Register() {
       }
 
       const user = await res.json();
-
       setFormValues({
         username: '',
         password: ''
       });
 
       setAuth(user);
+      router.push('/');
     } catch (err) {
       console.log(err.message);
     }

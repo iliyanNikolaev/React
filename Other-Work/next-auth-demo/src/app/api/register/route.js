@@ -7,8 +7,10 @@ import Jwt from "jsonwebtoken";
 export async function POST(req) {
     try {
         const { username, password } = await req.json();
+
+        await connectToDB();
         
-        const isExist = await User.findOne({ username: username.trim() });
+        const isExist = await User.findOne({ username });
 
         if (isExist) {
             throw new Error('User already exist.');
@@ -16,7 +18,6 @@ export async function POST(req) {
 
         const hashedPassword = await bcrypt.hash(password, 5);
 
-        await connectToDB();
         const user = await User.create({ username, password: hashedPassword });
 
         const response = {
@@ -27,6 +28,7 @@ export async function POST(req) {
 
         return NextResponse.json(response, { status: 201 });
     } catch (err) {
+        console.log(err)
         return NextResponse.json({ message: err.message }, { status: 500 });
     }
 }
