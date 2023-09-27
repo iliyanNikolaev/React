@@ -4,12 +4,11 @@ import { useSession } from 'next-auth/react';
 
 export default function UserInfo() {
 
-  const session = useSession();
-  console.log(session);
-  
+  const {data, status} = useSession();
+  console.log(data)
   return (
     <div className={styles.container}>
-      <p>{false ? `${auth.username}` : 'not auth'}</p>
+      <p>{status == 'authenticated' ? 'authenticated' : 'not auth'}</p>
       {/* todo.... */}
     </div>
   )

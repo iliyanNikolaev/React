@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Error from '@/components/error/Error';
+import { signIn } from 'next-auth/react';
 
 export default function Login() {
   const router = useRouter();
@@ -18,9 +19,17 @@ export default function Login() {
     if (!username || !password) {
       return setError('All fields are required!');
     }
+    try {
+      const res = await signIn('credentials', { username: username.trim(), password: password.trim(), redirect: false});
+      
+      if(res.error) {
+        return setError('Invalid credentials');
+      }
 
-    console.log({ username, password });
-    //todo... send login req
+      router.replace('/');
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (

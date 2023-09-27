@@ -30,6 +30,7 @@ export default function Register() {
 
       if (!res.ok) {
         const error = await res.json();
+        setLoading(false);
         return setError(error.message);
       }
 
@@ -42,8 +43,7 @@ export default function Register() {
 
   return (
     <div className={styles.container}>
-      {loading && <p>Loading...</p>}
-      {!loading && <form className={styles.form} onSubmit={submitHandler}>
+      <form className={styles.form} onSubmit={submitHandler}>
         <h1 className={styles.title}>Register</h1>
         <input
           className={styles.input}
@@ -56,8 +56,8 @@ export default function Register() {
           placeholder='Enter a password...'
         />
         {error && <Error message={error} setError={setError} />}
-        <button className={styles.button}>Register</button>
-      </form>}
+        <button className={styles.button} disabled={loading ? true : false}>{loading ? 'Loading...' : 'Register'}</button>
+      </form>
     </div>
   )
 }
