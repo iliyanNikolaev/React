@@ -1,6 +1,4 @@
 import Jwt from "jsonwebtoken";
-import connectToDB from "./db";
-import InvalidToken from "@/models/InvalidToken";
 
 export function createToken(user) {
     const payload = {
@@ -9,19 +7,6 @@ export function createToken(user) {
     }
 
     return Jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '12h' });
-}
-
-export async function checkForInvalidToken(token) {
-    await connectToDB();
-    const tokensFromBase = await InvalidToken.find({});
-
-    for (const tokenInBase of tokensFromBase) {
-        if(tokenInBase.token == token) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 export function verifyToken(token) {
