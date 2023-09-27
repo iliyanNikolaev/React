@@ -1,15 +1,15 @@
 import connectToDB from "@/utils/db";
-import { NextResponse } from "next/server";
-import bcrypt from 'bcryptjs';
 import User from "@/models/User";
-import Jwt from "jsonwebtoken";
+import bcrypt from 'bcryptjs';
+import { createToken } from "@/utils/jwt";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
     try {
         const { username, password } = await req.json();
 
         await connectToDB();
-        
+
         const isExist = await User.findOne({ username });
 
         if (isExist) {
@@ -31,13 +31,4 @@ export async function POST(req) {
         console.log(err)
         return NextResponse.json({ message: err.message }, { status: 500 });
     }
-}
-
-function createToken(user) {
-    const payload = {
-        username: user.username,
-        _id: user._id,
-    }
-
-    return Jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '12h' });
 }

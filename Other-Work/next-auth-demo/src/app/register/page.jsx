@@ -1,9 +1,9 @@
 "use client";
 import styles from './page.module.css'; 
-import { useState } from 'react';
-import { useAuthContext } from '@/context/AuthContext';
-import Error from '@/components/error/Error';
 import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/context/AuthContext';
+import { useState } from 'react';
+import Error from '@/components/error/Error';
 
 export default function Register() {
   const router = useRouter();
