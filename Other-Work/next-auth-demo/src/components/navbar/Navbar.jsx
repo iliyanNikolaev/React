@@ -7,9 +7,10 @@ export default function Navbar() {
     return (
         <>
             <Link href='/'>Home</Link>
-            <button onClick={() => signOut()}>Logout</button>
+            <button onClick={signOut}>Logout</button>
             <Link href='/login'>Login</Link>
             <Link href='/register'>Register</Link>
+            <Link href='/testPage'>test-page</Link>
         </>
     )
 }
