@@ -13,7 +13,7 @@ export default function Navbar() {
         <div className={styles.container}>
             <div>
                 <Link href='/' className={styles.logo}>
-                    <Image src={'/nextjsicon.png'} width={36} height={36} alt='next.js' />
+                    <Image className={styles.img} src={'/next-icon.webp'} width={52} height={52} alt='next.js' />
                     <span>InnovateTech</span>
                 </Link>
             </div>

@@ -11,6 +11,10 @@
     gap: 8px;
 }
 
+.img{
+    filter: brightness(70%);
+}
+
 .logo span{
     font-size: 24px;
     font-weight: bold;

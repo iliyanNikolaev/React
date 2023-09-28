@@ -9,4 +9,11 @@
 
 .span{
     cursor: default;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.social{
+    display: flex;
+    align-items: center;
 }

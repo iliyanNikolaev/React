@@ -24,7 +24,7 @@ export default function About() {
                 <div className={styles.item}>
                     <h2 className={styles.title}>Who we are?</h2>
 
-                    <p>Just a one developer actively searching for permanent employment. I would be delighted to apply my skills and acquire new ones in your company.</p>
+                    <p className={styles.text}>Just a one developer actively searching for permanent employment. I would be delighted to apply my skills and acquire new ones in your company.</p>
                 </div>
 
                 <div className={styles.item}>
