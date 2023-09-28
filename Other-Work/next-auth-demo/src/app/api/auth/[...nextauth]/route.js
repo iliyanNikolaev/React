@@ -10,7 +10,6 @@ const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        let user;
         await connectToDB();
         try {
           const isExist = await User.findOne({ username: credentials.username });
@@ -23,9 +22,9 @@ const authOptions = {
             return null;
           }
 
-          user = isExist;
-
-          return user;
+          return {
+            name: { _id: isExist._id, username: isExist.username}
+          };
         } catch (err) {
           throw new Error(err.message);
         }
