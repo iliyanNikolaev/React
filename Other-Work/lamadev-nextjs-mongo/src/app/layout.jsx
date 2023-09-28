@@ -2,6 +2,7 @@ import './globals.css'
 import Navbar from '@/components/navbar/Navbar'
 import Footer from '@/components/footer/Footer'
 import { ThemeProvider } from '@/context/ThemeContext'
+import { AuthProvider } from '@/context/AuthProvider'
 
 
 export const metadata = {
@@ -18,11 +19,13 @@ export default function RootLayout({ children }) {
 
       <body>
         <ThemeProvider>
+          <AuthProvider>
           <div className="container">
             <Navbar />
             {children}
             <Footer />
           </div>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

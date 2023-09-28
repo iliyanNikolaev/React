@@ -17,8 +17,8 @@ export default function Portfolio() {
                     <span className={styles.innerTitle}>movies-app</span>
                 </Link>
 
-                <Link className={styles.project} href={'https://github.com/iliyanNikolaev/social-horizon-pc-client'} target='_blank'>
-                    <span className={styles.innerTitle}>social-app</span>
+                <Link className={styles.project} href={'https://github.com/iliyanNikolaev/rest-api-express-mongo'} target='_blank'>
+                    <span className={styles.innerTitle}>rest-api-social-app</span>
                 </Link>
             </div>
         </div>
