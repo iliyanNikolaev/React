@@ -1,36 +1,25 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import getSession from '@/utils/getSession';
+import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
 
     const [err, setErr] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const session = getSession();
+    const router = useRouter();
 
-    useEffect(() => {
-        const getData = async () => {
-            setLoading(true);
-            const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+    if(session.status == 'unauthenticated') {
+        return router.push('/login');
+    }
 
-            if (!res.ok) {
-                setErr(true);
-                setLoading(false);
-            }
-
-            const data = await res.json();
-
-            setLoading(false);
-            console.log(data);
-            return data;
-        };
-
-        getData();
-    }, []);
+    if(session.status == 'loading') {
+        return <p>Loading...</p>
+    }
 
     return (
         <div>
-            { loading && <p>Loading...</p> }
-            { err && <p>Error in fetch</p> }
-            { !loading && !err && <p>Check the console...</p>}
+            Dashboard..
         </div>
     )
 }

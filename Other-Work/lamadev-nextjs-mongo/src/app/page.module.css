@@ -31,11 +31,8 @@
 
 .title{
     font-size: 48px;
-    font-weight: 900;
-    background: linear-gradient(to bottom, #4b5d9a, #5065a8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: default;
+    font-weight: bolder;
+    color: #4b5d9a
 }
 
 .desc{
