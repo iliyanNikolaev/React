@@ -38,7 +38,7 @@ export default function Login() {
   }
 
   if(session.status == 'authenticated') {
-    return router.push('/dashboard');
+    return router.push('/');
   }
 
   return (

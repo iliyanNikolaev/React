@@ -40,8 +40,14 @@ export const authOptions = {
           }
         }
 
+        user = {
+          _id: token.name._id,
+          username: token.name.username
+        }
+        /*await getServerSession(authOptions) will return => { user: { _id: '651568cbf7b294a70f52a106', username: 'ilich' } } */
+
         return customSession;
-        /* the hook useSession() will return => { data: { user: { _id: '651568cbf7b294a70f52a106', username: 'ilich' } }, 
+        /*useSession() will return => { data: { user: { _id: '651568cbf7b294a70f52a106', username: 'ilich' } }, 
                      status: "authenticated", 
                      update: ƒunction update(data) } */
       }

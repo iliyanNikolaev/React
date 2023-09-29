@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import { notFound } from 'next/navigation';
+import apiHostURL from '@/utils/apiHostURL';
 
 const getPost = async (id) => {
-    const res = await fetch('http://localhost:3000/api/posts/'+id, { cache: 'no-store' });
+    const res = await fetch(apiHostURL+'/api/posts/'+id, { cache: 'no-store' });
     if(!res.ok) {
         return notFound();
     }
