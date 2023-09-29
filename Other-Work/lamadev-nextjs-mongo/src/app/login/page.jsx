@@ -2,12 +2,13 @@
 import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Error from '@/components/error/Error';
+import { useSession } from 'next-auth/react';
 import { signIn } from 'next-auth/react';
+import Error from '@/components/error/Error';
 
 export default function Login() {
   const router = useRouter();
-
+  const session = useSession();
   const [error, setError] = useState('');
 
   const submitHandler= async (e) => {
@@ -30,6 +31,14 @@ export default function Login() {
     } catch (err) {
       setError(err.message);
     }
+  }
+
+  if(session.status == 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if(session.status == 'authenticated') {
+    return router.push('/dashboard');
   }
 
   return (

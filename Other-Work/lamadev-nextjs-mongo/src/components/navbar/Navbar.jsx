@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Toggle from '../theme-toggle/Toggle';
 import LogoutButton from '../logout-button/LogoutButton';
 import { useSession } from 'next-auth/react';
+
 export default function Navbar() {
     const session = useSession();
 
@@ -18,16 +19,19 @@ export default function Navbar() {
             </div>
 
             <div className={styles.links}>
-                <Toggle />
-                <Link href='/blog'>Blog</Link>
-                <Link href='/about'>About</Link>
-                <Link href='/contacts'>Contacts</Link>
-                <Link href='/dashboard'>Dashboard</Link>
-                <Link href='/portfolio'>Portfolio</Link>
-                {(session.status == 'unauthenticated' || session.status == 'loading') && <>
-                    <Link href='/login'>Login</Link>
-                    <Link href='/register'>Register</Link></>}
-                {session.status == 'authenticated' && <LogoutButton />}
+                {session.status == 'loading' ? <p>Loading...</p> : <>
+                    <Toggle />
+                    <Link href='/blog'>Blog</Link>
+                    <Link href='/about'>About</Link>
+                    <Link href='/contacts'>Contacts</Link>
+                    <Link href='/portfolio'>Portfolio</Link>
+                    {session.status == 'unauthenticated' && <>
+                        <Link href='/login'>Login</Link>
+                        <Link href='/register'>Register</Link></>}
+                    {session.status == 'authenticated' && <>
+                        <Link href='/dashboard'>Dashboard</Link>
+                        <LogoutButton /></>}
+                </>}
             </div>
         </div>
     )

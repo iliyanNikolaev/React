@@ -2,10 +2,12 @@
 import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import Error from '@/components/error/Error';
 
 export default function Register() {
   const router = useRouter();
+  const session = useSession();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -40,6 +42,14 @@ export default function Register() {
       setError('Error in DB, pls try again later!');
     }
   };
+
+  if(session.status == 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if(session.status == 'authenticated') {
+    return router.push('/dashboard');
+  }
 
   return (
     <div className={styles.container}>
