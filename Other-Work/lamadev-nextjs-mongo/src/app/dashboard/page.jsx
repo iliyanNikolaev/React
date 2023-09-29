@@ -1,12 +1,12 @@
 "use client"
 import { useState } from 'react';
-import getSession from '@/utils/getSession';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 export default function Dashboard() {
 
     const [err, setErr] = useState(false);
-    const session = getSession();
+    const session = useSession();
     const router = useRouter();
 
     if(session.status == 'unauthenticated') {

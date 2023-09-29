@@ -4,10 +4,9 @@ import styles from './Navbar.module.css';
 import Link from 'next/link'
 import Toggle from '../theme-toggle/Toggle';
 import LogoutButton from '../logout-button/LogoutButton';
-import getSession from '@/utils/getSession';
-
+import { useSession } from 'next-auth/react';
 export default function Navbar() {
-    const session = getSession();
+    const session = useSession();
 
     return (
         <div className={styles.container}>

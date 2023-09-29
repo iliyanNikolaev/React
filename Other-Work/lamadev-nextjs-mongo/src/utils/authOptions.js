@@ -31,4 +31,19 @@ export const authOptions = {
       })
     ],
     secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+      async session({ session, token, user }) {        
+        const customSession = {
+          user: {
+            _id: token.name._id,
+            username: token.name.username
+          }
+        }
+
+        return customSession;
+        /* the hook useSession() will return => { data: { user: { _id: '651568cbf7b294a70f52a106', username: 'ilich' } }, 
+                     status: "authenticated", 
+                     update: ƒunction update(data) } */
+      }
+    }
   }
