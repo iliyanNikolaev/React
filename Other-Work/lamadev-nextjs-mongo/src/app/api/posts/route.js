@@ -20,3 +20,16 @@ export const GET = async (request) => {
         return NextResponse.json('Database Error', { status: 400 });
     }
 }
+
+export const POST = async (request) => {
+    const post = await request.json();
+    try {
+        await connectToDB();
+
+        const created = await Post.create(post);
+
+        return NextResponse.json(post, { status: 200 });
+    } catch (err) {
+        return NextResponse.json('Database Error', { status: 400 });
+    }
+}

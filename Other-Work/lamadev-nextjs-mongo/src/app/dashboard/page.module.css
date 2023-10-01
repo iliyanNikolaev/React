@@ -21,6 +21,12 @@
     font-size: 24px;
 }
 
+.posts{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .post{
     display: flex;
     align-items: center;
@@ -28,6 +34,7 @@
     border: 2.5px solid #5166ab;
     padding: 12px;
     border-radius: 5px;
+    height: 150px;
 }
 
 .post:last-child{
@@ -84,6 +91,37 @@
     font-size: 16px;
     color: #5166ab;
     font-weight: bold;
+}
+
+.imageInputs{
+    display: flex;
+    gap: 12px;
+}
+
+.imgURLinput{
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    color: gray;
+}
+
+.addFile{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.addFile span {
+    display: flex;
+    align-items: center;
+}
+
+.addFile span i {
+    color: green;
+}
+
+.file{
+    display: none;
 }
 
 .button{
