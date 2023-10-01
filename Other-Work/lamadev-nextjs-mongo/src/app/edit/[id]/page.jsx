@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 
 const getTopicById = async (id) => {
     try {
-        const res = await fetch(apiHostURL + '/api/posts/' + id);
+        const res = await fetch(apiHostURL + '/api/posts/' + id, { cache: 'no-store' });
 
         if (!res.ok) {
             throw new Error('Error in db!')

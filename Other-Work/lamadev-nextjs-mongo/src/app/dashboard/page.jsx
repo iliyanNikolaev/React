@@ -80,6 +80,22 @@ export default function Dashboard() {
         }
     }
 
+    const deleteHandler = async (id) => {
+        const choice = confirm('Are you sure you want to delete this post?');
+
+        if(choice){
+            try {
+                await fetch(apiHostURL+'/api/posts/'+id, {
+                    method: 'delete'
+                });
+
+                setUserPosts(state => state.filter(x => x._id != id));
+            } catch (err) {
+                setError(err.message);
+            }
+        }
+    }
+
     if (session.status == 'unauthenticated') {
         return router.push('/login');
     }
@@ -103,7 +119,7 @@ export default function Dashboard() {
 
                                 <div className={styles.buttons}>
                                     <Link href={`/edit/${x._id}`}><i className="far fa-edit"></i></Link>
-                                    <i className="fas fa-trash-alt"></i>
+                                    <i className="fas fa-trash-alt" onClick={() => deleteHandler(x._id)}></i>
                                 </div>
                             </div>
                         </div>)}
