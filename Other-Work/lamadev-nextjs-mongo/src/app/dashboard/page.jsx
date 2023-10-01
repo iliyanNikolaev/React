@@ -7,6 +7,7 @@ import Image from 'next/image';
 import apiHostURL from '@/utils/apiHostURL';
 import Error from '@/components/error/Error';
 import uploadImg from '@/utils/uploadImg';
+import Link from 'next/link';
 
 export default function Dashboard() {
 
@@ -96,7 +97,7 @@ export default function Dashboard() {
                                 <h1 className={styles.postTitle}>{x.title}</h1>
 
                                 <div className={styles.buttons}>
-                                    <i className="far fa-edit"></i>
+                                    <Link href={`/edit/${x._id}`}><i className="far fa-edit"></i></Link>
                                     <i className="fas fa-trash-alt"></i>
                                 </div>
                             </div>

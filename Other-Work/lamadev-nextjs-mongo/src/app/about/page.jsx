@@ -17,7 +17,7 @@ export default async function About() {
                 <Image className={styles.img} src={'/aboutimg.jpg'} fill={true} alt='webdev' />
                 <div className={styles.imgText}>
                     <h1>InnovateTech</h1>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, laboriosam!</p>
+                    <p>Innovate, Code, Envision</p>
                 </div>
             </div>
             <div className={styles.textContainer}>
