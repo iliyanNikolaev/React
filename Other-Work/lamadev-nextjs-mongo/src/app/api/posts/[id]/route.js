@@ -17,11 +17,11 @@ export const GET = async (request, { params }) => {
 
 export const PUT = async (request, { params }) => {
     const { id } = params;
-
+    const data = await request.json();
     try {
         await connectToDB();
 
-        const post = await Post.findById(id);
+        const post = await Post.findByIdAndUpdate(id, data);
         
         return NextResponse.json(post, { status: 200 });
     } catch (err) {

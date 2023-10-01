@@ -21,7 +21,7 @@ const getTopicById = async (id) => {
 
 export default async function EditTopic({ params }) {
     const session = await getServerSession();
-    const loggedUsername = session.user?.name?.username;
+    const loggedUsername = session?.user?.name?.username;
     if(!loggedUsername) {
         return redirect('/login');
     }

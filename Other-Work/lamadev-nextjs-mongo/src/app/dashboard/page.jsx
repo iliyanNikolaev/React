@@ -36,13 +36,13 @@ export default function Dashboard() {
         try {
             const title = e.target[0].value;
             let image;
-
             if (img) {
                 try {
                     const imgUrl = await uploadImg(img);
 
                     image = imgUrl;
                 } catch (err) {
+                    setLoading(false);
                     throw new Error(err.message);
                 }
             } else {
@@ -51,6 +51,11 @@ export default function Dashboard() {
             }
             const desc = e.target[2].value;
             const text = e.target[3].value;
+
+            if (!title || !desc || !text) {
+                setLoading(false);
+                throw new Error('All fields are required!');
+            }
 
             const res = await fetch(apiHostURL + '/api/posts', {
                 method: 'post',
