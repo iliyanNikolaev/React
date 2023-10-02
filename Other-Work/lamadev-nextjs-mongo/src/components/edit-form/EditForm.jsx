@@ -59,7 +59,7 @@ export default function EditForm({
 
     return (
         <form className={styles.editPost} onSubmit={submitHandler}>
-            <h1 className={styles.title}>Edit "{post.title}"</h1>
+            <h1 className={styles.title}>Edit {post.title}</h1>
             <input type="text" placeholder="Title" className={styles.input} defaultValue={post.title} />
             <div className={styles.imageInputs}>
                 <div
@@ -77,7 +77,7 @@ export default function EditForm({
 
             {error && <Error message={error} setError={setError} />}
 
-            <button className={styles.button} disabled={loading ? true : false}>{loading ? 'Loading...' : 'Edit'}</button>
+            <button className={styles.button} disabled={loading ? true : false}>{loading ? 'Loading' : 'Edit'}</button>
         </form>
     )
 }

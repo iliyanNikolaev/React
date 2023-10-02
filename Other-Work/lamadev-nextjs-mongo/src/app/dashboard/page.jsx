@@ -101,7 +101,7 @@ export default function Dashboard() {
     }
 
     if (session.status == 'loading') {
-        return <p>Loading...</p>;
+        return <p>Loading</p>;
     }
 
     return (
@@ -109,7 +109,7 @@ export default function Dashboard() {
             <div className={styles.userPosts}>
                 {userPosts ? <>
 
-                    {userPosts.length == 0 && <p className={styles.noPosts}>You don't have posts yet :(</p>}
+                    {userPosts.length == 0 && <p className={styles.noPosts}>You dont have posts yet</p>}
 
                     <div className={styles.posts}>
                         {userPosts.map(x => <div className={styles.post} key={x._id}>
@@ -125,7 +125,7 @@ export default function Dashboard() {
                         </div>)}
                     </div></>
 
-                    : <p>Loading...</p>}
+                    : <p>Loading</p>}
             </div>
             <form className={styles.createPost} onSubmit={submitHandler}>
                 <h1 className={styles.title}>Add new post</h1>
@@ -146,7 +146,7 @@ export default function Dashboard() {
 
                 {error && <Error message={error} setError={setError} />}
 
-                <button className={styles.button} disabled={loading ? true : false}>{loading ? 'Loading...' : 'Add'}</button>
+                <button className={styles.button} disabled={loading ? true : false}>{loading ? 'Loading' : 'Add'}</button>
             </form>
 
         </div>
