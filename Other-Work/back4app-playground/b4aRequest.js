@@ -9,6 +9,11 @@ export async function b4aRequest(method, url, data) {
         }
     }
 
+    const token = getToken();
+    if(token) {
+        options.headers['X-Parse-Session-Token'] = token;
+    }
+
     if (data) {
         options.body = JSON.stringify(data);
     }
@@ -34,6 +39,24 @@ export async function b4aRequest(method, url, data) {
 // Успех: result = {}
 // При грешка: result = {code: 101, error: 'Object not found.'}
 
+//---------------------------------------------------------------------------------------//
+
+//localStorageUtils
+export function setToken(token) {
+    localStorage.setItem('b4aToken', JSON.stringify(token));
+}
+
+export function getToken() {
+    return JSON.parse(localStorage.getItem('b4aToken'));
+}
+
+export function deleteToken() {
+    localStorage.removeItem('b4aToken');
+}
+
+//--------------------------------------------------------------------------------------//
+
+//partials
 export const b4aGET = b4aRequest.bind(null, 'get');
 export const b4aPOST = b4aRequest.bind(null, 'post');
 export const b4aPUT = b4aRequest.bind(null, 'put');
