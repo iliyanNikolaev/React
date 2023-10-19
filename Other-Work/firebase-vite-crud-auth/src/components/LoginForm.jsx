@@ -24,8 +24,8 @@ export const LoginForm = () => {
     return (
         <div>
             <form onSubmit={formSubmit}>
-                <input type="text" placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
-                <input type="password" placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
+                <input type="text" placeholder="Email..." />
+                <input type="password" placeholder="Password..." />
 
                 <button>
                     Next
