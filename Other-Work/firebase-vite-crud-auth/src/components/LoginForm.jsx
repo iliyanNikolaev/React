@@ -1,10 +1,7 @@
-import React from 'react';
 import { auth } from '../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export const LoginForm = () => {
-
-    console.log(auth?.currentUser?.email);
 
     const formSubmit = async (e) => {
         e.preventDefault();
@@ -27,8 +24,8 @@ export const LoginForm = () => {
     return (
         <div>
             <form onSubmit={formSubmit}>
-                <input type="text" placeholder="Email..." />
-                <input type="password" placeholder="Password..." />
+                <input type="text" placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
+                <input type="password" placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
 
                 <button>
                     Next
@@ -40,6 +37,6 @@ export const LoginForm = () => {
 
 
 //signInWithEmailAndPassword function
-// При НЕУСПЕШНА заявка: Функцията хвърля грешка която хващаме в catch блока и в кода 
+// При НЕУСПЕШНА заявка: Функцията хвърля грешка която хващаме в catch блока и в кода
 // по-горе се вижда как взимаме инфото каква е грешката
 // При УСПЕШНА заявка: Функцията логва потребителя в аппа
