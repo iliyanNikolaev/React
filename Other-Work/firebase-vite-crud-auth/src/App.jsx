@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { LogoutBtn } from "./components/LogoutBtn";
-import { LoginForm } from "./components/loginForm";
-import { RegisterForm } from "./components/RegisterForm";
 import { useAuthContext } from "./contexts/AuthContext";
 import { useDataContext } from "./contexts/DataContext";
+import { useEffect } from "react";
+import { LoginForm } from "./components/loginForm";
+import { RegisterForm } from "./components/RegisterForm";
+import { LogoutBtn } from "./components/LogoutBtn";
 
 function App() {
 
@@ -11,8 +11,6 @@ function App() {
   const { movies, getMovies } = useDataContext();
 
   useEffect(() => {
-
-
     getMovies();
   }, []);
 
@@ -37,8 +35,6 @@ function App() {
           <p>{x.resume}</p>
         </div>)}
       </div>
-      
-
     </>
   )
 }

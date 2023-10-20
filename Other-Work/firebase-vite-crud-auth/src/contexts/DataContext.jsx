@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 
@@ -34,6 +33,5 @@ export const DataContextProvider = ({ children }) => {
 
 export const useDataContext = () => {
     const ctx = useContext(DataContext);
-
     return ctx;
 }
