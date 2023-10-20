@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 const DataContext = createContext();
@@ -17,11 +17,29 @@ export const DataContextProvider = ({ children }) => {
         } catch (err) {
             alert(err.code);
         }
-    }
+    } // used in GetMovies component
+
+    const postMovieHandler = async (e) => {
+        e.preventDefault();
+        const title = e.target[0].value;
+        const year = Number(e.target[1].value);
+        const resume = e.target[2].value;
+
+        // DATA MUST BE VALIDATED!!!
+
+        try {
+            await addDoc(moviesCollectionRef, { title, year, resume });
+            await getMovies();
+            e.target.reset();
+        } catch (err) {
+            alert(err.code);
+        }
+    } // used in PostMovie component
 
     const ctx = {
         movies,
-        getMovies
+        getMovies, 
+        postMovieHandler
     }
 
     return (
