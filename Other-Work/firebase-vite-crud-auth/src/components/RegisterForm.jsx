@@ -1,32 +1,13 @@
-import React from 'react';
-import { auth } from '../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAuthContext } from "../contexts/AuthContext"
 
 export const RegisterForm = () => {
 
-    console.log(auth?.currentUser?.email);
-
-    const formSubmit = async (e) => {
-        e.preventDefault();
-
-        const email = e.target[0].value;
-        const password = e.target[1].value;
-        if (email == '' || password == '') {
-            return alert('All fields are required!');
-        }
-        try {
-            const res = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(res);
-            e.target.reset();
-        } catch (err) {
-            return alert(err.code);
-            // this is the alert message => auth/invalid-email
-        }
-    }
+    const { registerHandler } = useAuthContext();
 
     return (
         <div>
-            <form onSubmit={formSubmit}>
+            <h2>Register</h2>
+            <form onSubmit={registerHandler}>
                 <input type="text" placeholder="Email..." />
                 <input type="password" placeholder="Password..." />
 

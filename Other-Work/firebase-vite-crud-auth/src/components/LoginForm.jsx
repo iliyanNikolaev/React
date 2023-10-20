@@ -1,29 +1,13 @@
-import { auth } from '../config/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuthContext } from '../contexts/AuthContext';
 
 export const LoginForm = () => {
 
-    const formSubmit = async (e) => {
-        e.preventDefault();
-
-        const email = e.target[0].value;
-        const password = e.target[1].value;
-        if (email == '' || password == '') {
-            return alert('All fields are required!');
-        }
-        try {
-            const res = await signInWithEmailAndPassword(auth, email, password);
-            console.log(res);
-            e.target.reset();
-        } catch (err) {
-            return alert(err.code);
-            // this is the alert message => auth/invalid-email
-        }
-    }
+    const { loginHandler } = useAuthContext();
 
     return (
         <div>
-            <form onSubmit={formSubmit}>
+            <h2>Login</h2>
+            <form onSubmit={loginHandler}>
                 <input type="text" placeholder="Email..." />
                 <input type="password" placeholder="Password..." />
 
