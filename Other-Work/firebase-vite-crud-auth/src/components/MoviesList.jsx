@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useDataContext } from '../contexts/DataContext';
+import { EditMovie } from './EditMovie';
 
-export const GetMovies = () => {
-    const { movies, getMovies } = useDataContext();
+export const MoviesList = () => {
+    const { movies, getMovies, deleteMovieHandler } = useDataContext();
 
     useEffect(() => {
         getMovies();
@@ -19,6 +20,8 @@ export const GetMovies = () => {
                 <h3>{x.title}</h3>
                 <p>{x.year}</p>
                 <p>{x.resume}</p>
+                <button onClick={() => deleteMovieHandler(x.id)}>Delete</button>
+                <EditMovie id={x.id} />
             </div>)}
         </div>
     )

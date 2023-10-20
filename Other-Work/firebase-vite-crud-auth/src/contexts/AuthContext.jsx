@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from '../config/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 
@@ -6,14 +6,22 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 
-    const [userData, setUserData] = useState({
-        isAuthenticated: false
-    });
+    const [userData, setUserData] = useState(() => {
+        const stateInLocalStorage = localStorage.getItem('firebaseAuth');
 
-    const getUserData = () => {
-        const user = auth.currentUser;
-        return user;
-    }
+        if(stateInLocalStorage) {
+            const persistedState = JSON.parse(stateInLocalStorage);
+
+            return {
+                isAuthenticated: true,
+                ...persistedState
+            }
+        }
+
+        return {
+            isAuthenticated: false
+        }
+    });
 
     const loginHandler = async (e) => {
         e.preventDefault();
@@ -26,7 +34,8 @@ export const AuthContextProvider = ({ children }) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             e.target.reset();
-            const user = getUserData();
+            const user = auth.currentUser;
+            localStorage.setItem('firebaseAuth', JSON.stringify(user));
             setUserData(prev => ({
                 isAuthenticated: true,
                 ...user
@@ -49,7 +58,8 @@ export const AuthContextProvider = ({ children }) => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             e.target.reset();
-            const user = getUserData();
+            const user = auth.currentUser;
+            localStorage.setItem('firebaseAuth', JSON.stringify(user));
             setUserData(prev => ({
                 isAuthenticated: true,
                 ...user
@@ -63,6 +73,7 @@ export const AuthContextProvider = ({ children }) => {
     const logoutHandler = async () => {
         try {
             await signOut(auth);
+            localStorage.removeItem('firebaseAuth');
             setUserData(prev => ({
                 isAuthenticated: false
             }));
