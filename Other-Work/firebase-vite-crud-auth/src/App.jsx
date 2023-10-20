@@ -1,28 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { LogoutBtn } from "./components/LogoutBtn";
 import { LoginForm } from "./components/loginForm";
 import { RegisterForm } from "./components/RegisterForm";
-import { db } from "./config/firebase";
-import { getDocs, collection } from "firebase/firestore";
 import { useAuthContext } from "./contexts/AuthContext";
+import { useDataContext } from "./contexts/DataContext";
 
 function App() {
-  const moviesCollectionRef = collection(db, 'movies');
-
-  const [movies, setMovies] = useState(null);
 
   const { userData } = useAuthContext();
+  const { movies, getMovies } = useDataContext();
 
   useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const res = await getDocs(moviesCollectionRef);
-        const leanData = res.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        setMovies(leanData);
-      } catch (err) {
-        alert(err.code);
-      }
-    };
+
 
     getMovies();
   }, []);
@@ -48,6 +37,8 @@ function App() {
           <p>{x.resume}</p>
         </div>)}
       </div>
+      
+
     </>
   )
 }
