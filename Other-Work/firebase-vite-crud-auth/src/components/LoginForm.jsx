@@ -8,8 +8,8 @@ export const LoginForm = () => {
         <div>
             <h2>Login</h2>
             <form onSubmit={loginHandler}>
-                <input type="text" placeholder="Email..." />
-                <input type="password" placeholder="Password..." />
+                <input type="text" name='email' placeholder="Email..." />
+                <input type="password" name='password' placeholder="Password..." />
 
                 <button>
                     Next

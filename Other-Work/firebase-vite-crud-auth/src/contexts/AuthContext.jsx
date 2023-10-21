@@ -26,8 +26,9 @@ export const AuthContextProvider = ({ children }) => {
     const loginHandler = async (e) => {
         e.preventDefault();
 
-        const email = e.target[0].value;
-        const password = e.target[1].value;
+        const formData = new FormData(e.target);
+        const { email, password } = Object.fromEntries(formData);
+
         if (email == '' || password == '') {
             return alert('All fields are required!');
         }
@@ -50,8 +51,9 @@ export const AuthContextProvider = ({ children }) => {
     const registerHandler = async (e) => {
         e.preventDefault();
 
-        const email = e.target[0].value;
-        const password = e.target[1].value;
+        const formData = new FormData(e.target);
+        const { email, password } = Object.fromEntries(formData);
+ 
         if (email == '' || password == '') {
             return alert('All fields are required!');
         }

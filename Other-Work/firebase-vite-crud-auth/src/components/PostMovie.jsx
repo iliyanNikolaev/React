@@ -8,9 +8,9 @@ export const PostMovie = () => {
         <>
             <h2>Create movie</h2>
             <form onSubmit={postMovieHandler}>
-                <input type="text" placeholder='Title...' />
-                <input type="number" placeholder='Year...' />
-                <input type="text" placeholder='Resume...' />
+                <input type="text" name='title' placeholder='Title...' />
+                <input type="number" name='year' placeholder='Year...' />
+                <input type="text" name='resume' placeholder='Resume...' />
                 <input type="submit" value="Add" />
             </form>
         </>
