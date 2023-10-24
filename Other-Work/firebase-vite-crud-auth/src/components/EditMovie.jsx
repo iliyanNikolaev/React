@@ -26,14 +26,13 @@ export const EditMovie = ({
     const editFormSubmit = async (e) => {
         e.preventDefault();
 
-        const title = e.target[0].value;
-        const year = Number(e.target[1].value);
-        const resume = e.target[2].value;
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData); 
 
         // DATA MUST BE VALIDATED
 
         try {
-            await updateMovieHandler(id, { title, year, resume});
+            await updateMovieHandler(id, data);
             hideEditForm();
             e.target.reset();
         } catch (err) {

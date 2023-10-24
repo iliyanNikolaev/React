@@ -33,19 +33,26 @@ export const DataContextProvider = ({ children }) => {
 
     const postMovieHandler = async (e) => {
         e.preventDefault();
-        const title = e.target[0].value;
-        const year = Number(e.target[1].value);
-        const resume = e.target[2].value;
+        const formData = new FormData(e.target);
+        const { title, year, resume } = Object.fromEntries(formData);
+
         let owner;
 
         if(userData) {
             owner = userData.uid;
         }
 
+        const data = {
+            title,
+            year,
+            resume,
+            owner
+        }
+
         // DATA MUST BE VALIDATED!!!
 
         try {
-            await addDoc(moviesCollectionRef, { title, year, resume, owner });
+            await addDoc(moviesCollectionRef, data);
             await getMovies();
             e.target.reset();
         } catch (err) {
